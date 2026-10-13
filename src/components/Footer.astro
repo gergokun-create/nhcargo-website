@@ -1,0 +1,107 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { localePath, useTranslations, type Lang } from '../i18n';
+import { site, formatAddress } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const navKeys = ['home', 'services', 'industries', 'sustainability', 'contact'] as const;
+---
+
+<footer class="bg-ink-900 text-ink-200">
+  <div class="container-page grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 lg:py-20">
+    <div class="sm:col-span-2 lg:col-span-4">
+      <a href={localePath('home', lang)} class="inline-block rounded-md" aria-label={t.nav.homeLink}>
+        <Logo size="md" />
+      </a>
+      <p class="mt-6 max-w-xs text-sm leading-relaxed text-ink-300">{t.footer.tagline}</p>
+      <!-- TODO: set the real LinkedIn URL in src/data/site.ts (social.linkedin) -->
+      <a
+        href={site.social.linkedin}
+        class="mt-6 inline-flex size-10 items-center justify-center rounded-full border border-white/15 text-ink-200 transition hover:border-gold-400 hover:text-gold-300"
+        rel="noopener"
+        target="_blank"
+      >
+        <Icon name="linkedin" class="size-[18px]" />
+        <span class="sr-only">{t.footer.linkedin}</span>
+      </a>
+    </div>
+
+    <nav aria-labelledby="footer-nav-title" class="lg:col-span-2">
+      <h2 id="footer-nav-title" class="font-display text-sm font-semibold tracking-wider text-white uppercase">
+        {t.footer.navTitle}
+      </h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        {
+          navKeys.map((key) => (
+            <li>
+              <a href={localePath(key, lang)} class="text-ink-300 transition-colors hover:text-gold-300">
+                {t.nav[key]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="lg:col-span-4">
+      <h2 class="font-display text-sm font-semibold tracking-wider text-white uppercase">{t.footer.contactTitle}</h2>
+      <ul class="mt-5 space-y-4 text-sm">
+        <li class="flex gap-3">
+          <Icon name="phone" class="mt-0.5 size-4 shrink-0 text-gold-400" />
+          <a href={site.phone.href} class="text-ink-200 transition-colors hover:text-gold-300">{site.phone.display}</a>
+        </li>
+        <li class="flex gap-3">
+          <Icon name="mail" class="mt-0.5 size-4 shrink-0 text-gold-400" />
+          <a href={`mailto:${site.email}`} class="text-ink-200 transition-colors hover:text-gold-300">{site.email}</a>
+        </li>
+        <li class="flex gap-3">
+          <Icon name="mapPin" class="mt-0.5 size-4 shrink-0 text-gold-400" />
+          <span>
+            <span class="block text-xs font-semibold tracking-wide text-ink-400 uppercase">{t.footer.office}</span>
+            <span class="text-ink-200">{formatAddress(site.office)}</span>
+          </span>
+        </li>
+        <li class="flex gap-3">
+          <Icon name="building" class="mt-0.5 size-4 shrink-0 text-gold-400" />
+          <span>
+            <span class="block text-xs font-semibold tracking-wide text-ink-400 uppercase">{t.footer.seat}</span>
+            <span class="text-ink-200">{formatAddress(site.seat)}</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <nav aria-labelledby="footer-legal-title" class="lg:col-span-2">
+      <h2 id="footer-legal-title" class="font-display text-sm font-semibold tracking-wider text-white uppercase">
+        {t.footer.legalTitle}
+      </h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li>
+          <a href={localePath('imprint', lang)} class="text-ink-300 transition-colors hover:text-gold-300">
+            {t.nav.imprint}
+          </a>
+        </li>
+        <li>
+          <a href={localePath('privacy', lang)} class="text-ink-300 transition-colors hover:text-gold-300">
+            {t.nav.privacy}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-page flex flex-col gap-2 py-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name} {t.footer.rights}</p>
+      <p class="font-display tracking-[0.2em] text-gold-500/70 uppercase">{site.tagline}</p>
+    </div>
+  </div>
+</footer>

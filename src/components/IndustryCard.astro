@@ -1,0 +1,131 @@
+---
+/**
+ * Industry card.
+ *  - variant "teaser": image card with overlay text (home page)
+ *  - variant "detail": large alternating image/text block (Industries page)
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+import type { IconName } from '../data/icons';
+
+interface Props {
+  variant?: 'teaser' | 'detail';
+  id?: string;
+  icon: IconName;
+  title: string;
+  text: string;
+  lead?: string;
+  points?: string[];
+  image: ImageMetadata;
+  imageAlt: string;
+  href?: string;
+  linkLabel?: string;
+  reverse?: boolean;
+  delay?: number;
+}
+
+const {
+  variant = 'teaser',
+  id,
+  icon,
+  title,
+  text,
+  lead,
+  points = [],
+  image,
+  imageAlt,
+  href,
+  linkLabel,
+  reverse = false,
+  delay = 0,
+} = Astro.props;
+---
+
+{
+  variant === 'teaser' ? (
+    <article
+      class="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-2xl bg-ink-900 p-7 text-white shadow-lg sm:min-h-[30rem]"
+      data-reveal
+      style={`--reveal-delay:${delay}ms`}
+    >
+      <Image
+        src={image}
+        alt={imageAlt}
+        widths={[400, 640, 800]}
+        sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+        format="webp"
+        quality={70}
+        class="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 ease-out-soft group-hover:scale-105"
+      />
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/70 to-ink-950/5"
+        aria-hidden="true"
+      />
+      <span class="inline-flex size-12 items-center justify-center rounded-xl bg-gold-500 text-ink-950">
+        <Icon name={icon} class="size-6" />
+      </span>
+      <h3 class="mt-5 text-2xl font-bold text-white">
+        {href ? (
+          <a href={href} class="after:absolute after:inset-0 focus-visible:outline-none">
+            {title}
+          </a>
+        ) : (
+          title
+        )}
+      </h3>
+      <p class="mt-3 leading-relaxed text-ink-100/90">{text}</p>
+      {linkLabel && (
+        <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-300" aria-hidden="true">
+          {linkLabel}
+          <Icon name="arrowRight" class="size-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      )}
+      <span
+        class="pointer-events-none absolute inset-0 rounded-2xl ring-ice-400 ring-offset-2 group-has-[:focus-visible]:ring-3"
+        aria-hidden="true"
+      />
+    </article>
+  ) : (
+    <article id={id} class="grid scroll-mt-28 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class:list={['relative', reverse && 'lg:order-2']} data-reveal>
+        <div class="overflow-hidden rounded-3xl shadow-2xl shadow-ink-900/15">
+          <Image
+            src={image}
+            alt={imageAlt}
+            widths={[480, 720, 960]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            format="webp"
+            quality={64}
+            class="aspect-[4/3] h-full w-full object-cover"
+          />
+        </div>
+        <span
+          class:list={[
+            'absolute -bottom-6 inline-flex size-16 items-center justify-center rounded-2xl bg-gold-500 text-ink-950 shadow-xl',
+            reverse ? 'right-6 lg:-right-6' : 'left-6 lg:-left-6',
+          ]}
+        >
+          <Icon name={icon} class="size-8" />
+        </span>
+      </div>
+      <div data-reveal style="--reveal-delay:120ms">
+        <h2 class="text-3xl font-extrabold sm:text-4xl">{title}</h2>
+        {lead && <p class="mt-4 text-xl leading-relaxed font-medium text-cold-700">{lead}</p>}
+        <p class="mt-5 text-lg leading-relaxed text-ink-500">{text}</p>
+        {points.length > 0 && (
+          <ul class="mt-8 space-y-3">
+            {points.map((p) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-frost-100 text-cold-700">
+                  <Icon name="check" class="size-4" strokeWidth={2.5} />
+                </span>
+                <span class="font-medium text-ink-800">{p}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </article>
+  )
+}

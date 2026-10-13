@@ -1,0 +1,407 @@
+---
+/**
+ * Quote request / contact form.
+ * Endpoint: src/data/site.ts → formEndpoint (Formspree or /contact.php) – see README.
+ * Works without JavaScript too (plain POST); with JS it validates on the client
+ * and shows inline success / error states.
+ */
+import Icon from './Icon.astro';
+import { localePath, useTranslations, type Lang } from '../i18n';
+import { cargoTypes } from '../data/content';
+import { site, formEndpointIsPlaceholder } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const f = t.form.fields;
+
+const nameFields = {
+  firstName: { name: 'first_name', label: f.firstName, autocomplete: 'given-name' },
+  lastName: { name: 'last_name', label: f.lastName, autocomplete: 'family-name' },
+};
+
+const inputClass =
+  'block w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-ink-900 placeholder:text-ink-400 shadow-sm transition focus:border-cold-600 focus:ring-4 focus:ring-ice-300/40 focus:outline-none aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-100';
+const labelClass = 'mb-2 block text-sm font-semibold text-ink-800';
+const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
+---
+
+<div class="relative">
+  <form
+    id="quote-form-el"
+    action={site.formEndpoint}
+    method="POST"
+    novalidate
+    class="space-y-6"
+    data-contact-form
+    data-placeholder-endpoint={formEndpointIsPlaceholder ? 'true' : undefined}
+    data-messages={JSON.stringify(t.form.validation)}
+    data-sending={t.form.sending}
+    aria-describedby="form-intro"
+  >
+    <p id="form-intro" class="text-sm text-ink-500">{t.form.intro}</p>
+
+    <div class="hidden rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-800" role="alert" data-form-summary>
+    </div>
+
+    <input type="hidden" name="_subject" value={t.form.subject} />
+    <input type="hidden" name="language" value={lang} />
+    <input type="hidden" name="_ts" value="" data-form-ts />
+
+    <!-- Honeypot: hidden from people, bots tend to fill it in -->
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="cf-website">{f.honeypot}</label>
+      <input type="text" id="cf-website" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      {
+        t.form.nameOrder.map((key) => {
+          const field = nameFields[key];
+          return (
+            <div>
+              <label for={`cf-${field.name}`} class={labelClass}>
+                {field.label} <span class="text-red-700" aria-hidden="true">*</span>
+              </label>
+              <input
+                id={`cf-${field.name}`}
+                name={field.name}
+                type="text"
+                autocomplete={field.autocomplete}
+                required
+                maxlength="80"
+                class={inputClass}
+                aria-describedby={`cf-${field.name}-error`}
+              />
+              <p id={`cf-${field.name}-error`} class={errorClass} />
+            </div>
+          );
+        })
+      }
+
+      <div class="sm:col-span-2">
+        <label for="cf-company" class={labelClass}>{f.company}</label>
+        <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength="120" class={inputClass} />
+      </div>
+
+      <div>
+        <label for="cf-email" class={labelClass}>
+          {f.email} <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="cf-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          inputmode="email"
+          required
+          maxlength="120"
+          class={inputClass}
+          aria-describedby="cf-email-error"
+        />
+        <p id="cf-email-error" class={errorClass}></p>
+      </div>
+
+      <div>
+        <label for="cf-phone" class={labelClass}>{f.phone}</label>
+        <input
+          id="cf-phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="30"
+          class={inputClass}
+          data-validate-phone
+          aria-describedby="cf-phone-error"
+        />
+        <p id="cf-phone-error" class={errorClass}></p>
+      </div>
+
+      <div>
+        <label for="cf-pickup" class={labelClass}>{f.pickup}</label>
+        <input
+          id="cf-pickup"
+          name="pickup_location"
+          type="text"
+          maxlength="120"
+          placeholder={f.pickupPlaceholder}
+          class={inputClass}
+        />
+      </div>
+
+      <div>
+        <label for="cf-delivery" class={labelClass}>{f.delivery}</label>
+        <input
+          id="cf-delivery"
+          name="delivery_location"
+          type="text"
+          maxlength="120"
+          placeholder={f.deliveryPlaceholder}
+          class={inputClass}
+        />
+      </div>
+
+      <div>
+        <label for="cf-cargo" class={labelClass}>{f.cargoType}</label>
+        <div class="relative">
+          <select id="cf-cargo" name="cargo_type" class:list={[inputClass, 'appearance-none pr-10']}>
+            <option value="">{f.cargoPlaceholder}</option>
+            {cargoTypes.map((c) => <option value={c}>{t.form.cargoOptions[c]}</option>)}
+          </select>
+          <svg
+            class="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-ink-400"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg
+          >
+        </div>
+      </div>
+
+      <div>
+        <label for="cf-temperature" class={labelClass}>{f.temperature}</label>
+        <input
+          id="cf-temperature"
+          name="temperature"
+          type="text"
+          maxlength="60"
+          placeholder={f.temperaturePlaceholder}
+          class={inputClass}
+        />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="cf-date" class={labelClass}>{f.date}</label>
+        <input
+          id="cf-date"
+          name="preferred_date"
+          type="date"
+          class:list={[inputClass, 'sm:max-w-xs']}
+          data-validate-date
+          aria-describedby="cf-date-error"
+        />
+        <p id="cf-date-error" class={errorClass}></p>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="cf-message" class={labelClass}>
+          {f.message} <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+        <textarea
+          id="cf-message"
+          name="message"
+          rows="5"
+          required
+          maxlength="4000"
+          placeholder={f.messagePlaceholder}
+          class:list={[inputClass, 'resize-y']}
+          aria-describedby="cf-message-error"></textarea>
+        <p id="cf-message-error" class={errorClass}></p>
+      </div>
+    </div>
+
+    <div>
+      <div class="flex items-start gap-3">
+        <input
+          id="cf-consent"
+          name="consent"
+          type="checkbox"
+          value="yes"
+          required
+          class="mt-1 size-5 shrink-0 cursor-pointer rounded border-ink-300 accent-cold-700"
+          aria-describedby="cf-consent-error"
+        />
+        <label for="cf-consent" class="text-sm leading-relaxed text-ink-600">
+          {t.form.consent.before}<a href={localePath('privacy', lang)} class="link" target="_blank">{t.form.consent.link}</a
+          >{t.form.consent.after} <span class="text-red-700" aria-hidden="true">*</span>
+        </label>
+      </div>
+      <p id="cf-consent-error" class={errorClass}></p>
+    </div>
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+      <button type="submit" class="btn btn-primary btn-lg disabled:cursor-wait disabled:opacity-70" data-submit>
+        <Icon name="send" class="size-5" />
+        <span data-submit-label>{t.form.submit}</span>
+      </button>
+    </div>
+
+    <div
+      class="hidden rounded-2xl border border-red-200 bg-red-50 p-5"
+      role="alert"
+      data-form-error
+    >
+      <div class="flex gap-3">
+        <Icon name="alertCircle" class="size-6 shrink-0 text-red-700" />
+        <div>
+          <p class="font-bold text-red-900">{t.form.error.title}</p>
+          <p class="mt-1 text-sm leading-relaxed text-red-800">
+            {t.form.error.text}
+            <a href={site.phone.href} class="font-semibold underline">{site.phone.display}</a> ·
+            <a href={`mailto:${site.email}`} class="font-semibold underline">{site.email}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div
+    class="hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center"
+    role="status"
+    tabindex="-1"
+    data-form-success
+  >
+    <span class="mx-auto inline-flex size-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+      <Icon name="checkCircle" class="size-8" />
+    </span>
+    <p class="mt-5 font-display text-2xl font-bold text-ink-900">{t.form.success.title}</p>
+    <p class="mx-auto mt-3 max-w-md leading-relaxed text-ink-600">{t.form.success.text}</p>
+    <button type="button" class="btn btn-secondary mt-8" data-form-reset>{t.form.success.again}</button>
+  </div>
+</div>
+
+<script>
+  type Messages = Record<'required' | 'email' | 'phone' | 'consent' | 'date' | 'summary', string>;
+
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  if (form) {
+    const messages: Messages = JSON.parse(form.dataset.messages ?? '{}');
+    const success = form.parentElement?.querySelector<HTMLElement>('[data-form-success]');
+    const errorBox = form.querySelector<HTMLElement>('[data-form-error]');
+    const summary = form.querySelector<HTMLElement>('[data-form-summary]');
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]');
+    const ts = form.querySelector<HTMLInputElement>('[data-form-ts]');
+    const dateInput = form.querySelector<HTMLInputElement>('[data-validate-date]');
+    const originalLabel = submitLabel?.textContent ?? '';
+    let attempted = false;
+
+    const today = () => {
+      const d = new Date();
+      d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+      return d.toISOString().slice(0, 10);
+    };
+    if (dateInput) dateInput.min = today();
+    if (ts) ts.value = String(Date.now());
+
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea')).filter(
+      (el) => el.type !== 'hidden' && el.name !== '_gotcha',
+    );
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const phoneRe = /^\+?[\d\s()./-]{6,20}$/;
+
+    function validateField(el: HTMLInputElement | HTMLTextAreaElement): string {
+      const value = el.value.trim();
+      if (el instanceof HTMLInputElement && el.type === 'checkbox') {
+        return el.required && !el.checked ? messages.consent : '';
+      }
+      if (el.required && !value) return messages.required;
+      if (value && el.type === 'email' && !emailRe.test(value)) return messages.email;
+      if (value && 'validatePhone' in el.dataset && !phoneRe.test(value)) return messages.phone;
+      if (value && 'validateDate' in el.dataset && value < today()) return messages.date;
+      return '';
+    }
+
+    function showError(el: HTMLInputElement | HTMLTextAreaElement, message: string) {
+      const errorEl = document.getElementById(`${el.id}-error`);
+      if (message) el.setAttribute('aria-invalid', 'true');
+      else el.removeAttribute('aria-invalid');
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.toggle('hidden', !message);
+      }
+    }
+
+    function validateAll(): boolean {
+      let firstInvalid: HTMLElement | null = null;
+      for (const el of fields) {
+        const msg = validateField(el);
+        showError(el, msg);
+        if (msg && !firstInvalid) firstInvalid = el;
+      }
+      if (summary) {
+        summary.textContent = firstInvalid ? messages.summary : '';
+        summary.classList.toggle('hidden', !firstInvalid);
+      }
+      firstInvalid?.focus();
+      return !firstInvalid;
+    }
+
+    for (const el of fields) {
+      const handler = () => {
+        if (attempted) showError(el, validateField(el));
+      };
+      el.addEventListener('blur', handler);
+      el.addEventListener('change', handler);
+    }
+
+    function setSending(sending: boolean) {
+      if (!submit || !submitLabel) return;
+      submit.disabled = sending;
+      submitLabel.textContent = sending ? (form!.dataset.sending ?? '') : originalLabel;
+    }
+
+    function showSuccess() {
+      form!.classList.add('hidden');
+      success?.classList.remove('hidden');
+      success?.focus();
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      attempted = true;
+      errorBox?.classList.add('hidden');
+      if (!validateAll()) return;
+
+      const data = new FormData(form);
+      // Honeypot filled in → silently pretend success.
+      if (String(data.get('_gotcha') ?? '').length > 0) {
+        showSuccess();
+        return;
+      }
+
+      if (form.dataset.placeholderEndpoint) {
+        console.warn('[NH Cargo] The contact form endpoint is not configured yet – see README (src/data/site.ts → formEndpoint).');
+        errorBox?.classList.remove('hidden');
+        return;
+      }
+
+      setSending(true);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        form.reset();
+        showSuccess();
+      } catch (err) {
+        console.error('[NH Cargo] Form submission failed', err);
+        errorBox?.classList.remove('hidden');
+        errorBox?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } finally {
+        setSending(false);
+      }
+    });
+
+    // Return from a non-JS submission to the PHP mailer (?sent=1 / ?error=1)
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('sent')) showSuccess();
+    else if (params.has('error')) errorBox?.classList.remove('hidden');
+
+    success?.querySelector('[data-form-reset]')?.addEventListener('click', () => {
+      attempted = false;
+      if (ts) ts.value = String(Date.now());
+      success.classList.add('hidden');
+      form.classList.remove('hidden');
+      form.querySelector<HTMLInputElement>('input:not([type=hidden]):not([tabindex="-1"])')?.focus();
+    });
+  }
+</script>

@@ -1,0 +1,34 @@
+---
+/** Small icon card – used for "Why choose us" and sustainability pillars. */
+import Icon from './Icon.astro';
+import type { IconName } from '../data/icons';
+
+interface Props {
+  icon: IconName;
+  title: string;
+  text: string;
+  delay?: number;
+  tone?: 'cold' | 'green';
+}
+
+const { icon, title, text, delay = 0, tone = 'cold' } = Astro.props;
+---
+
+<article
+  class="group h-full rounded-2xl border border-ink-100 bg-white p-7 shadow-[0_1px_2px_rgba(16,24,40,0.04)] transition duration-300 hover:-translate-y-1 hover:border-ice-300/70 hover:shadow-xl hover:shadow-cold-800/5"
+  data-reveal
+  style={`--reveal-delay:${delay}ms`}
+>
+  <span
+    class:list={[
+      'inline-flex size-12 items-center justify-center rounded-xl ring-1 transition-colors',
+      tone === 'green'
+        ? 'bg-emerald-50 text-emerald-700 ring-emerald-100'
+        : 'bg-frost-100 text-cold-700 ring-frost-200 group-hover:bg-cold-700 group-hover:text-white',
+    ]}
+  >
+    <Icon name={icon} class="size-6" />
+  </span>
+  <h3 class="mt-6 text-lg font-bold">{title}</h3>
+  <p class="mt-2 leading-relaxed text-ink-500">{text}</p>
+</article>

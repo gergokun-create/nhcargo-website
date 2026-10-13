@@ -1,0 +1,87 @@
+---
+/** Renders a legal page from src/i18n/legal.ts, highlighting [[placeholders]]. */
+import Icon from './Icon.astro';
+import type { LegalBlock, LegalPage } from '../i18n/legal';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  page: LegalPage;
+}
+
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+
+const escape = (s: string) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/** Minimal inline formatting: [[placeholder]], **bold**, [text](url). */
+function inline(text: string): string {
+  return escape(text)
+    .replace(
+      /\[\[(.+?)\]\]/g,
+      '<mark class="rounded bg-amber-100 px-1.5 py-0.5 font-medium text-amber-900 ring-1 ring-amber-300">$1</mark>',
+    )
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-ink-800">$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_m, label: string, url: string) => {
+      const external = /^https?:/.test(url);
+      return `<a href="${url}"${external ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+    });
+}
+
+const isList = (b: LegalBlock): b is { list: string[] } => typeof b === 'object' && 'list' in b;
+const isTable = (b: LegalBlock): b is { table: [string, string][] } => typeof b === 'object' && 'table' in b;
+const hasPlaceholders = JSON.stringify(page).includes('[[');
+---
+
+<div class="container-page max-w-4xl py-16 sm:py-20">
+  {
+    hasPlaceholders && (
+      <aside class="mb-12 flex gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-900" role="note">
+        <Icon name="alertCircle" class="size-6 shrink-0" />
+        <div>
+          <p class="font-bold">{t.legalNotice.title}</p>
+          <p class="mt-1 text-sm leading-relaxed">{t.legalNotice.text}</p>
+        </div>
+      </aside>
+    )
+  }
+
+  <p class="text-sm text-ink-500" set:html={inline(page.updated)} />
+
+  <div class="prose-legal">
+    {
+      page.sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          {section.blocks.map((block) =>
+            typeof block === 'string' ? (
+              <p set:html={inline(block)} />
+            ) : isList(block) ? (
+              <ul>
+                {block.list.map((item) => (
+                  <li set:html={inline(item)} />
+                ))}
+              </ul>
+            ) : isTable(block) ? (
+              <div class="mb-6 overflow-hidden rounded-xl border border-ink-100">
+                <table class="w-full text-left text-sm">
+                  <tbody class="divide-y divide-ink-100">
+                    {block.table.map(([k, v]) => (
+                      <tr class="flex flex-col sm:table-row">
+                        <th scope="row" class="bg-frost-50 px-4 pt-3 font-semibold text-ink-800 sm:w-1/3 sm:py-3">
+                          {k}
+                        </th>
+                        <td class="px-4 pb-3 text-ink-600 sm:py-3" set:html={inline(v)} />
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : null,
+          )}
+        </section>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalContent from '../components/LegalContent.astro';
+import { legal } from '../i18n/legal';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  page: 'imprint' | 'privacy';
+}
+
+const { lang, page } = Astro.props;
+const content = legal[page][lang];
+---
+
+<BaseLayout lang={lang} page={page}>
+  <section class="bg-ink-900 text-white">
+    <div class="container-page max-w-4xl py-16 sm:py-20">
+      <h1 class="text-4xl font-extrabold text-white sm:text-5xl">{content.title}</h1>
+    </div>
+  </section>
+  <LegalContent lang={lang} page={content} />
+</BaseLayout>

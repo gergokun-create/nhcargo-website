@@ -1,0 +1,168 @@
+﻿@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/inter';
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Design tokens – derived from the NH Cargo logo (gold + charcoal)
+   plus cool "cold chain" accents.
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Manrope Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand gold (logo) */
+  --color-gold-50: #fbf8ee;
+  --color-gold-100: #f6eed3;
+  --color-gold-200: #efe0a8;
+  --color-gold-300: #eadd8f;
+  --color-gold-400: #d9c07a;
+  --color-gold-500: #c5a55c;
+  --color-gold-600: #aa8340;
+  --color-gold-700: #85652c; /* text on white – 5.4:1 */
+  --color-gold-800: #634a20;
+
+  /* Charcoal (logo background) */
+  --color-ink-50: #f5f6f7;
+  --color-ink-100: #e8e9ec;
+  --color-ink-200: #cfd1d6;
+  --color-ink-300: #a9acb4;
+  --color-ink-400: #7b7f89;
+  --color-ink-500: #4d4d4d; /* exact logo background */
+  --color-ink-600: #3d3e42;
+  --color-ink-700: #2f3034;
+  --color-ink-800: #2a2b2f; /* header / footer */
+  --color-ink-900: #1c1d21;
+  --color-ink-950: #121316;
+
+  /* Cold-chain accents */
+  --color-frost-50: #f3f9fd;
+  --color-frost-100: #eef6fb;
+  --color-frost-200: #d4eaf6;
+  --color-ice-300: #9fd3ec;
+  --color-ice-400: #5bb8e0;
+  --color-ice-500: #2f9bcc;
+  --color-cold-600: #146fa3;
+  --color-cold-700: #0e5a8a;
+  --color-cold-800: #0b4569;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink-700 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ice-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-gold-200);
+    color: var(--color-ink-900);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] uppercase text-cold-700;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-px w-8 bg-current;
+  }
+  .eyebrow-on-dark {
+    @apply text-ice-300;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold whitespace-nowrap transition duration-200 ease-out-soft focus-visible:outline-offset-4;
+  }
+  .btn-primary {
+    @apply bg-gold-500 text-ink-950 shadow-sm hover:bg-gold-400 hover:shadow-md;
+  }
+  .btn-secondary {
+    @apply border border-ink-200 bg-white text-ink-900 hover:border-ink-300 hover:bg-ink-50;
+  }
+  .btn-ghost-light {
+    @apply border border-white/30 text-white hover:border-white/60 hover:bg-white/10;
+  }
+  .btn-lg {
+    @apply px-7 py-3.5 text-base;
+  }
+
+  .link {
+    @apply font-semibold text-cold-700 underline decoration-cold-700/30 underline-offset-4 transition hover:decoration-cold-700;
+  }
+
+  .prose-legal h2 {
+    @apply mt-12 mb-4 text-2xl font-bold;
+  }
+  .prose-legal h3 {
+    @apply mt-8 mb-3 text-lg font-bold;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    @apply leading-relaxed text-ink-600;
+  }
+  .prose-legal p {
+    @apply mb-4;
+  }
+  .prose-legal ul {
+    @apply mb-4 list-disc space-y-1 pl-6;
+  }
+  .prose-legal a {
+    @apply font-semibold text-cold-700 underline decoration-cold-700/30 underline-offset-4 hover:decoration-cold-700;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reveal-on-scroll (progressive enhancement: only when JS is present
+   and the user has not asked for reduced motion)
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

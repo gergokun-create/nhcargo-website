@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import IndustryCard from '../components/IndustryCard.astro';
+import CTA from '../components/CTA.astro';
+import { images } from '../data/images';
+import { industries } from '../data/content';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} page="industries">
+  <Hero
+    eyebrow={t.industries.hero.eyebrow}
+    title={t.industries.hero.title}
+    subtitle={t.industries.hero.subtitle}
+    image={images.reeferTrailers}
+    imageAlt={t.alt.reeferTrailers}
+  />
+
+  <section class="section">
+    <div class="container-page space-y-24 lg:space-y-32">
+      {
+        industries.map((ind, i) => {
+          const c = t.industries.items[ind.id];
+          return (
+            <IndustryCard
+              variant="detail"
+              id={ind.id}
+              icon={ind.icon}
+              title={c.title}
+              lead={c.lead}
+              text={c.text}
+              points={c.points}
+              image={images[ind.image]}
+              imageAlt={t.alt[ind.image]}
+              reverse={i % 2 === 1}
+            />
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <CTA lang={lang} />
+</BaseLayout>

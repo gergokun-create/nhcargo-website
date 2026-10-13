@@ -1,0 +1,136 @@
+import type {
+  CargoType,
+  IndustryId,
+  PillarId,
+  ServiceId,
+  StepId,
+  WhyId,
+} from '../data/content';
+import type { ImageKey } from '../data/images';
+import type { RouteKey } from './config';
+
+type Meta = { title: string; description: string };
+type TitleText = { title: string; text: string };
+type PageHero = { eyebrow: string; title: string; subtitle: string };
+type SectionIntro = { eyebrow: string; title: string; intro: string };
+
+/** Shape every language file (hu.ts, en.ts) must follow. */
+export interface Dictionary {
+  meta: Record<Exclude<RouteKey, never>, Meta>;
+  nav: Record<Exclude<RouteKey, 'home'>, string> & {
+    home: string;
+    quote: string;
+    menuOpen: string;
+    menuClose: string;
+    mainNav: string;
+    skip: string;
+    homeLink: string;
+  };
+  common: {
+    learnMore: string;
+    allServices: string;
+    allIndustries: string;
+    requestQuote: string;
+    ourServices: string;
+    contactUs: string;
+    callUs: string;
+    backHome: string;
+  };
+  alt: Record<ImageKey, string>;
+  home: {
+    hero: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      chips: string[];
+      stats: { value: string; label: string }[];
+    };
+    about: {
+      eyebrow: string;
+      title: string;
+      paragraphs: string[];
+      mission: TitleText;
+      contactPerson: TitleText;
+    };
+    why: SectionIntro;
+    services: SectionIntro;
+    industries: SectionIntro;
+    sustainability: { eyebrow: string; title: string; text: string; cta: string };
+  };
+  why: Record<WhyId, TitleText>;
+  services: {
+    hero: PageHero;
+    items: Record<ServiceId, { title: string; short: string; lead: string; points: TitleText[] }>;
+    process: { eyebrow: string; title: string; steps: Record<StepId, TitleText> };
+  };
+  industries: {
+    hero: PageHero;
+    items: Record<IndustryId, { title: string; short: string; lead: string; text: string; points: string[] }>;
+  };
+  sustainability: {
+    hero: PageHero;
+    intro: { eyebrow: string; title: string; paragraphs: string[] };
+    pillarsTitle: string;
+    pillars: Record<PillarId, TitleText>;
+    closing: TitleText;
+  };
+  contact: {
+    hero: PageHero;
+    details: { title: string; company: string; phone: string; email: string; office: string; seat: string };
+    map: { title: string; consent: string; load: string; open: string; iframeTitle: string };
+  };
+  form: {
+    title: string;
+    intro: string;
+    /** Display order of the name fields (Hungarian: family name first). */
+    nameOrder: ['firstName', 'lastName'] | ['lastName', 'firstName'];
+    fields: {
+      firstName: string;
+      lastName: string;
+      company: string;
+      email: string;
+      phone: string;
+      pickup: string;
+      pickupPlaceholder: string;
+      delivery: string;
+      deliveryPlaceholder: string;
+      cargoType: string;
+      cargoPlaceholder: string;
+      temperature: string;
+      temperaturePlaceholder: string;
+      date: string;
+      message: string;
+      messagePlaceholder: string;
+      honeypot: string;
+    };
+    cargoOptions: Record<CargoType, string>;
+    consent: { before: string; link: string; after: string };
+    required: string;
+    submit: string;
+    sending: string;
+    success: { title: string; text: string; again: string };
+    error: TitleText;
+    validation: {
+      required: string;
+      email: string;
+      phone: string;
+      consent: string;
+      date: string;
+      summary: string;
+    };
+    subject: string;
+  };
+  cta: { title: string; text: string; primary: string };
+  footer: {
+    tagline: string;
+    navTitle: string;
+    contactTitle: string;
+    legalTitle: string;
+    office: string;
+    seat: string;
+    rights: string;
+    linkedin: string;
+  };
+  legalNotice: TitleText;
+  notFound: { title: string; text: string };
+}

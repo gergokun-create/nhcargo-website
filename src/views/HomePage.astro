@@ -1,0 +1,199 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import IndustryCard from '../components/IndustryCard.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import { images } from '../data/images';
+import { whyUs, services, industries, sustainabilityPillars } from '../data/content';
+import { localePath, useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const h = t.home;
+---
+
+<BaseLayout lang={lang} page="home">
+  <Hero
+    variant="home"
+    eyebrow={h.hero.eyebrow}
+    title={h.hero.title}
+    subtitle={h.hero.subtitle}
+    image={images.heroTrucks}
+    imageAlt={t.alt.heroTrucks}
+    primaryCta={{ label: t.common.requestQuote, href: localePath('contact', lang) + '#quote-form' }}
+    secondaryCta={{ label: t.common.ourServices, href: localePath('services', lang) }}
+    chips={h.hero.chips}
+    stats={h.hero.stats}
+  />
+
+  <!-- About + mission -->
+  <section class="section" aria-labelledby="about-title">
+    <div class="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <SectionHeading eyebrow={h.about.eyebrow} title={h.about.title} id="about-title" />
+        <div class="mt-6 space-y-5 text-lg leading-relaxed text-ink-500" data-reveal>
+          {h.about.paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+        <div class="mt-10 rounded-2xl border-l-4 border-gold-500 bg-gold-50 p-6 sm:p-7" data-reveal>
+          <h3 class="flex items-center gap-2 text-lg font-bold">
+            <Icon name="shield" class="size-5 text-gold-700" />
+            {h.about.mission.title}
+          </h3>
+          <p class="mt-3 leading-relaxed text-ink-600">{h.about.mission.text}</p>
+        </div>
+      </div>
+
+      <div class="relative pb-16 sm:pb-10" data-reveal>
+        <div class="overflow-hidden rounded-3xl shadow-2xl shadow-ink-900/15">
+          <Image
+            src={images.truckOnRoad}
+            alt={t.alt.truckOnRoad}
+            widths={[480, 720, 960, 1200]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            format="webp"
+            quality={72}
+            class="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+          />
+        </div>
+        <div
+          class="absolute right-4 -bottom-2 left-4 rounded-2xl bg-ink-800 p-6 text-white shadow-2xl sm:right-auto sm:-bottom-6 sm:left-auto sm:max-w-sm lg:-left-10"
+        >
+          <span class="inline-flex size-11 items-center justify-center rounded-xl bg-gold-500 text-ink-950">
+            <Icon name="headset" class="size-6" />
+          </span>
+          <h3 class="mt-4 text-lg font-bold text-white">{h.about.contactPerson.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-200">{h.about.contactPerson.text}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="section bg-frost-50" aria-labelledby="why-title">
+    <div class="container-page">
+      <SectionHeading eyebrow={h.why.eyebrow} title={h.why.title} intro={h.why.intro} align="center" id="why-title" />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          whyUs.map((item, i) => (
+            <FeatureCard icon={item.icon} title={t.why[item.id].title} text={t.why[item.id].text} delay={(i % 3) * 90} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Services teaser -->
+  <section class="section" aria-labelledby="services-title">
+    <div class="container-page">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading eyebrow={h.services.eyebrow} title={h.services.title} intro={h.services.intro} id="services-title" />
+        <a href={localePath('services', lang)} class="btn btn-secondary self-start lg:self-auto" data-reveal>
+          {t.common.allServices}
+          <Icon name="arrowRight" class="size-4" />
+        </a>
+      </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((s, i) => (
+            <ServiceCard
+              icon={s.icon}
+              title={t.services.items[s.id].title}
+              text={t.services.items[s.id].short}
+              href={`${localePath('services', lang)}#${s.id}`}
+              linkLabel={t.common.learnMore}
+              image={images[s.image]}
+              imageAlt={t.alt[s.image]}
+              delay={i * 90}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries teaser -->
+  <section class="section relative overflow-hidden bg-ink-900" aria-labelledby="industries-title">
+    <div class="pointer-events-none absolute -top-40 -right-40 size-[36rem] rounded-full bg-cold-700/25 blur-3xl" aria-hidden="true"></div>
+    <div class="container-page relative">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading
+          eyebrow={h.industries.eyebrow}
+          title={h.industries.title}
+          intro={h.industries.intro}
+          dark
+          id="industries-title"
+        />
+        <a href={localePath('industries', lang)} class="btn btn-ghost-light self-start lg:self-auto" data-reveal>
+          {t.common.allIndustries}
+          <Icon name="arrowRight" class="size-4" />
+        </a>
+      </div>
+      <div class="mt-14 grid gap-6 md:grid-cols-2">
+        {
+          industries.map((ind, i) => (
+            <IndustryCard
+              icon={ind.icon}
+              title={t.industries.items[ind.id].title}
+              text={t.industries.items[ind.id].short}
+              href={`${localePath('industries', lang)}#${ind.id}`}
+              linkLabel={t.common.learnMore}
+              image={images[ind.image]}
+              imageAlt={t.alt[ind.image]}
+              delay={i * 90}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Sustainability teaser -->
+  <section class="section" aria-labelledby="sustainability-title">
+    <div class="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      <div class="order-2 lg:order-1" data-reveal>
+        <div class="overflow-hidden rounded-3xl shadow-2xl shadow-ink-900/10">
+          <Image
+            src={images.windTurbines}
+            alt={t.alt.windTurbines}
+            widths={[480, 720, 960, 1200]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            format="webp"
+            quality={72}
+            class="aspect-[4/3] w-full object-cover"
+          />
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <SectionHeading eyebrow={h.sustainability.eyebrow} title={h.sustainability.title} id="sustainability-title" />
+        <p class="mt-6 text-lg leading-relaxed text-ink-500" data-reveal>{h.sustainability.text}</p>
+        <ul class="mt-8 grid gap-4 sm:grid-cols-2" data-reveal>
+          {
+            sustainabilityPillars.map((p) => (
+              <li class="flex items-center gap-3">
+                <span class="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
+                  <Icon name={p.icon} class="size-5" />
+                </span>
+                <span class="font-semibold text-ink-800">{t.sustainability.pillars[p.id].title}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a href={localePath('sustainability', lang)} class="btn btn-secondary mt-10" data-reveal>
+          <Icon name="leaf" class="size-4 text-emerald-700" />
+          {h.sustainability.cta}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTA lang={lang} />
+</BaseLayout>

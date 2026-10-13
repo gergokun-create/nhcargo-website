@@ -1,0 +1,152 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { languages, langs, localePath, withBase, defaultLang, useTranslations, type Lang, type RouteKey } from '../i18n';
+import { site, formatAddress, linkedinIsPlaceholder } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  /** Route key of the page – drives hreflang, canonical and the language switcher. Omit for the 404 page. */
+  page?: RouteKey;
+  title?: string;
+  description?: string;
+  /** Absolute or root-relative URL of the Open Graph image. */
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const { lang, page, ogImage = withBase('/og-default.jpg') } = Astro.props;
+// PUBLIC_NOINDEX=true hides preview deployments (e.g. GitHub Pages) from search engines.
+const noindex = Astro.props.noindex || import.meta.env.PUBLIC_NOINDEX === 'true';
+const t = useTranslations(lang);
+const meta = page ? t.meta[page] : undefined;
+const title = Astro.props.title ?? meta?.title ?? site.name;
+const description = Astro.props.description ?? meta?.description ?? t.footer.tagline;
+
+const siteUrl = Astro.site ?? new URL(site.url);
+const canonical = new URL(page ? localePath(page, lang) : Astro.url.pathname, siteUrl).href;
+const alternates = page
+  ? langs.map((l) => ({ lang: languages[l].htmlLang, href: new URL(localePath(page, l), siteUrl).href }))
+  : [];
+const xDefault = page ? new URL(localePath(page, defaultLang), siteUrl).href : undefined;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+
+const postalAddress = (a: typeof site.office) => ({
+  '@type': 'PostalAddress',
+  streetAddress: a.street,
+  postalCode: a.postalCode,
+  addressLocality: a.city,
+  addressCountry: a.country,
+});
+
+const orgId = `${new URL(localePath('home', defaultLang), siteUrl).href}#organization`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: site.name,
+      alternateName: site.shortName,
+      url: new URL(localePath('home', defaultLang), siteUrl).href,
+      logo: new URL(withBase('/icon-512.png'), siteUrl).href,
+      image: ogImageUrl,
+      email: site.email,
+      telephone: site.phone.e164,
+      address: postalAddress(site.seat),
+      areaServed: 'Europe',
+      ...(linkedinIsPlaceholder ? {} : { sameAs: [site.social.linkedin] }),
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${new URL(localePath('home', defaultLang), siteUrl).href}#office`,
+      name: `${site.name} – ${formatAddress(site.office)}`,
+      description: t.footer.tagline,
+      url: new URL(localePath('home', defaultLang), siteUrl).href,
+      image: ogImageUrl,
+      email: site.email,
+      telephone: site.phone.e164,
+      address: postalAddress(site.office),
+      parentOrganization: { '@id': orgId },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={languages[lang].htmlLang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.name} />
+    <meta property="og:locale" content={languages[lang].ogLocale} />
+    {
+      langs
+        .filter((l) => l !== lang)
+        .map((l) => <meta property="og:locale:alternate" content={languages[l].ogLocale} />)
+    }
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Icons -->
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('/icon-192.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+    <link rel="manifest" href={withBase('/site.webmanifest')} />
+    <meta name="theme-color" content="#2A2B2F" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only z-[100] rounded-full bg-gold-500 px-5 py-3 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+    >
+      {t.nav.skip}
+    </a>
+    <Header lang={lang} page={page} />
+    <main id="main" tabindex="-1" class="flex-1 focus:outline-none">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script>
+      // Reveal-on-scroll: elements with [data-reveal] fade in when they enter the viewport.
+      const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

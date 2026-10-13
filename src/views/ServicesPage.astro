@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import { images } from '../data/images';
+import { services, processSteps } from '../data/content';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const s = t.services;
+---
+
+<BaseLayout lang={lang} page="services">
+  <Hero
+    eyebrow={s.hero.eyebrow}
+    title={s.hero.title}
+    subtitle={s.hero.subtitle}
+    image={images.aerialTrucks}
+    imageAlt={t.alt.aerialTrucks}
+  />
+
+  <!-- Jump links -->
+  <nav aria-label={s.hero.eyebrow} class="border-b border-ink-100 bg-white">
+    <ul class="container-page flex gap-2 overflow-x-auto py-4">
+      {
+        services.map((item) => (
+          <li>
+            <a
+              href={`#${item.id}`}
+              class="inline-flex items-center gap-2 rounded-full border border-ink-100 px-4 py-2 text-sm font-semibold whitespace-nowrap text-ink-700 transition hover:border-cold-600 hover:text-cold-700"
+            >
+              <Icon name={item.icon} class="size-4 text-cold-700" />
+              {s.items[item.id].title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  {
+    services.map((item, index) => {
+      const content = s.items[item.id];
+      const reverse = index % 2 === 1;
+      return (
+        <section
+          id={item.id}
+          class:list={['section scroll-mt-20', reverse && 'bg-frost-50']}
+          aria-labelledby={`${item.id}-title`}
+        >
+          <div class="container-page grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+            <div class:list={['relative lg:col-span-5', reverse && 'lg:order-2']} data-reveal>
+              <div class="overflow-hidden rounded-3xl shadow-2xl shadow-ink-900/15 lg:sticky lg:top-28">
+                <Image
+                  src={images[item.image]}
+                  alt={t.alt[item.image]}
+                  widths={[480, 720, 960]}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  format="webp"
+                  quality={72}
+                  class="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+            </div>
+            <div class="lg:col-span-7">
+              <div data-reveal>
+                <span class="inline-flex size-14 items-center justify-center rounded-2xl bg-cold-700 text-white shadow-lg shadow-cold-700/20">
+                  <Icon name={item.icon} class="size-7" />
+                </span>
+                <p class="mt-6 font-display text-sm font-bold tracking-[0.18em] text-gold-700 uppercase">
+                  {String(index + 1).padStart(2, '0')}
+                </p>
+                <h2 id={`${item.id}-title`} class="mt-2 text-3xl font-extrabold sm:text-4xl">
+                  {content.title}
+                </h2>
+                <p class="mt-4 text-xl leading-relaxed font-medium text-ink-600">{content.lead}</p>
+              </div>
+              <ul class="mt-10 grid gap-5 sm:grid-cols-2">
+                {content.points.map((point, i) => (
+                  <li
+                    class="rounded-2xl border border-ink-100 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.04)]"
+                    data-reveal
+                    style={`--reveal-delay:${(i % 2) * 90}ms`}
+                  >
+                    <span class="inline-flex size-8 items-center justify-center rounded-full bg-frost-100 text-cold-700">
+                      <Icon name="check" class="size-4" strokeWidth={2.5} />
+                    </span>
+                    <h3 class="mt-4 text-base font-bold">{point.title}</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-ink-500">{point.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
+
+  <!-- Process -->
+  <section class="section bg-ink-900" aria-labelledby="process-title">
+    <div class="container-page">
+      <SectionHeading eyebrow={s.process.eyebrow} title={s.process.title} align="center" dark id="process-title" />
+      <ol class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          processSteps.map((step, i) => (
+            <li
+              class="relative rounded-2xl border border-white/10 bg-white/[0.04] p-7"
+              data-reveal
+              style={`--reveal-delay:${i * 90}ms`}
+            >
+              <span class="font-display text-5xl font-extrabold text-gold-500/90" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-white">{s.process.steps[step].title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-200">{s.process.steps[step].text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CTA lang={lang} />
+</BaseLayout>

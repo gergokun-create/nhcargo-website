@@ -1,0 +1,69 @@
+---
+/**
+ * Two-click Google Map: the iframe is only inserted after the visitor clicks
+ * "Load map". Until then no request goes to Google and no cookies are set,
+ * so the site needs no cookie banner (GDPR-friendly lazy loading).
+ */
+import Icon from './Icon.astro';
+import { useTranslations, type Lang } from '../i18n';
+import { mapEmbedUrl, mapLinkUrl, site, formatAddress } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div
+  class="relative overflow-hidden rounded-2xl border border-ink-100 bg-frost-100"
+  data-map
+  data-src={mapEmbedUrl}
+  data-title={t.contact.map.iframeTitle}
+>
+  <div class="relative flex aspect-[4/3] flex-col items-center justify-center gap-4 p-6 text-center sm:aspect-[16/9]" data-map-placeholder>
+    <!-- Decorative map-like pattern -->
+    <svg class="absolute inset-0 h-full w-full text-ice-300/40" aria-hidden="true">
+      <defs>
+        <pattern id="map-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M32 0H0v32" fill="none" stroke="currentColor" stroke-width="1"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#map-grid)"></rect>
+      <path d="M-20 220 C 120 160, 220 260, 360 180 S 620 120, 900 200" fill="none" stroke="currentColor" stroke-width="10"></path>
+      <path d="M180 -20 C 220 120, 160 240, 260 400" fill="none" stroke="currentColor" stroke-width="6"></path>
+    </svg>
+    <span class="relative inline-flex size-14 items-center justify-center rounded-full bg-cold-700 text-white shadow-lg">
+      <Icon name="mapPin" class="size-7" />
+    </span>
+    <p class="relative font-semibold text-ink-900">{site.name} · {formatAddress(site.office)}</p>
+    <p class="relative max-w-sm text-xs leading-relaxed text-ink-500">{t.contact.map.consent}</p>
+    <div class="relative flex flex-wrap justify-center gap-3">
+      <button type="button" class="btn btn-primary px-5 py-2.5" data-map-load>
+        <Icon name="map" class="size-4" />
+        {t.contact.map.load}
+      </button>
+      <a href={mapLinkUrl} target="_blank" rel="noopener" class="btn btn-secondary px-5 py-2.5">
+        {t.contact.map.open}
+        <Icon name="externalLink" class="size-4" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((wrapper) => {
+    wrapper.querySelector('[data-map-load]')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = wrapper.dataset.src ?? '';
+      iframe.title = wrapper.dataset.title ?? '';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      iframe.className = 'block aspect-[4/3] w-full border-0 sm:aspect-[16/9]';
+      wrapper.querySelector('[data-map-placeholder]')?.replaceWith(iframe);
+      iframe.focus();
+    });
+  });
+</script>

@@ -1,0 +1,198 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { languages, langs, localePath, useTranslations, type Lang, type RouteKey } from '../i18n';
+import { site } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  page?: RouteKey;
+}
+
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+
+const navKeys = ['services', 'industries', 'sustainability', 'contact'] as const;
+const nav = navKeys.map((key) => ({ key, href: localePath(key, lang), label: t.nav[key] }));
+
+// Language switcher points to the same page in the other language (or that language's home page).
+const switchLinks = langs.map((l) => ({
+  lang: l,
+  short: languages[l].short,
+  label: languages[l].label,
+  href: localePath(page ?? 'home', l),
+  current: l === lang,
+}));
+---
+
+<header class="sticky top-0 z-50 border-b border-white/5 bg-ink-800 text-white shadow-[0_1px_0_rgba(0,0,0,0.2)]">
+  <div class="container-page flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
+    <a href={localePath('home', lang)} class="shrink-0 rounded-md" aria-label={t.nav.homeLink}>
+      <span class="hidden sm:block"><Logo size="md" /></span>
+      <span class="block sm:hidden"><Logo size="sm" /></span>
+    </a>
+
+    <nav aria-label={t.nav.mainNav} class="hidden lg:block">
+      <ul class="flex items-center gap-1">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={page === item.key ? 'page' : undefined}
+                class:list={[
+                  'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                  page === item.key ? 'text-gold-300' : 'text-white/80 hover:text-white',
+                ]}
+              >
+                {item.label}
+                {page === item.key && (
+                  <span class="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-400" aria-hidden="true" />
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <ul class="hidden items-center rounded-full border border-white/15 p-0.5 text-xs font-semibold sm:flex">
+        {
+          switchLinks.map((s) => (
+            <li>
+              {s.current ? (
+                <span class="block rounded-full bg-white/10 px-2.5 py-1.5 text-white" aria-current="true">
+                  <span class="sr-only">{s.label}: </span>
+                  {s.short}
+                </span>
+              ) : (
+                <a
+                  href={s.href}
+                  hreflang={languages[s.lang].htmlLang}
+                  lang={languages[s.lang].htmlLang}
+                  class="block rounded-full px-2.5 py-1.5 text-white/65 transition-colors hover:text-white"
+                  aria-label={s.label}
+                >
+                  {s.short}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      <a href={localePath('contact', lang) + '#quote-form'} class="btn btn-primary hidden px-5 py-2.5 sm:inline-flex">
+        {t.nav.quote}
+        <Icon name="arrowRight" class="size-4" />
+      </a>
+
+      <button
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-full text-white hover:bg-white/10 lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-toggle
+        data-label-open={t.nav.menuOpen}
+        data-label-close={t.nav.menuClose}
+      >
+        <span class="sr-only" data-menu-label>{t.nav.menuOpen}</span>
+        <Icon name="menu" class="size-6" data-icon-open />
+        <Icon name="close" class="hidden size-6" data-icon-close />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="border-t border-white/10 bg-ink-800 lg:hidden" hidden>
+    <nav aria-label={t.nav.mainNav} class="container-page py-4">
+      <ul class="flex flex-col">
+        <li>
+          <a
+            href={localePath('home', lang)}
+            aria-current={page === 'home' ? 'page' : undefined}
+            class:list={[
+              'block rounded-lg px-3 py-3 text-base font-medium',
+              page === 'home' ? 'text-gold-300' : 'text-white/85 hover:bg-white/5',
+            ]}>{t.nav.home}</a
+          >
+        </li>
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={page === item.key ? 'page' : undefined}
+                class:list={[
+                  'block rounded-lg px-3 py-3 text-base font-medium',
+                  page === item.key ? 'text-gold-300' : 'text-white/85 hover:bg-white/5',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-4 flex flex-col gap-3 border-t border-white/10 pt-5">
+        <a href={localePath('contact', lang) + '#quote-form'} class="btn btn-primary w-full">
+          {t.nav.quote}
+          <Icon name="arrowRight" class="size-4" />
+        </a>
+        <a href={site.phone.href} class="btn btn-ghost-light w-full">
+          <Icon name="phone" class="size-4" />
+          {site.phone.display}
+        </a>
+        <div class="flex items-center justify-center gap-2 pt-2 text-sm">
+          {
+            switchLinks.map((s) =>
+              s.current ? (
+                <span class="rounded-full bg-white/10 px-3 py-1.5 font-semibold text-white" aria-current="true">
+                  {s.label}
+                </span>
+              ) : (
+                <a
+                  href={s.href}
+                  hreflang={languages[s.lang].htmlLang}
+                  lang={languages[s.lang].htmlLang}
+                  class="rounded-full px-3 py-1.5 font-semibold text-white/70 hover:text-white"
+                >
+                  {s.label}
+                </a>
+              ),
+            )
+          }
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    const label = toggle.querySelector<HTMLElement>('[data-menu-label]');
+    const iconOpen = toggle.querySelector('[data-icon-open]');
+    const iconClose = toggle.querySelector('[data-icon-close]');
+
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      if (label) label.textContent = (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '';
+      iconOpen?.classList.toggle('hidden', open);
+      iconClose?.classList.toggle('hidden', !open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>
