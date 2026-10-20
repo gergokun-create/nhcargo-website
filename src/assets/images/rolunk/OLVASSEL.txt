@@ -1,0 +1,12 @@
+A „Rólunk” oldal képei ebbe a mappába kerülnek.
+
+Másolja ide a fotót az alábbi fájlnevek egyikével (jpg, jpeg, png vagy webp):
+
+  fejlec.jpg          – az oldal tetején lévő széles háttérkép (javasolt: 1920 × 1080 px)
+  csapat.jpg          – csapatfotó / iroda          (javasolt: 1600 × 1200 px)
+  flotta.jpg          – hűtős szerelvények          (javasolt: 1600 × 1200 px)
+  raktar.jpg          – hűtött raktár az M0 mentén  (javasolt: 1600 × 1200 px)
+  tanusitvanyok.jpg   – tanúsítványok (ISO, IFS, TAPA) (javasolt: 1600 × 1200 px)
+
+A kép automatikusan a helyére kerül, a weboldal pedig WebP formátumra optimalizálja.
+Amíg nincs feltöltve, az oldalon szaggatott keretes „Kép helye” jelölés látható.

@@ -15,6 +15,7 @@ export const langs = Object.keys(languages) as Lang[];
 
 export const routes = {
   home: { hu: '/', en: '/en/' },
+  about: { hu: '/rolunk/', en: '/en/about/' },
   services: { hu: '/szolgaltatasok/', en: '/en/services/' },
   industries: { hu: '/iparagak/', en: '/en/industries/' },
   sustainability: { hu: '/fenntarthatosag/', en: '/en/sustainability/' },

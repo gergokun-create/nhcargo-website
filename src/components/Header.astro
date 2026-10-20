@@ -12,7 +12,7 @@ interface Props {
 const { lang, page } = Astro.props;
 const t = useTranslations(lang);
 
-const navKeys = ['services', 'industries', 'sustainability', 'contact'] as const;
+const navKeys = ['about', 'services', 'industries', 'sustainability', 'contact'] as const;
 const nav = navKeys.map((key) => ({ key, href: localePath(key, lang), label: t.nav[key] }));
 
 // Language switcher points to the same page in the other language (or that language's home page).
@@ -26,14 +26,14 @@ const switchLinks = langs.map((l) => ({
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/5 bg-ink-800 text-white shadow-[0_1px_0_rgba(0,0,0,0.2)]">
-  <div class="container-page flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
+  <div class="container-page flex h-[4.5rem] items-center justify-between gap-4 lg:h-20 xl:gap-6">
     <a href={localePath('home', lang)} class="shrink-0 rounded-md" aria-label={t.nav.homeLink}>
       <span class="hidden sm:block"><Logo size="md" /></span>
       <span class="block sm:hidden"><Logo size="sm" /></span>
     </a>
 
     <nav aria-label={t.nav.mainNav} class="hidden lg:block">
-      <ul class="flex items-center gap-1">
+      <ul class="flex items-center xl:gap-1">
         {
           nav.map((item) => (
             <li>
@@ -41,13 +41,13 @@ const switchLinks = langs.map((l) => ({
                 href={item.href}
                 aria-current={page === item.key ? 'page' : undefined}
                 class:list={[
-                  'relative rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                  'relative block rounded-full px-2.5 py-2 text-sm font-medium whitespace-nowrap transition-colors xl:px-4',
                   page === item.key ? 'text-gold-300' : 'text-white/80 hover:text-white',
                 ]}
               >
                 {item.label}
                 {page === item.key && (
-                  <span class="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold-400" aria-hidden="true" />
+                  <span class="absolute inset-x-2.5 -bottom-0.5 xl:inset-x-4 h-0.5 rounded-full bg-gold-400" aria-hidden="true" />
                 )}
               </a>
             </li>
@@ -56,7 +56,7 @@ const switchLinks = langs.map((l) => ({
       </ul>
     </nav>
 
-    <div class="flex items-center gap-2 sm:gap-3">
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
       <ul class="hidden items-center rounded-full border border-white/15 p-0.5 text-xs font-semibold sm:flex">
         {
           switchLinks.map((s) => (

@@ -83,6 +83,22 @@ Ha egy jogi oldalon már nincs `[[ ]]` helyőrző, a „Sablonszöveg” figyelm
 
 ## 4. Képek cseréje
 
+### A „Rólunk” oldal képei (helyőrzők)
+
+A `/rolunk/` (angolul `/en/about/`) oldalon szaggatott keretes **„Kép helye”** dobozok jelzik, hova kerülnek a saját fotók. Feltöltéshez nem kell kódot módosítani: elég a képet a **`src/assets/images/rolunk/`** mappába másolni az alábbi fájlnevek egyikével (jpg, jpeg, png vagy webp):
+
+| Fájlnév | Hol jelenik meg | Javasolt méret |
+| --- | --- | --- |
+| `fejlec.jpg` | az oldal tetején lévő háttérkép (amíg nincs, stockfotó látszik) | 1920 × 1080 px |
+| `csapat.jpg` | Cégbemutatkozás mellett | 1600 × 1200 px |
+| `flotta.jpg` | Fő tevékenységünk / Járműflotta mellett | 1600 × 1200 px |
+| `tanusitvanyok.jpg` | Minőségirányítás mellett | 1600 × 1200 px |
+| `raktar.jpg` | Raktározás és átrakás / Ügyelet mellett | 1600 × 1200 px |
+
+A kép a következő buildnél (vagy `npm run dev` alatt azonnal) a doboz helyére kerül. A képek alternatív szövegei a `hu.ts` / `en.ts` fájl `about.slots` részében vannak.
+
+### A többi kép
+
 1. Tegye az új fotót a `src/assets/images/` mappába (JPG vagy PNG, legalább 1600 px széles).
 2. Vagy írja felül a meglévő fájlt **azonos néven**, vagy módosítsa az importot a `src/data/images.ts` fájlban.
 3. Frissítse a kép alternatív szövegét (`alt`) a `src/i18n/hu.ts` és `src/i18n/en.ts` fájl `alt` részében – ez az akadálymentesség és a SEO miatt fontos.

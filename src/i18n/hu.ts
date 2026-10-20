@@ -7,6 +7,11 @@ import type { Dictionary } from './types';
 
 export const hu: Dictionary = {
   meta: {
+    about: {
+      title: 'Rólunk – cégbemutatkozás, flotta, tanúsítványok | NH Cargo',
+      description:
+        'Az NH Cargo Kft. nemzetközi és belföldi hűtött FTL fuvarozást végez: 30 dedikált hűtős szerelvény, TAPA- és pharma minősítés, ISO 9001, ISO 14001 és IFS tanúsítvány.',
+    },
     home: {
       title: 'NH Cargo Kft. – Hűtött és fagyasztott áruszállítás Európa-szerte',
       description:
@@ -45,6 +50,7 @@ export const hu: Dictionary = {
 
   nav: {
     home: 'Főoldal',
+    about: 'Rólunk',
     services: 'Szolgáltatások',
     industries: 'Iparágak',
     sustainability: 'Fenntarthatóság',
@@ -68,6 +74,7 @@ export const hu: Dictionary = {
     contactUs: 'Kapcsolatfelvétel',
     callUs: 'Hívjon minket',
     backHome: 'Vissza a főoldalra',
+    moreAbout: 'Bővebben rólunk',
   },
 
   alt: {
@@ -449,5 +456,77 @@ export const hu: Dictionary = {
   notFound: {
     title: 'Az oldal nem található',
     text: 'Sajnáljuk, a keresett oldal nem létezik, vagy átköltözött.',
+  },
+
+  about: {
+    hero: {
+      eyebrow: 'Rólunk',
+      title: 'Rugalmas partner a hűtött áruszállításban',
+      subtitle:
+        'A 2024-ben alapított NH Cargo Kft. fiatal, dinamikus csapat – a hűtött áruszállításban szerzett, összesen közel 100 évnyi szakmai tapasztalattal.',
+    },
+    intro: {
+      title: 'Cégbemutatkozás',
+      text: 'Társaságunk 2024-ben alakult, munkatársaink létszáma jelenleg 10 fő. Munkatársaink együttes szakmai tapasztalata a hűtött áruszállítás területén hamarosan eléri a 100 évet.',
+      stats: [
+        { value: '2024', label: 'alapítás éve' },
+        { value: '10 fő', label: 'munkatárs' },
+        { value: '~100 év', label: 'együttes szakmai tapasztalat' },
+        { value: '30', label: 'dedikált hűtős szerelvény' },
+      ],
+    },
+    activity: {
+      title: 'Fő tevékenységünk',
+      text: 'Elsődleges profilunk a nemzetközi és belföldi hűtött, teljes rakományos (FTL) fuvarozás. Emellett ponyvás és dobozos járművekkel is vállalunk szállítási feladatokat.',
+    },
+    fleet: {
+      title: 'Járműflotta',
+      text: 'Flottánk 30 dedikált hűtős szerelvényből áll, köztük normál, doppelstock és válaszfalas hűtős járművekkel. TAPA- és gyógyszeripari (pharma) minősítéssel rendelkezünk. A teljes flotta GPS-alapú nyomon követéssel működik.',
+      types: ['Normál hűtős', 'Doppelstock', 'Válaszfalas hűtős'],
+      badges: ['TAPA-minősítés', 'Gyógyszeripari (pharma) minősítés', 'GPS-alapú nyomon követés'],
+    },
+    results: {
+      eyebrow: 'Eredményeink',
+      title: 'Számokban a teljesítményünk',
+      items: [
+        { value: '2 500+', label: 'teljesített fuvarfeladat 2025-ben' },
+        { value: '5 M€+', label: 'árbevétel 2025-ben' },
+        { value: '3 000+', label: 'teljesített fuvarfeladat 2026 szeptemberéig' },
+      ],
+    },
+    quality: {
+      title: 'Minőségirányítás',
+      text: 'Társaságunk ISO 9001, ISO 14001 és IFS tanúsítványokkal rendelkezik.',
+      certs: [
+        { name: 'ISO 9001', text: 'Minőségirányítási rendszer' },
+        { name: 'ISO 14001', text: 'Környezetirányítási rendszer' },
+        { name: 'IFS', text: 'Élelmiszer-biztonsági szabvány' },
+      ],
+    },
+    warehouse: {
+      title: 'Raktározás és átrakás',
+      text: 'Az M0 autópálya vonalán hűtött raktározási kapacitással rendelkezünk, friss áru esetén átrakási lehetőséggel.',
+    },
+    duty: {
+      title: 'Ügyelet',
+      text: 'Hétvégi, valamint reggel 04:00–07:00 közötti ügyeletet biztosítunk, így a felmerülő problémákra gyorsan reagálunk.',
+      hours: ['Hétvégi ügyelet', 'Hétköznap 04:00–07:00'],
+    },
+    strength: {
+      title: 'Legnagyobb erősségünk: a rugalmasság',
+      text: 'Rugalmas, partnerközpontú működésünkkel megbízható logisztikai hátteret nyújtunk partnereinknek, váratlan helyzetekben is.',
+    },
+    goals: {
+      title: 'Jövőbeli céljaink',
+      text: 'Célunk a folyamatos, fenntartható fejlődés, a flotta és a szolgáltatások bővítése, valamint új hazai és nemzetközi partnerkapcsolatok kialakítása. A hűtött szállítmányozás területén tovább kívánjuk erősíteni piaci jelenlétünket, a magas minőségi, biztonsági és szolgáltatási színvonal megtartása mellett.',
+    },
+    placeholder: { label: 'Kép helye', file: 'Fájl', size: 'Javasolt méret' },
+    slots: {
+      fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
+      csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo csapata' },
+      flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
+      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Az NH Cargo hűtött raktára az M0 autópálya mentén' },
+      tanusitvanyok: { title: 'Tanúsítványok', alt: 'Az NH Cargo ISO 9001, ISO 14001 és IFS tanúsítványai' },
+    },
   },
 };

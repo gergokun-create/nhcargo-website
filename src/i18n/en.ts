@@ -6,6 +6,11 @@ import type { Dictionary } from './types';
 
 export const en: Dictionary = {
   meta: {
+    about: {
+      title: 'About us – company, fleet & certifications | NH Cargo',
+      description:
+        'NH Cargo Kft. provides international and domestic refrigerated FTL transport: 30 dedicated reefer units, TAPA and pharma qualified, certified to ISO 9001, ISO 14001 and IFS.',
+    },
     home: {
       title: 'NH Cargo Kft. – Temperature-controlled transport across Europe',
       description:
@@ -43,6 +48,7 @@ export const en: Dictionary = {
 
   nav: {
     home: 'Home',
+    about: 'About us',
     services: 'Services',
     industries: 'Industries',
     sustainability: 'Sustainability',
@@ -66,6 +72,7 @@ export const en: Dictionary = {
     contactUs: 'Contact us',
     callUs: 'Call us',
     backHome: 'Back to the homepage',
+    moreAbout: 'More about us',
   },
 
   alt: {
@@ -446,5 +453,77 @@ export const en: Dictionary = {
   notFound: {
     title: 'Page not found',
     text: 'Sorry, the page you are looking for does not exist or has been moved.',
+  },
+
+  about: {
+    hero: {
+      eyebrow: 'About us',
+      title: 'A flexible partner in refrigerated transport',
+      subtitle:
+        'Founded in 2024, NH Cargo Kft. is a young, agile team – with nearly 100 years of combined professional experience in refrigerated transport.',
+    },
+    intro: {
+      title: 'Who we are',
+      text: 'Our company was founded in 2024 and currently employs 10 people. Together, our team will soon have 100 years of combined professional experience in refrigerated transport.',
+      stats: [
+        { value: '2024', label: 'year founded' },
+        { value: '10', label: 'team members' },
+        { value: '~100 yrs', label: 'combined experience' },
+        { value: '30', label: 'dedicated reefer units' },
+      ],
+    },
+    activity: {
+      title: 'Our core business',
+      text: 'Our primary focus is international and domestic refrigerated full truckload (FTL) transport. We also handle transport assignments with curtain-sided and box vehicles.',
+    },
+    fleet: {
+      title: 'Our fleet',
+      text: 'Our fleet consists of 30 dedicated refrigerated units, including standard, double-deck and multi-compartment reefers. We hold TAPA and pharmaceutical (pharma) qualifications, and the entire fleet is tracked by GPS.',
+      types: ['Standard reefer', 'Double-deck', 'Multi-compartment reefer'],
+      badges: ['TAPA qualified', 'Pharma qualified', 'GPS tracking'],
+    },
+    results: {
+      eyebrow: 'Our results',
+      title: 'Our performance in numbers',
+      items: [
+        { value: '2,500+', label: 'transport jobs completed in 2025' },
+        { value: '€5M+', label: 'revenue in 2025' },
+        { value: '3,000+', label: 'transport jobs completed by September 2026' },
+      ],
+    },
+    quality: {
+      title: 'Quality management',
+      text: 'Our company is certified to ISO 9001, ISO 14001 and IFS.',
+      certs: [
+        { name: 'ISO 9001', text: 'Quality management system' },
+        { name: 'ISO 14001', text: 'Environmental management system' },
+        { name: 'IFS', text: 'Food safety standard' },
+      ],
+    },
+    warehouse: {
+      title: 'Storage and cross-docking',
+      text: 'We have refrigerated storage capacity along the M0 motorway, with cross-docking available for fresh goods.',
+    },
+    duty: {
+      title: 'On-call service',
+      text: 'We provide on-call service at weekends and between 04:00 and 07:00 in the morning, so we can respond quickly to any issue.',
+      hours: ['Weekend on-call', 'Weekdays 04:00–07:00'],
+    },
+    strength: {
+      title: 'Our greatest strength: flexibility',
+      text: 'With our flexible, partner-focused way of working, we provide reliable logistics support to our partners – even in unexpected situations.',
+    },
+    goals: {
+      title: 'Our goals for the future',
+      text: 'We aim for continuous, sustainable growth, expanding our fleet and services, and building new domestic and international partnerships. We intend to further strengthen our position in refrigerated transport while maintaining high standards of quality, safety and service.',
+    },
+    placeholder: { label: 'Image goes here', file: 'File', size: 'Recommended size' },
+    slots: {
+      fejlec: { title: 'Header background', alt: 'NH Cargo refrigerated truck on the road' },
+      csapat: { title: 'Team / office', alt: 'The NH Cargo team' },
+      flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
+      raktar: { title: 'Cold storage along the M0', alt: 'NH Cargo cold storage facility along the M0 motorway' },
+      tanusitvanyok: { title: 'Certificates', alt: 'NH Cargo’s ISO 9001, ISO 14001 and IFS certificates' },
+    },
   },
 };

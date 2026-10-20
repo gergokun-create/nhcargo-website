@@ -7,6 +7,7 @@ import type {
   WhyId,
 } from '../data/content';
 import type { ImageKey } from '../data/images';
+import type { AboutSlot } from '../data/aboutImages';
 import type { RouteKey } from './config';
 
 type Meta = { title: string; description: string };
@@ -35,6 +36,7 @@ export interface Dictionary {
     contactUs: string;
     callUs: string;
     backHome: string;
+    moreAbout: string;
   };
   alt: Record<ImageKey, string>;
   home: {
@@ -133,4 +135,20 @@ export interface Dictionary {
   };
   legalNotice: TitleText;
   notFound: { title: string; text: string };
+  about: {
+    hero: PageHero;
+    intro: TitleText & { stats: Stat[] };
+    activity: TitleText;
+    fleet: TitleText & { types: string[]; badges: string[] };
+    results: { eyebrow: string; title: string; items: Stat[] };
+    quality: TitleText & { certs: { name: string; text: string }[] };
+    warehouse: TitleText;
+    duty: TitleText & { hours: string[] };
+    strength: TitleText;
+    goals: TitleText;
+    placeholder: { label: string; file: string; size: string };
+    slots: Record<AboutSlot, { title: string; alt: string }>;
+  };
 }
+
+type Stat = { value: string; label: string };
