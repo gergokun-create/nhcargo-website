@@ -21,11 +21,6 @@ export const en: Dictionary = {
       description:
         'Domestic transport across Hungary, domestic cross-docking and international road freight across Europe with real-time shipment tracking.',
     },
-    industries: {
-      title: 'Industries – Food & special cargo transport | NH Cargo',
-      description:
-        'Temperature-controlled road transport for the food industry, plus tailored solutions for oversized, high-value and time-critical cargo.',
-    },
     sustainability: {
       title: 'Sustainability – Greener logistics | NH Cargo',
       description:
@@ -50,7 +45,6 @@ export const en: Dictionary = {
     home: 'Home',
     about: 'About us',
     services: 'Services',
-    industries: 'Industries',
     sustainability: 'Sustainability',
     contact: 'Contact',
     imprint: 'Imprint',
@@ -66,7 +60,6 @@ export const en: Dictionary = {
   common: {
     learnMore: 'Learn more',
     allServices: 'All services',
-    allIndustries: 'All industries',
     requestQuote: 'Request a quote',
     ourServices: 'Our services',
     contactUs: 'Contact us',
@@ -83,7 +76,6 @@ export const en: Dictionary = {
     boxTruck: 'White box truck in front of a modern industrial building',
     dockDoors: 'Blue loading dock doors inside a logistics centre',
     warehouse: 'Tall warehouse racking filled with cardboard boxes',
-    freshVegetables: 'Fresh vegetables – cauliflower, cabbage, cucumbers and tomatoes – side by side',
     windTurbines: 'Wind turbine above green farmland under a blue sky',
     highwayInterchange: 'Aerial view of a motorway interchange surrounded by forest',
     aerialTrucks: 'Top-down view of trucks and cars on a road through a forest',
@@ -129,11 +121,16 @@ export const en: Dictionary = {
       intro:
         'From fast domestic deliveries to cross-docking and international freight – we organise the solution that fits your cargo.',
     },
-    industries: {
-      eyebrow: 'Industries',
-      title: 'Expertise where temperature matters most',
+    fleet: {
+      eyebrow: 'Fleet & quality',
+      title: '30 dedicated reefer units, certified quality',
       intro:
-        'We know the specific requirements of the sectors we serve – and we handle every shipment accordingly.',
+        'We work with our own dedicated refrigerated fleet, security and pharmaceutical qualifications, and certified management systems – so your goods are safe under all conditions.',
+      cards: [
+        { title: '30 reefer units', text: 'Standard, double-deck and multi-compartment refrigerated vehicles, dedicated to our partners.' },
+        { title: 'TAPA & pharma qualified', text: 'Qualified for the secure transport of high-value and pharmaceutical cargo.' },
+        { title: 'GPS tracking', text: 'The entire fleet is tracked in real time, so we always know where your goods are.' },
+      ],
     },
     sustainability: {
       eyebrow: 'Sustainability',
@@ -276,34 +273,6 @@ export const en: Dictionary = {
     },
   },
 
-  industries: {
-    hero: {
-      eyebrow: 'Industries',
-      title: 'Specialists in sensitive cargo',
-      subtitle:
-        'Food and special cargo each follow their own rules. We know them – and we build our processes around them.',
-    },
-    items: {
-      food: {
-        title: 'Food transport',
-        short: 'Fresh produce, frozen goods and dry items – handled to the highest hygiene and safety standards.',
-        lead: 'Transporting food requires special attention and expertise.',
-        text: 'Our processes meet the highest hygiene and safety standards, so the quality and freshness of your products are preserved all the way to delivery. Our team knows the specific requirements of the food industry and offers flexible solutions for fresh produce, frozen goods and dry items alike. Our goal: on-time delivery in optimal condition.',
-        points: [
-          'Fresh produce, frozen goods and dry items',
-          'Highest hygiene and safety standards',
-          'Quality and freshness preserved until delivery',
-        ],
-      },
-      special: {
-        title: 'Special solutions',
-        short: 'Oversized, high-value or time-critical cargo handled with a customised logistics strategy.',
-        lead: 'Tailored handling for complex or sensitive cargo.',
-        text: 'Whether it is oversized items, high-value products or time-sensitive deliveries, our experts develop customised logistics strategies based on advanced technology and in-depth industry knowledge – going beyond standard procedures.',
-        points: ['Oversized and heavy items', 'High-value products', 'Time-critical deliveries'],
-      },
-    },
-  },
 
   sustainability: {
     hero: {
@@ -488,7 +457,6 @@ export const en: Dictionary = {
       items: [
         { value: '2,500+', label: 'transport jobs completed in 2025' },
         { value: '€5M+', label: 'revenue in 2025' },
-        { value: '3,000+', label: 'transport jobs completed by September 2026' },
       ],
     },
     quality: {
@@ -522,8 +490,7 @@ export const en: Dictionary = {
       fejlec: { title: 'Header background', alt: 'NH Cargo refrigerated truck on the road' },
       csapat: { title: 'Team / office', alt: 'The NH Cargo team' },
       flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
-      raktar: { title: 'Cold storage along the M0', alt: 'NH Cargo cold storage facility along the M0 motorway' },
-      tanusitvanyok: { title: 'Certificates', alt: 'NH Cargo’s ISO 9001, ISO 14001 and IFS certificates' },
+      raktar: { title: 'Cold storage along the M0', alt: 'Forklift loading a refrigerated trailer at a cold store loading dock' },
     },
   },
 };

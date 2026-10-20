@@ -12,7 +12,7 @@ interface Props {
 const { lang, page } = Astro.props;
 const t = useTranslations(lang);
 
-const navKeys = ['about', 'services', 'industries', 'sustainability', 'contact'] as const;
+const navKeys = ['services', 'sustainability', 'about', 'contact'] as const;
 const nav = navKeys.map((key) => ({ key, href: localePath(key, lang), label: t.nav[key] }));
 
 // Language switcher points to the same page in the other language (or that language's home page).

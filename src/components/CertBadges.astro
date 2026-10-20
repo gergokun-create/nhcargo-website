@@ -1,0 +1,82 @@
+---
+/**
+ * Certification badges (ISO 9001, ISO 14001, IFS).
+ *
+ * These are the site's own seal-style badges – NOT the official ISO / IFS logos.
+ * ISO does not allow certified companies to use its logo; use the certification
+ * mark issued by your certification body instead. To show the official marks,
+ * replace this component's output with those image files.
+ */
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** "light" for white/frost backgrounds, "dark" for dark sections */
+  tone?: 'light' | 'dark';
+  size?: 'md' | 'lg';
+}
+
+const { lang, tone = 'light', size = 'lg' } = Astro.props;
+const certs = useTranslations(lang).about.quality.certs;
+const certified = lang === 'hu' ? 'TANÚSÍTOTT' : 'CERTIFIED';
+
+// Colour per badge: quality = cold blue, environment = green, food safety = gold
+const palette = ['#0E5A8A', '#047857', '#85652C'];
+
+const badges = certs.map((cert, i) => {
+  const [prefix, number] = cert.name.startsWith('ISO') ? ['ISO', cert.name.replace('ISO', '').trim()] : ['', cert.name];
+  return { ...cert, prefix, number, color: palette[i % palette.length], id: `cert-${lang}-${i}` };
+});
+---
+
+<ul class:list={['grid grid-cols-3 gap-4 sm:gap-6', size === 'md' && 'max-w-md']}>
+  {
+    badges.map((b) => (
+      <li class="flex flex-col items-center text-center">
+        <svg
+          viewBox="0 0 200 200"
+          class:list={['w-full drop-shadow-md', size === 'lg' ? 'max-w-[11rem]' : 'max-w-[7.5rem]']}
+          role="img"
+          aria-label={`${b.name} – ${b.text}`}
+        >
+          <defs>
+            <path id={`${b.id}-top`} d="M 30,100 A 70,70 0 0 1 170,100" />
+            <path id={`${b.id}-bottom`} d="M 22,100 A 78,78 0 0 0 178,100" />
+          </defs>
+          <circle cx="100" cy="100" r="97" fill={b.color} />
+          <circle cx="100" cy="100" r="89" fill="none" stroke="#D9C07A" stroke-width="2.5" />
+          <circle cx="100" cy="100" r="60" fill="#fff" />
+          <circle cx="100" cy="100" r="55" fill="none" stroke={b.color} stroke-width="1.5" stroke-dasharray="2 3" />
+          <text fill="#fff" font-size="13" font-weight="700" letter-spacing="3" text-anchor="middle" style="font-family: var(--font-display)">
+            <textPath href={`#${b.id}-top`} startOffset="50%">{certified}</textPath>
+          </text>
+          <text fill="#fff" font-size="10.5" font-weight="600" letter-spacing="1.2" text-anchor="middle" style="font-family: var(--font-display)">
+            <textPath href={`#${b.id}-bottom`} startOffset="50%">{b.text.toUpperCase()}</textPath>
+          </text>
+          <circle cx="23" cy="100" r="3.5" fill="#D9C07A" />
+          <circle cx="177" cy="100" r="3.5" fill="#D9C07A" />
+          {b.prefix && (
+            <text x="100" y="88" fill={b.color} font-size="20" font-weight="800" text-anchor="middle" letter-spacing="2" style="font-family: var(--font-display)">
+              {b.prefix}
+            </text>
+          )}
+          <text
+            x="100"
+            y={b.prefix ? 122 : 113}
+            fill={b.color}
+            font-size={b.prefix ? (b.number.length > 4 ? 30 : 34) : 40}
+            font-weight="800"
+            text-anchor="middle"
+            style="font-family: var(--font-display)"
+          >
+            {b.number}
+          </text>
+        </svg>
+        <p class:list={['mt-3 font-display font-extrabold', tone === 'dark' ? 'text-white' : 'text-ink-900', size === 'lg' ? 'text-lg' : 'text-sm']}>
+          {b.name}
+        </p>
+        <p class:list={['mt-0.5 text-xs leading-snug sm:text-sm', tone === 'dark' ? 'text-ink-300' : 'text-ink-500']}>{b.text}</p>
+      </li>
+    ))
+  }
+</ul>

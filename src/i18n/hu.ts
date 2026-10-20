@@ -22,11 +22,6 @@ export const hu: Dictionary = {
       description:
         'Belföldi fuvarozás Magyarország egész területén, belföldi cross-docking, valamint nemzetközi közúti szállítás Európa-szerte, valós idejű nyomon követéssel.',
     },
-    industries: {
-      title: 'Iparágak – élelmiszer- és speciális szállítás | NH Cargo',
-      description:
-        'Hőmérséklet-szabályozott közúti szállítás az élelmiszeripar számára, valamint egyedi megoldások túlméretes, nagy értékű és sürgős szállítmányokhoz.',
-    },
     sustainability: {
       title: 'Fenntarthatóság – zöldebb logisztika | NH Cargo',
       description:
@@ -52,7 +47,6 @@ export const hu: Dictionary = {
     home: 'Főoldal',
     about: 'Rólunk',
     services: 'Szolgáltatások',
-    industries: 'Iparágak',
     sustainability: 'Fenntarthatóság',
     contact: 'Kapcsolat',
     imprint: 'Impresszum',
@@ -68,7 +62,6 @@ export const hu: Dictionary = {
   common: {
     learnMore: 'Részletek',
     allServices: 'Összes szolgáltatás',
-    allIndustries: 'Összes iparág',
     requestQuote: 'Ajánlatkérés',
     ourServices: 'Szolgáltatásaink',
     contactUs: 'Kapcsolatfelvétel',
@@ -85,7 +78,6 @@ export const hu: Dictionary = {
     boxTruck: 'Fehér dobozos tehergépjármű egy modern ipari épület előtt',
     dockDoors: 'Kék rakodókapuk egy logisztikai központ rakodóterében',
     warehouse: 'Magas raktári polcrendszer kartondobozokkal egy logisztikai raktárban',
-    freshVegetables: 'Friss zöldségek – karfiol, káposzta, uborka és paradicsom – egymás mellett',
     windTurbines: 'Szélturbina zöld mezőgazdasági táj felett, kék égbolttal',
     highwayInterchange: 'Erdővel körülvett autópálya-csomópont madártávlatból',
     aerialTrucks: 'Kamionok és autók egy erdőn átvezető úton, felülnézetből',
@@ -131,11 +123,16 @@ export const hu: Dictionary = {
       intro:
         'A gyors belföldi kiszállítástól a cross-dockingon át a nemzetközi fuvarozásig – megszervezzük az áruja számára legmegfelelőbb megoldást.',
     },
-    industries: {
-      eyebrow: 'Iparágak',
-      title: 'Szakértelem ott, ahol a hőmérséklet a legfontosabb',
+    fleet: {
+      eyebrow: 'Flotta és minőség',
+      title: '30 dedikált hűtős szerelvény, tanúsított minőségben',
       intro:
-        'Ismerjük az általunk kiszolgált ágazatok sajátos követelményeit – és minden szállítmányt ennek megfelelően kezelünk.',
+        'Saját, dedikált hűtős flottával, biztonsági és gyógyszeripari minősítéssel, valamint tanúsított irányítási rendszerekkel dolgozunk – hogy áruja minden körülmények között biztonságban legyen.',
+      cards: [
+        { title: '30 hűtős szerelvény', text: 'Normál, doppelstock és válaszfalas hűtős járművek, dedikáltan partnereink számára.' },
+        { title: 'TAPA és pharma minősítés', text: 'Minősítés a nagy értékű és gyógyszeripari rakományok biztonságos szállításához.' },
+        { title: 'GPS-alapú nyomon követés', text: 'A teljes flotta valós időben követhető, így mindig tudjuk, hol jár az áru.' },
+      ],
     },
     sustainability: {
       eyebrow: 'Fenntarthatóság',
@@ -279,34 +276,6 @@ export const hu: Dictionary = {
     },
   },
 
-  industries: {
-    hero: {
-      eyebrow: 'Iparágak',
-      title: 'Az érzékeny áruk szakértői',
-      subtitle:
-        'Az élelmiszer és a speciális rakomány egyaránt saját szabályokat követ. Mi ismerjük ezeket – és folyamatainkat is ezekre építjük.',
-    },
-    items: {
-      food: {
-        title: 'Élelmiszer-szállítás',
-        short: 'Friss termékek, fagyasztott és száraz áruk – a legszigorúbb higiéniai és biztonsági előírások szerint.',
-        lead: 'Az élelmiszerek szállítása különös figyelmet és szakértelmet igényel.',
-        text: 'Folyamataink megfelelnek a legszigorúbb higiéniai és biztonsági előírásoknak, így termékei minősége és frissessége a kiszállításig megmarad. Csapatunk ismeri az élelmiszeripar sajátos követelményeit, és rugalmas megoldásokat kínál friss termékek, fagyasztott és száraz áruk szállítására egyaránt. Célunk, hogy áruja időben és optimális állapotban érkezzen meg.',
-        points: [
-          'Friss termékek, fagyasztott és száraz áruk',
-          'A legszigorúbb higiéniai és biztonsági előírások',
-          'Megőrzött minőség és frissesség a kiszállításig',
-        ],
-      },
-      special: {
-        title: 'Speciális megoldások',
-        short: 'Túlméretes, nagy értékű vagy sürgős szállítmányok egyedi logisztikai stratégiával.',
-        lead: 'Egyedi kezelés összetett vagy különleges figyelmet igénylő szállítmányokhoz.',
-        text: 'Legyen szó túlméretes tárgyakról, nagy értékű termékekről vagy sürgős szállításról, szakértőink korszerű technológiára és alapos iparági ismeretekre építve egyedi logisztikai stratégiát dolgoznak ki – túllépve a szokványos eljárásokon.',
-        points: ['Túlméretes és nehéz rakományok', 'Nagy értékű termékek', 'Sürgős, időkritikus szállítások'],
-      },
-    },
-  },
 
   sustainability: {
     hero: {
@@ -491,7 +460,6 @@ export const hu: Dictionary = {
       items: [
         { value: '2 500+', label: 'teljesített fuvarfeladat 2025-ben' },
         { value: '5 M€+', label: 'árbevétel 2025-ben' },
-        { value: '3 000+', label: 'teljesített fuvarfeladat 2026 szeptemberéig' },
       ],
     },
     quality: {
@@ -525,8 +493,7 @@ export const hu: Dictionary = {
       fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
       csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo csapata' },
       flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
-      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Az NH Cargo hűtött raktára az M0 autópálya mentén' },
-      tanusitvanyok: { title: 'Tanúsítványok', alt: 'Az NH Cargo ISO 9001, ISO 14001 és IFS tanúsítványai' },
+      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Targonca rakodja a hűtött félpótkocsit egy hűtőraktár rakodókapujánál' },
     },
   },
 };

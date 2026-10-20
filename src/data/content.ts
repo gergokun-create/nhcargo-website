@@ -22,11 +22,6 @@ export const services = [
   { id: 'international', icon: 'globe', image: 'highwayMotion' },
 ] as const satisfies ReadonlyArray<Item<string>>;
 
-export const industries = [
-  { id: 'food', icon: 'apple', image: 'freshVegetables' },
-  { id: 'special', icon: 'sparkles', image: 'truckOnRoad' },
-] as const satisfies ReadonlyArray<Item<string>>;
-
 export const sustainabilityPillars = [
   { id: 'routes', icon: 'route' },
   { id: 'fuels', icon: 'fuel' },
@@ -39,7 +34,6 @@ export const processSteps = ['request', 'offer', 'organise', 'delivery'] as cons
 export const cargoTypes = ['frozen', 'chilled', 'fresh', 'dry', 'special'] as const;
 
 export type ServiceId = (typeof services)[number]['id'];
-export type IndustryId = (typeof industries)[number]['id'];
 export type WhyId = (typeof whyUs)[number]['id'];
 export type PillarId = (typeof sustainabilityPillars)[number]['id'];
 export type StepId = (typeof processSteps)[number];

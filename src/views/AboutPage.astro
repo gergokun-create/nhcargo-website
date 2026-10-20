@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ImageSlot from '../components/ImageSlot.astro';
+import CertBadges from '../components/CertBadges.astro';
 import CTA from '../components/CTA.astro';
 import Icon from '../components/Icon.astro';
 import { images } from '../data/images';
@@ -99,7 +100,7 @@ const heroAlt = aboutImage('fejlec') ? a.slots.fejlec.alt : t.alt.reeferTrailers
           {a.results.title}
         </h2>
       </div>
-      <dl class="mt-14 grid gap-6 sm:grid-cols-3">
+      <dl class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-2">
         {
           a.results.items.map((item, i) => (
             <div
@@ -125,22 +126,11 @@ const heroAlt = aboutImage('fejlec') ? a.slots.fejlec.alt : t.alt.reeferTrailers
         </span>
         <h2 id="quality-title" class="mt-5 text-3xl leading-tight font-extrabold sm:text-4xl">{a.quality.title}</h2>
         <p class="mt-4 text-lg leading-relaxed text-ink-500">{a.quality.text}</p>
-        <ul class="mt-8 grid gap-4 sm:grid-cols-3">
-          {
-            a.quality.certs.map((cert) => (
-              <li class="rounded-2xl border border-ink-100 bg-white p-5 text-center shadow-[0_1px_2px_rgba(16,24,40,0.04)]">
-                <span class="mx-auto inline-flex size-10 items-center justify-center rounded-full bg-frost-100 text-cold-700">
-                  <Icon name="checkCircle" class="size-5" />
-                </span>
-                <p class="mt-3 font-display text-lg font-extrabold text-ink-900">{cert.name}</p>
-                <p class="mt-1 text-sm leading-snug text-ink-500">{cert.text}</p>
-              </li>
-            ))
-          }
-        </ul>
       </div>
       <div data-reveal style="--reveal-delay:120ms">
-        <ImageSlot lang={lang} slot="tanusitvanyok" />
+        <div class="rounded-3xl bg-frost-50 p-6 ring-1 ring-frost-200 sm:p-10">
+          <CertBadges lang={lang} />
+        </div>
       </div>
     </div>
   </section>

@@ -5,11 +5,12 @@ import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import IndustryCard from '../components/IndustryCard.astro';
+import CertBadges from '../components/CertBadges.astro';
 import CTA from '../components/CTA.astro';
 import Icon from '../components/Icon.astro';
 import { images } from '../data/images';
-import { whyUs, services, industries, sustainabilityPillars } from '../data/content';
+import { whyUs, services, sustainabilityPillars } from '../data/content';
+import type { IconName } from '../data/icons';
 import { localePath, useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const h = t.home;
+const fleetIcons: IconName[] = ['truck', 'shield', 'locate'];
 ---
 
 <BaseLayout lang={lang} page="home">
@@ -124,38 +126,40 @@ const h = t.home;
     </div>
   </section>
 
-  <!-- Industries teaser -->
-  <section class="section relative overflow-hidden bg-ink-900" aria-labelledby="industries-title">
+  <!-- Fleet & quality -->
+  <section class="section relative overflow-hidden bg-ink-900" aria-labelledby="fleet-title">
     <div class="pointer-events-none absolute -top-40 -right-40 size-[36rem] rounded-full bg-cold-700/25 blur-3xl" aria-hidden="true"></div>
     <div class="container-page relative">
       <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <SectionHeading
-          eyebrow={h.industries.eyebrow}
-          title={h.industries.title}
-          intro={h.industries.intro}
-          dark
-          id="industries-title"
-        />
-        <a href={localePath('industries', lang)} class="btn btn-ghost-light self-start lg:self-auto" data-reveal>
-          {t.common.allIndustries}
+        <SectionHeading eyebrow={h.fleet.eyebrow} title={h.fleet.title} intro={h.fleet.intro} dark id="fleet-title" />
+        <a href={localePath('about', lang)} class="btn btn-ghost-light self-start lg:self-auto" data-reveal>
+          {t.common.moreAbout}
           <Icon name="arrowRight" class="size-4" />
         </a>
       </div>
-      <div class="mt-14 grid gap-6 md:grid-cols-2">
-        {
-          industries.map((ind, i) => (
-            <IndustryCard
-              icon={ind.icon}
-              title={t.industries.items[ind.id].title}
-              text={t.industries.items[ind.id].short}
-              href={`${localePath('industries', lang)}#${ind.id}`}
-              linkLabel={t.common.learnMore}
-              image={images[ind.image]}
-              imageAlt={t.alt[ind.image]}
-              delay={i * 90}
-            />
-          ))
-        }
+      <div class="mt-14 grid items-center gap-10 lg:grid-cols-12">
+        <ul class="grid gap-5 sm:grid-cols-3 lg:col-span-7 lg:grid-cols-1">
+          {
+            h.fleet.cards.map((card, i) => (
+              <li
+                class="flex gap-5 rounded-2xl border border-white/10 bg-white/[0.04] p-6"
+                data-reveal
+                style={`--reveal-delay:${i * 90}ms`}
+              >
+                <span class="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-gold-500 text-ink-950">
+                  <Icon name={fleetIcons[i % fleetIcons.length]} class="size-6" />
+                </span>
+                <div>
+                  <h3 class="text-lg font-bold text-white">{card.title}</h3>
+                  <p class="mt-1.5 text-sm leading-relaxed text-ink-200">{card.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="rounded-3xl bg-white p-6 sm:p-8 lg:col-span-5" data-reveal style="--reveal-delay:120ms">
+          <CertBadges lang={lang} size="md" />
+        </div>
       </div>
     </div>
   </section>

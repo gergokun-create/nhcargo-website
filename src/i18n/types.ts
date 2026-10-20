@@ -1,6 +1,5 @@
 import type {
   CargoType,
-  IndustryId,
   PillarId,
   ServiceId,
   StepId,
@@ -30,7 +29,6 @@ export interface Dictionary {
   common: {
     learnMore: string;
     allServices: string;
-    allIndustries: string;
     requestQuote: string;
     ourServices: string;
     contactUs: string;
@@ -56,7 +54,7 @@ export interface Dictionary {
     };
     why: SectionIntro;
     services: SectionIntro;
-    industries: SectionIntro;
+    fleet: SectionIntro & { cards: TitleText[] };
     sustainability: { eyebrow: string; title: string; text: string; cta: string };
   };
   why: Record<WhyId, TitleText>;
@@ -64,10 +62,6 @@ export interface Dictionary {
     hero: PageHero;
     items: Record<ServiceId, { title: string; short: string; lead: string; points: TitleText[] }>;
     process: { eyebrow: string; title: string; steps: Record<StepId, TitleText> };
-  };
-  industries: {
-    hero: PageHero;
-    items: Record<IndustryId, { title: string; short: string; lead: string; text: string; points: string[] }>;
   };
   sustainability: {
     hero: PageHero;

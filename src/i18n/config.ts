@@ -17,7 +17,6 @@ export const routes = {
   home: { hu: '/', en: '/en/' },
   about: { hu: '/rolunk/', en: '/en/about/' },
   services: { hu: '/szolgaltatasok/', en: '/en/services/' },
-  industries: { hu: '/iparagak/', en: '/en/industries/' },
   sustainability: { hu: '/fenntarthatosag/', en: '/en/sustainability/' },
   contact: { hu: '/kapcsolat/', en: '/en/contact/' },
   imprint: { hu: '/impresszum/', en: '/en/imprint/' },

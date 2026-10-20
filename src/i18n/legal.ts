@@ -62,7 +62,7 @@ const imprintHu: LegalPage = {
       title: 'Szerzői jogok',
       blocks: [
         'A weboldal tartalma – szövegei, logója és grafikai elemei – az NH Cargo Kft. szellemi tulajdonát képezik, azok előzetes írásos engedély nélkül nem használhatók fel.',
-        'A weboldalon használt fotók forrása az Unsplash, felhasználásuk az [Unsplash licenc](https://unsplash.com/license) alapján történik.',
+        'A weboldalon használt stockfotók forrása az Unsplash és a Pexels, felhasználásuk az [Unsplash licenc](https://unsplash.com/license), illetve a [Pexels licenc](https://www.pexels.com/license/) alapján történik.',
       ],
     },
     {
@@ -114,7 +114,7 @@ const imprintEn: LegalPage = {
       title: 'Copyright',
       blocks: [
         'The content of this website – including texts, logo and graphic elements – is the intellectual property of NH Cargo Kft. and may not be used without prior written permission.',
-        'Photos used on this website are sourced from Unsplash and used under the [Unsplash License](https://unsplash.com/license).',
+        'Stock photos used on this website are sourced from Unsplash and Pexels and used under the [Unsplash License](https://unsplash.com/license) and the [Pexels License](https://www.pexels.com/license/).',
       ],
     },
     {

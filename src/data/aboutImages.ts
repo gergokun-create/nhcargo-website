@@ -5,6 +5,10 @@
  * file name below (jpg, jpeg, png or webp), e.g. src/assets/images/rolunk/flotta.jpg.
  * It replaces the placeholder automatically – no code change needed.
  * Until a file exists, the page shows a dashed placeholder box in its place.
+ *
+ * Current photos:
+ *  raktar.jpg – stock photo by ELEVATE, Pexels (Pexels License), https://www.pexels.com/photo/1267327/
+ *               (cropped). Replace it with a photo of the own M0 cold store when available.
  */
 import type { ImageMetadata } from 'astro';
 
@@ -14,7 +18,6 @@ export const aboutSlots = {
   csapat: { ratio: '4/3', size: '1600 × 1200 px' },
   flotta: { ratio: '4/3', size: '1600 × 1200 px' },
   raktar: { ratio: '4/3', size: '1600 × 1200 px' },
-  tanusitvanyok: { ratio: '4/3', size: '1600 × 1200 px' },
 } as const;
 
 export type AboutSlot = keyof typeof aboutSlots;

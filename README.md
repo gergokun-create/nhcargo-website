@@ -37,7 +37,7 @@ src/
   assets/images/            Fotók (build közben WebP-re optimalizálva)
   assets/brand/             Az eredeti logófájl
   components/               Újrahasznosítható elemek
-    Header, Footer, Hero, ServiceCard, IndustryCard, FeatureCard,
+    Header, Footer, Hero, ServiceCard, FeatureCard, ImageSlot, CertBadges,
     CTA, ContactForm, MapEmbed, Logo, Icon, SectionHeading, LegalContent
   data/
     site.ts                 ★ Cégadatok, elérhetőségek, űrlap-végpont, LinkedIn
@@ -92,8 +92,9 @@ A `/rolunk/` (angolul `/en/about/`) oldalon szaggatott keretes **„Kép helye�
 | `fejlec.jpg` | az oldal tetején lévő háttérkép (amíg nincs, stockfotó látszik) | 1920 × 1080 px |
 | `csapat.jpg` | Cégbemutatkozás mellett | 1600 × 1200 px |
 | `flotta.jpg` | Fő tevékenységünk / Járműflotta mellett | 1600 × 1200 px |
-| `tanusitvanyok.jpg` | Minőségirányítás mellett | 1600 × 1200 px |
-| `raktar.jpg` | Raktározás és átrakás / Ügyelet mellett | 1600 × 1200 px |
+| `raktar.jpg` | Raktározás és átrakás / Ügyelet mellett (most stockfotó, a Pexelsről) | 1600 × 1200 px |
+
+A Minőségirányítás résznél az ISO 9001, ISO 14001 és IFS jelvény a weboldal **saját grafikája** (`src/components/CertBadges.astro`), nem a hivatalos logó: az ISO nem engedi a saját logója használatát. A tanúsító szervezettől kapott hivatalos tanúsítási jellel lecserélhető.
 
 A kép a következő buildnél (vagy `npm run dev` alatt azonnal) a doboz helyére kerül. A képek alternatív szövegei a `hu.ts` / `en.ts` fájl `about.slots` részében vannak.
 
