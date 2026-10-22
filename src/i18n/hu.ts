@@ -10,7 +10,7 @@ export const hu: Dictionary = {
     about: {
       title: 'Rólunk – cégbemutatkozás, flotta, tanúsítványok | NH Cargo',
       description:
-        'Az NH Cargo Kft. nemzetközi és belföldi hűtött FTL fuvarozást végez: 30 dedikált hűtős szerelvény, TAPA- és pharma minősítés, ISO 9001, ISO 14001 és IFS tanúsítvány.',
+        'Az NH Cargo Kft. nemzetközi és belföldi hűtött FTL fuvarozást végez: 40 dedikált hűtős szerelvény TAPA- és pharma minősítésű kamionokkal, ISO 9001, ISO 14001 és IFS tanúsítvány.',
     },
     home: {
       title: 'NH Cargo Kft. – Hűtött és fagyasztott áruszállítás Európa-szerte',
@@ -71,16 +71,16 @@ export const hu: Dictionary = {
   },
 
   alt: {
-    heroTrucks: 'Kamionok haladnak egy dombok közötti autópályán szürkületben',
+    heroTrucks: 'Fehér nyerges vontató két pótkocsival napsütéses országúton, hegyek és kék ég előtt',
     truckOnRoad: 'Fehér nyerges vontató félpótkocsival halad egy zöld dombok közötti úton',
-    highwayMotion: 'Elmosódott sebességű kamion egy esős autópályán',
-    reeferTrailers: 'Hűtött félpótkocsik sorban a rakodórámpáknál',
-    boxTruck: 'Fehér dobozos tehergépjármű egy modern ipari épület előtt',
+    twoTrucks: 'Fehér és kék kamion egymás mellett halad egy napos autópályán',
+    reeferTrailers: 'Hűtőaggregátos félpótkocsik sorban egy telephelyen, tiszta kék ég alatt',
+    whiteTruck: 'Fehér nyerges vontató dobozos félpótkocsival egy napsütéses kereszteződésben',
     dockDoors: 'Kék rakodókapuk egy logisztikai központ rakodóterében',
-    warehouse: 'Magas raktári polcrendszer kartondobozokkal egy logisztikai raktárban',
+    logisticsHall: 'Világos, modern logisztikai csarnok gyorskapukkal és egy beálló kamionnal',
     windTurbines: 'Szélturbina zöld mezőgazdasági táj felett, kék égbolttal',
-    highwayInterchange: 'Erdővel körülvett autópálya-csomópont madártávlatból',
-    aerialTrucks: 'Kamionok és autók egy erdőn átvezető úton, felülnézetből',
+    countryRoad: 'Zöld mezők között kanyargó országút napsütésben, bárányfelhős égbolttal',
+    truckParking: 'Sorban parkoló kamionok egy logisztikai parkolóban, felülnézetből',
   },
 
   home: {
@@ -125,12 +125,12 @@ export const hu: Dictionary = {
     },
     fleet: {
       eyebrow: 'Flotta és minőség',
-      title: '30 dedikált hűtős szerelvény, tanúsított minőségben',
+      title: '40 dedikált hűtős szerelvény, tanúsított minőségben',
       intro:
-        'Saját, dedikált hűtős flottával, biztonsági és gyógyszeripari minősítéssel, valamint tanúsított irányítási rendszerekkel dolgozunk – hogy áruja minden körülmények között biztonságban legyen.',
+        'Saját, dedikált hűtős flottával, TAPA- és gyógyszeripari minősítésű kamionokkal, valamint tanúsított irányítási rendszerekkel dolgozunk – hogy áruja minden körülmények között biztonságban legyen.',
       cards: [
-        { title: '30 hűtős szerelvény', text: 'Normál, doppelstock és válaszfalas hűtős járművek, dedikáltan partnereink számára.' },
-        { title: 'TAPA és pharma minősítés', text: 'Minősítés a nagy értékű és gyógyszeripari rakományok biztonságos szállításához.' },
+        { title: '40 hűtős szerelvény', text: 'Normál, doppelstock és válaszfalas hűtős járművek, dedikáltan partnereink számára.' },
+        { title: 'TAPA- és pharma minősítésű kamionok', text: 'Kamionjaink minősítéssel rendelkeznek a nagy értékű és gyógyszeripari rakományok biztonságos szállításához.' },
         { title: 'GPS-alapú nyomon követés', text: 'A teljes flotta valós időben követhető, így mindig tudjuk, hol jár az áru.' },
       ],
     },
@@ -441,7 +441,7 @@ export const hu: Dictionary = {
         { value: '2024', label: 'alapítás éve' },
         { value: '10 fő', label: 'munkatárs' },
         { value: '~100 év', label: 'együttes szakmai tapasztalat' },
-        { value: '30', label: 'dedikált hűtős szerelvény' },
+        { value: '40', label: 'dedikált hűtős szerelvény' },
       ],
     },
     activity: {
@@ -450,9 +450,9 @@ export const hu: Dictionary = {
     },
     fleet: {
       title: 'Járműflotta',
-      text: 'Flottánk 30 dedikált hűtős szerelvényből áll, köztük normál, doppelstock és válaszfalas hűtős járművekkel. TAPA- és gyógyszeripari (pharma) minősítéssel rendelkezünk. A teljes flotta GPS-alapú nyomon követéssel működik.',
+      text: 'Flottánk 40 dedikált hűtős szerelvényből áll, köztük normál, doppelstock és válaszfalas hűtős járművekkel. Kamionjaink TAPA- és gyógyszeripari (pharma) minősítéssel rendelkeznek. A teljes flotta GPS-alapú nyomon követéssel működik.',
       types: ['Normál hűtős', 'Doppelstock', 'Válaszfalas hűtős'],
-      badges: ['TAPA-minősítés', 'Gyógyszeripari (pharma) minősítés', 'GPS-alapú nyomon követés'],
+      badges: ['TAPA-minősítésű kamionok', 'Gyógyszeripari (pharma) minősítésű kamionok', 'GPS-alapú nyomon követés'],
     },
     results: {
       eyebrow: 'Eredményeink',
@@ -493,7 +493,7 @@ export const hu: Dictionary = {
       fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
       csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo csapata' },
       flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
-      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Targonca rakodja a hűtött félpótkocsit egy hűtőraktár rakodókapujánál' },
+      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Fehér félpótkocsik a raktár rakodókapuinál, napsütésben' },
     },
   },
 };

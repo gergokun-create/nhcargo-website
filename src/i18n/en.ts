@@ -9,7 +9,7 @@ export const en: Dictionary = {
     about: {
       title: 'About us – company, fleet & certifications | NH Cargo',
       description:
-        'NH Cargo Kft. provides international and domestic refrigerated FTL transport: 30 dedicated reefer units, TAPA and pharma qualified, certified to ISO 9001, ISO 14001 and IFS.',
+        'NH Cargo Kft. provides international and domestic refrigerated FTL transport: 40 dedicated reefer units with TAPA and pharma qualified trucks, certified to ISO 9001, ISO 14001 and IFS.',
     },
     home: {
       title: 'NH Cargo Kft. – Temperature-controlled transport across Europe',
@@ -69,16 +69,16 @@ export const en: Dictionary = {
   },
 
   alt: {
-    heroTrucks: 'Trucks driving on a motorway between hills at dusk',
+    heroTrucks: 'White truck with two trailers on a sunny country highway, mountains and blue sky behind',
     truckOnRoad: 'White articulated truck driving along a road between green hills',
-    highwayMotion: 'Truck speeding along a wet motorway, shown with motion blur',
-    reeferTrailers: 'Row of refrigerated semi-trailers parked at loading docks',
-    boxTruck: 'White box truck in front of a modern industrial building',
+    twoTrucks: 'A white and a blue truck driving side by side on a sunny motorway',
+    reeferTrailers: 'Row of refrigerated semi-trailers parked at a depot under a clear blue sky',
+    whiteTruck: 'White truck with a box trailer at a sunny intersection',
     dockDoors: 'Blue loading dock doors inside a logistics centre',
-    warehouse: 'Tall warehouse racking filled with cardboard boxes',
+    logisticsHall: 'Bright, modern logistics hall with high-speed doors and a truck at the dock',
     windTurbines: 'Wind turbine above green farmland under a blue sky',
-    highwayInterchange: 'Aerial view of a motorway interchange surrounded by forest',
-    aerialTrucks: 'Top-down view of trucks and cars on a road through a forest',
+    countryRoad: 'Country road winding between green fields on a sunny day with fluffy clouds',
+    truckParking: 'Aerial view of trucks parked in rows at a logistics parking area',
   },
 
   home: {
@@ -123,12 +123,12 @@ export const en: Dictionary = {
     },
     fleet: {
       eyebrow: 'Fleet & quality',
-      title: '30 dedicated reefer units, certified quality',
+      title: '40 dedicated reefer units, certified quality',
       intro:
-        'We work with our own dedicated refrigerated fleet, security and pharmaceutical qualifications, and certified management systems – so your goods are safe under all conditions.',
+        'We work with our own dedicated refrigerated fleet, TAPA and pharma qualified trucks, and certified management systems – so your goods are safe under all conditions.',
       cards: [
-        { title: '30 reefer units', text: 'Standard, double-deck and multi-compartment refrigerated vehicles, dedicated to our partners.' },
-        { title: 'TAPA & pharma qualified', text: 'Qualified for the secure transport of high-value and pharmaceutical cargo.' },
+        { title: '40 reefer units', text: 'Standard, double-deck and multi-compartment refrigerated vehicles, dedicated to our partners.' },
+        { title: 'TAPA & pharma qualified trucks', text: 'Our trucks are qualified for the secure transport of high-value and pharmaceutical cargo.' },
         { title: 'GPS tracking', text: 'The entire fleet is tracked in real time, so we always know where your goods are.' },
       ],
     },
@@ -438,7 +438,7 @@ export const en: Dictionary = {
         { value: '2024', label: 'year founded' },
         { value: '10', label: 'team members' },
         { value: '~100 yrs', label: 'combined experience' },
-        { value: '30', label: 'dedicated reefer units' },
+        { value: '40', label: 'dedicated reefer units' },
       ],
     },
     activity: {
@@ -447,9 +447,9 @@ export const en: Dictionary = {
     },
     fleet: {
       title: 'Our fleet',
-      text: 'Our fleet consists of 30 dedicated refrigerated units, including standard, double-deck and multi-compartment reefers. We hold TAPA and pharmaceutical (pharma) qualifications, and the entire fleet is tracked by GPS.',
+      text: 'Our fleet consists of 40 dedicated refrigerated units, including standard, double-deck and multi-compartment reefers. Our trucks hold TAPA and pharmaceutical (pharma) qualifications, and the entire fleet is tracked by GPS.',
       types: ['Standard reefer', 'Double-deck', 'Multi-compartment reefer'],
-      badges: ['TAPA qualified', 'Pharma qualified', 'GPS tracking'],
+      badges: ['TAPA qualified trucks', 'Pharma qualified trucks', 'GPS tracking'],
     },
     results: {
       eyebrow: 'Our results',
@@ -490,7 +490,7 @@ export const en: Dictionary = {
       fejlec: { title: 'Header background', alt: 'NH Cargo refrigerated truck on the road' },
       csapat: { title: 'Team / office', alt: 'The NH Cargo team' },
       flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
-      raktar: { title: 'Cold storage along the M0', alt: 'Forklift loading a refrigerated trailer at a cold store loading dock' },
+      raktar: { title: 'Cold storage along the M0', alt: 'White semi-trailers docked at warehouse loading bays in sunshine' },
     },
   },
 };

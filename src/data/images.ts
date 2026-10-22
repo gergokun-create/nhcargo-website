@@ -4,40 +4,43 @@
  * Astro converts them to responsive WebP at build time.
  * Alt texts are language-specific and live in src/i18n/{hu,en}.ts → "alt".
  *
- * Source: Unsplash (free to use under the Unsplash License, https://unsplash.com/license)
- *  heroTrucks          – Bhargav Panchal      https://unsplash.com/photos/P0bVatS8Jdw
- *  truckOnRoad         – Robson Hatsukami Morgan https://unsplash.com/photos/NKr0qBAkU4s
- *  highwayMotion       – Ümit Yıldırım        https://unsplash.com/photos/n7uaUOUp5hw
- *  reeferTrailers      – Tom Jackson          https://unsplash.com/photos/fP4OG67TVes
- *  boxTruck            – Maxim Tolchinskiy    https://unsplash.com/photos/crHhZlES310
- *  dockDoors           – Hannes Egler         https://unsplash.com/photos/nT4k2JDtwTQ
- *  warehouse           – Jacques Dillies      https://unsplash.com/photos/jcav1COVvOc
- *  windTurbines        – Thomas Réaubourg     https://unsplash.com/photos/JRUVbgJJTBM
- *  highwayInterchange  – Ed 259               https://unsplash.com/photos/xcrI6CPkkJs
- *  aerialTrucks        – CHUTTERSNAP          https://unsplash.com/photos/d271d_SOGR8
+ * Sources (free stock photos):
+ *  Pexels – Pexels License, https://www.pexels.com/license/
+ *   heroTrucks      – Braeson Holland            https://www.pexels.com/photo/8994766/
+ *   twoTrucks       – R9 Media Photo Collective  https://www.pexels.com/photo/40226285/ (cropped)
+ *   whiteTruck      – R9 Media Photo Collective  https://www.pexels.com/photo/40292015/ (cropped)
+ *   reeferTrailers  – Tom Jackson                https://www.pexels.com/photo/27099094/
+ *   logisticsHall   – Pixabay                    https://www.pexels.com/photo/209251/
+ *   truckParking    – Marcin Jozwiak             https://www.pexels.com/photo/2800121/
+ *   countryRoad     – Safa Nuri Ekici            https://www.pexels.com/photo/36900594/
+ *  Unsplash – Unsplash License, https://unsplash.com/license
+ *   truckOnRoad     – Robson Hatsukami Morgan    https://unsplash.com/photos/NKr0qBAkU4s
+ *   dockDoors       – Hannes Egler               https://unsplash.com/photos/nT4k2JDtwTQ
+ *   windTurbines    – Thomas Réaubourg           https://unsplash.com/photos/JRUVbgJJTBM
+ * About-page photos (src/assets/images/rolunk/) are listed in src/data/aboutImages.ts.
  */
-import heroTrucks from '../assets/images/hero-trucks-highway.jpg';
+import heroTrucks from '../assets/images/truck-scenic-highway.jpg';
+import twoTrucks from '../assets/images/two-trucks-highway.jpg';
+import whiteTruck from '../assets/images/white-truck-sunny.jpg';
+import reeferTrailers from '../assets/images/reefer-trailers-sunny.jpg';
+import logisticsHall from '../assets/images/bright-logistics-hall.jpg';
+import truckParking from '../assets/images/aerial-truck-parking.jpg';
+import countryRoad from '../assets/images/country-road-green-fields.jpg';
 import truckOnRoad from '../assets/images/truck-on-road.jpg';
-import highwayMotion from '../assets/images/highway-motion.jpg';
-import reeferTrailers from '../assets/images/reefer-trailers-dock.jpg';
-import boxTruck from '../assets/images/box-truck-domestic.jpg';
 import dockDoors from '../assets/images/loading-dock-doors.jpg';
-import warehouse from '../assets/images/warehouse-shelving.jpg';
 import windTurbines from '../assets/images/wind-turbines-fields.jpg';
-import highwayInterchange from '../assets/images/highway-interchange-forest.jpg';
-import aerialTrucks from '../assets/images/aerial-trucks-forest.jpg';
 
 export const images = {
   heroTrucks,
-  truckOnRoad,
-  highwayMotion,
+  twoTrucks,
+  whiteTruck,
   reeferTrailers,
-  boxTruck,
+  logisticsHall,
+  truckParking,
+  countryRoad,
+  truckOnRoad,
   dockDoors,
-  warehouse,
   windTurbines,
-  highwayInterchange,
-  aerialTrucks,
 };
 
 export type ImageKey = keyof typeof images;
