@@ -433,10 +433,9 @@ export const en: Dictionary = {
     },
     intro: {
       title: 'Who we are',
-      text: 'Our company was founded in 2024 and currently employs 10 people. Together, our team will soon have 100 years of combined professional experience in refrigerated transport.',
+      text: 'Our company was founded in 2024. Together, our team will soon have 100 years of combined professional experience in refrigerated transport.',
       stats: [
         { value: '2024', label: 'year founded' },
-        { value: '10', label: 'team members' },
         { value: '~100 yrs', label: 'combined experience' },
         { value: '40', label: 'dedicated reefer units' },
       ],

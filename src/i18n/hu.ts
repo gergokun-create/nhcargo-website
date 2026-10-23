@@ -436,10 +436,9 @@ export const hu: Dictionary = {
     },
     intro: {
       title: 'Cégbemutatkozás',
-      text: 'Társaságunk 2024-ben alakult, munkatársaink létszáma jelenleg 10 fő. Munkatársaink együttes szakmai tapasztalata a hűtött áruszállítás területén hamarosan eléri a 100 évet.',
+      text: 'Társaságunk 2024-ben alakult. Munkatársaink együttes szakmai tapasztalata a hűtött áruszállítás területén hamarosan eléri a 100 évet.',
       stats: [
         { value: '2024', label: 'alapítás éve' },
-        { value: '10 fő', label: 'munkatárs' },
         { value: '~100 év', label: 'együttes szakmai tapasztalat' },
         { value: '40', label: 'dedikált hűtős szerelvény' },
       ],
