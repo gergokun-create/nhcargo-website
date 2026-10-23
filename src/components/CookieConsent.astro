@@ -113,5 +113,15 @@ const choiceBtn =
   });
   window.addEventListener('nhc:consent-open', openDialog);
 
-  if (banner && !read()) banner.hidden = false;
+  // Show the banner once the web fonts are in: revealing it earlier makes the font swap
+  // re-flow its text, which Lighthouse counts as a layout shift (CLS ~0.1). Fonts are
+  // self-hosted, so this is a few hundred ms at most; the timeout covers a stalled load.
+  if (banner && !read()) {
+    const show = () => (banner.hidden = false);
+    const fonts = Promise.all([
+      document.fonts.load('400 1em "Inter Variable"', 'Aőű'),
+      document.fonts.load('700 1em "Manrope Variable"', 'Aőű'),
+    ]);
+    Promise.race([fonts, new Promise((r) => setTimeout(r, 1500))]).then(show, show);
+  }
 </script>

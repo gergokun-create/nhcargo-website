@@ -21,7 +21,11 @@ npm install        # függőségek telepítése (egyszer kell)
 npm run dev        # fejlesztői szerver: http://localhost:4321
 npm run build      # éles változat elkészítése a dist/ mappába
 npm run preview    # az elkészült dist/ megtekintése helyben
+npm test           # a dist/ ellenőrzése: title/description hossz, canonical, OG, hreflang,
+                   # egy H1, címsorszintek, képek alt/width/height, törött belső linkek
 ```
+
+A GitHub Actions minden pushnál lefuttatja az `npm test`-et; ha hibát talál, az előnézet nem frissül.
 
 ---
 

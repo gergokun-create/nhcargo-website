@@ -32,6 +32,10 @@ jobs:
           BASE_PATH: /${{ github.event.repository.name }}
           # Preview only: keep search engines away until the site goes live on nhcargo.hu
           PUBLIC_NOINDEX: 'true'
+      # SEO / link checks on the built pages (scripts/check-site.mjs)
+      - run: npm test
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
