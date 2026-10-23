@@ -16,6 +16,30 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  // Content-Security-Policy as a <meta> tag on every page. Astro adds SHA-256 hashes
+  // for its own inline scripts/styles, so no 'unsafe-inline' is needed for scripts.
+  // frame-ancestors / HSTS etc. are sent as HTTP headers by Render (render.yaml).
+  security: {
+    csp: {
+      algorithm: 'SHA-256',
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data:",
+        "font-src 'self' data:", // small font subsets are inlined by Vite
+        "connect-src 'self' https://formspree.io",
+        "form-action 'self' https://formspree.io",
+        'frame-src https://www.google.com https://maps.google.com',
+        "base-uri 'self'",
+        "object-src 'none'",
+        "manifest-src 'self'",
+        'upgrade-insecure-requests',
+      ],
+      // inline style="" attributes (CSS custom properties for animations, SVG badges)
+      styleDirective: { resources: [{ resource: "'unsafe-inline'", kind: 'attribute' }] },
+    },
+  },
+  // No code blocks on the site → no Shiki (its inline styles would conflict with the CSP)
+  markdown: { syntaxHighlight: false },
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/404'),

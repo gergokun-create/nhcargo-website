@@ -1,0 +1,47 @@
+# Render Blueprint – NH Cargo website (static site).
+# Docs: https://render.com/docs/blueprint-spec
+#
+# NOTE: if the admin interface / form backend (phase 5) is built as a Node server,
+# this service becomes `runtime: node` and the headers move into the server.
+services:
+  - type: web
+    name: nhcargo-website
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Contact form endpoint (Formspree URL or own backend) – set in the Render dashboard
+      - key: PUBLIC_FORM_ENDPOINT
+        sync: false
+    headers:
+      # HTTPS only (Render redirects HTTP → HTTPS automatically). Add "; preload"
+      # only after the domain has run on HTTPS without problems for a while.
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      # Clickjacking protection (the page-level CSP is in a <meta> tag; frame-ancestors only works as a header)
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Content-Security-Policy
+        value: frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+      - path: /*
+        name: Cross-Origin-Opener-Policy
+        value: same-origin
+      # Hashed build assets never change → cache for a year
+      - path: /_astro/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

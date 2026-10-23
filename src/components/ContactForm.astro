@@ -367,7 +367,6 @@ const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
       }
 
       if (form.dataset.placeholderEndpoint) {
-        console.warn('[NH Cargo] The contact form endpoint is not configured yet – see README (src/data/site.ts → formEndpoint).');
         errorBox?.classList.remove('hidden');
         return;
       }
@@ -382,8 +381,7 @@ const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         form.reset();
         showSuccess();
-      } catch (err) {
-        console.error('[NH Cargo] Form submission failed', err);
+      } catch {
         errorBox?.classList.remove('hidden');
         errorBox?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } finally {
