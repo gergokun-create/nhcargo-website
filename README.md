@@ -10,7 +10,7 @@ Technológia: [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.
 
 ## 1. Telepítés és futtatás
 
-Előfeltétel: **Node.js 20 vagy újabb** (ajánlott: aktuális LTS) – <https://nodejs.org>
+Előfeltétel: **Node.js 22.23.4 vagy újabb** (ajánlott: 24 LTS) – <https://nodejs.org>
 
 **Legegyszerűbb mód (Windows):** kattintson duplán az `inditas.bat` fájlra – első alkalommal telepíti a függőségeket, majd elindítja a weboldalt és megnyitja a böngészőben (<http://localhost:4321>).
 

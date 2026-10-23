@@ -22,7 +22,7 @@
 
 | Változó | Kötelező? | Érték | Megjegyzés |
 | --- | --- | --- | --- |
-| `NODE_VERSION` | igen | `22` | a `render.yaml` beállítja |
+| `NODE_VERSION` | igen | `24` | a `render.yaml` beállítja |
 | `PUBLIC_FORM_ENDPOINT` | igen, ha működjön az űrlap | pl. `https://formspree.io/f/xxxxxxx` | build közben kerül az oldalba; módosítás után **új deploy** kell |
 | `CMS_AUTH_URL` | csak ha eltér | pl. `https://nhcargo-cms-auth-abcd.onrender.com` | ha a Render nem a `nhcargo-cms-auth.onrender.com` címet adta a belépési szolgáltatásnak |
 | `SITE_URL` | nem | – | élesben üresen hagyandó (alapértelmezés: `https://www.nhcargo.hu`) |
