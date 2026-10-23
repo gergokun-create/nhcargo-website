@@ -103,7 +103,7 @@ const siteUrl = Astro.site ?? new URL(site.url);
                   </li>
                 ))}
               </ul>
-              <a href={localePath(item.id, lang)} class="btn btn-primary mt-8" data-reveal>
+              <a href={localePath(item.id, lang)} class="btn btn-primary mt-8 whitespace-normal text-center" data-reveal>
                 {content.pageTitle}
                 <Icon name="arrowRight" class="size-4" />
               </a>

@@ -42,13 +42,14 @@ const details = [
           <dl class="mt-8 space-y-6">
             {
               details.map((item) => (
-                <div class="flex gap-4">
-                  <span class="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold-400">
-                    <Icon name={item.icon} class="size-5" />
-                  </span>
-                  <div>
-                    <dt class="text-xs font-semibold tracking-wider text-ink-300 uppercase">{item.label}</dt>
-                    <dd class="mt-1 text-base font-medium text-white">
+                <div class="relative min-h-11 pl-15">
+                  <dt class="text-xs font-semibold tracking-wider text-ink-300 uppercase">
+                    <span class="absolute top-0 left-0 inline-flex size-11 items-center justify-center rounded-xl bg-white/10 text-gold-400">
+                      <Icon name={item.icon} class="size-5" />
+                    </span>
+                    {item.label}
+                  </dt>
+                  <dd class="mt-1 text-base font-medium text-white">
                       {'href' in item ? (
                         <a href={item.href} class="transition-colors hover:text-gold-300">
                           {item.value}
@@ -56,8 +57,7 @@ const details = [
                       ) : (
                         item.value
                       )}
-                    </dd>
-                  </div>
+                  </dd>
                 </div>
               ))
             }

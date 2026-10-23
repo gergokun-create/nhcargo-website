@@ -30,29 +30,31 @@ npm run preview    # az elkészült dist/ megtekintése helyben
 ```
 public/                     Változatlanul kimásolt fájlok
   favicon.svg, icon-*.png   Favicon és alkalmazásikonok
-  og-default.jpg            Megosztási kép (Facebook, LinkedIn stb.)
-  robots.txt                Keresőrobot-szabályok
-  contact.php               Opcionális PHP levelező az űrlaphoz
+  og-default.jpg            Alapértelmezett megosztási kép (Facebook, LinkedIn stb.)
+  logo.png                  Logó a strukturált adatokhoz (schema.org)
 src/
   assets/images/            Fotók (build közben WebP-re optimalizálva)
   assets/brand/             A hivatalos logó (SVG)
   components/               Újrahasznosítható elemek
     Header, Footer, Hero, ServiceCard, FeatureCard, ImageSlot, CertBadges,
-    CTA, ContactForm, MapEmbed, Logo, Icon, SectionHeading, LegalContent
+    CTA, ContactForm, MapEmbed, Logo, Icon, SectionHeading, LegalContent,
+    Breadcrumbs, CookieConsent
   data/
     site.ts                 ★ Cégadatok, elérhetőségek, űrlap-végpont, LinkedIn
     images.ts               ★ Képek listája (és forrásuk)
     content.ts              Oldalszerkezet: elemek sorrendje, ikonjai, képei
     icons.ts                Ikonkészlet (SVG)
+    seo.ts                  Strukturált adatok (Organization, LocalBusiness, Service, Breadcrumb)
   i18n/
     hu.ts                   ★ Összes MAGYAR szöveg
     en.ts                   ★ Összes ANGOL szöveg
-    legal.ts                ★ Impresszum és Adatvédelmi tájékoztató (HU + EN)
+    legal.ts                ★ Impresszum, Adatkezelési és Süti tájékoztató (HU + EN)
     config.ts               Nyelvek és URL-ek (pl. /szolgaltatasok/ ↔ /en/services/)
     types.ts                A szövegfájlok kötelező szerkezete
   layouts/BaseLayout.astro  Közös keret: <head>, SEO, hreflang, schema.org
   views/                    Az egyes oldalak felépítése (nyelvfüggetlen)
-  pages/                    Útvonalak – vékony fájlok, csak a nyelvet adják át
+  pages/                    Útvonalak – vékony fájlok, csak a nyelvet adják át (+ robots.txt.ts)
+  scripts/consent.ts        Süti-hozzájárulás tárolása (localStorage)
   styles/global.css         Színpaletta, betűtípusok, alapstílusok
 ```
 
@@ -131,58 +133,38 @@ Az űrlap ügyféloldali ellenőrzéssel, sikeres és hibás állapottal, valami
 
 A Formspree a `_gotcha` nevű honeypot mezőt automatikusan felismeri, a `_subject` mező pedig az e-mail tárgya lesz.
 
-### B) PHP levelező (osztott tárhelyhez, PHP 8+)
-
-1. A `src/data/site.ts` fájlban állítsa be: `formEndpoint: '/contact.php'` (vagy `.env`: `PUBLIC_FORM_ENDPOINT=/contact.php`).
-2. Nyissa meg a `public/contact.php` fájlt, és állítsa be:
-   - `MAIL_TO` – címzett (pl. `info@nhcargo.hu`)
-   - `MAIL_FROM` – feladó, **a tárhely domainjén lévő** cím (pl. `no-reply@nhcargo.hu`)
-3. `npm run build` – a fájl automatikusan a `dist/` mappába kerül.
-
-A PHP-s megoldás honeypot- és időzítéses spamszűrést is tartalmaz, és JavaScript nélkül is működik. A levélkézbesítés megbízhatósága a tárhelytől függ (SPF/DKIM beállítás) – szükség esetén kérjen SMTP-hozzáférést a szolgáltatótól, és váltson PHPMailerre.
-
-> Bármelyik megoldást választja, frissítse az Adatvédelmi tájékoztató „Adatfeldolgozók” részét (`src/i18n/legal.ts`).
+> A végleges megoldás (Formspree vagy saját háttérrendszer adatbázissal és automatikus törléssel) az admin felület döntésétől függ – lásd `ADATFELDOLGOZOK.md`, 3. pont. Bármelyiket választja, frissítse az Adatkezelési tájékoztató megfelelő részét (`src/i18n/legal.ts`).
 
 ---
 
-## 6. Térkép, sütik, GDPR
+## 6. Sütik, térkép, GDPR
 
-- A weboldal **nem használ sütiket**, analitikát vagy külső betűtípus-szolgáltatót (a betűk saját szerverről töltődnek), ezért **nincs szükség sütifigyelmeztetésre (cookie bannerre)**.
-- A Google Térkép csak akkor töltődik be, ha a látogató a „Térkép betöltése” gombra kattint („kétkattintásos” megoldás) – addig semmilyen adat nem jut el a Google-hoz.
-- **Ha később analitikát (pl. Google Analytics) vagy más sütit használó eszközt vezet be, akkor sütihozzájárulás-kezelőt is be kell építeni**, és frissíteni kell az adatvédelmi tájékoztatót.
+- **Süti-hozzájárulás kezelő** (`src/components/CookieConsent.astro`, `src/scripts/consent.ts`): saját megoldás, külső szolgáltató nélkül. Az „Elfogadom” és az „Elutasítom” egyformán hangsúlyos, kategóriánként is lehet dönteni, és a döntés a lábléc „Süti beállítások” linkjén bármikor módosítható. A döntést a böngésző helyi tárolója őrzi 12 hónapig (`nhc-consent`).
+- **Kategóriák:** „Szükséges” (mindig aktív) és „Külső tartalmak (Google Térkép)”. Analitika és marketing süti **nincs** a weboldalon.
+- **Google Térkép:** csak „Külső tartalmak” hozzájárulással vagy a „Térkép betöltése” gombra kattintva töltődik be; előtte semmilyen kérés nem megy a Google felé.
+- **Betűtípusok:** helyben hosztolva (Fontsource), nincs Google Fonts kérés.
+- **Jogi oldalak:** Impresszum, Adatkezelési tájékoztató, Süti tájékoztató – mind **sablon**, „JOGI ELLENŐRZÉS SZÜKSÉGES” jelöléssel (`src/i18n/legal.ts`). Jóváhagyás után a figyelmeztetés a `src/components/LegalContent.astro` fájlban (`legalReviewed = true`) kapcsolható ki.
+- **Adatfeldolgozók listája:** `ADATFELDOLGOZOK.md` (nem jelenik meg az oldalon).
+- **Ha később analitikát vezet be:** új kategória kell a hozzájárulás-kezelőbe (lásd a `consent.ts` fejlécét), a CSP-be (`astro.config.mjs`) és a Süti tájékoztatóba.
 
 ---
 
 ## 7. SEO
 
-- Oldalanként és nyelvenként egyedi `title` és `description` (`src/i18n/hu.ts` / `en.ts` → `meta`)
-- Open Graph és Twitter megosztási adatok, alapértelmezett kép: `public/og-default.jpg`
-- `hreflang` kapcsolat a magyar és angol oldalak között, `canonical` URL
-- schema.org strukturált adat (`Organization` + `LocalBusiness`: cím, telefon, e-mail)
-- `sitemap-index.xml` automatikusan generálva, `robots.txt` a `public/` mappában
-- Egyedi 404-es oldal (kétnyelvű)
-
-A domain (`https://nhcargo.hu`) az `astro.config.mjs`, a `src/data/site.ts` és a `public/robots.txt` fájlban van megadva – ha eltér, mindhárom helyen módosítsa.
+- Oldalanként és nyelvenként egyedi `title` (max. 60 karakter) és `description` (max. 155 karakter) – `src/i18n/hu.ts` / `en.ts` → `meta`
+- Kulcsszavas szolgáltatás-aloldalak: `/belfoldi-fuvarozas/`, `/cross-docking/`, `/nemzetkozi-fuvarozas/` (angolul `/en/domestic-transport/`, `/en/cross-docking/`, `/en/international-transport/`), morzsamenüvel
+- Canonical URL, `hreflang` (hu / en / x-default), Open Graph és Twitter Card; a megosztási kép oldalanként az oldal saját fotójából készül (1200×630)
+- Strukturált adatok (`src/data/seo.ts`): Organization + LocalBusiness, Service a szolgáltatásokhoz, BreadcrumbList az aloldalakon
+- `sitemap-index.xml` és `robots.txt` automatikusan, a domainből generálva (`astro.config.mjs` → `SITE_URL`, alapértelmezés: `https://www.nhcargo.hu`)
+- Előnézeti build (`PUBLIC_NOINDEX=true`, pl. GitHub Pages): minden oldal `noindex`, a robots.txt zárt
 
 ---
 
 ## 8. Közzététel (deploy)
 
-Előbb mindig: `npm run build` → az eredmény a **`dist/`** mappában van.
+Az éles weboldal a **Renderen** fut (`render.yaml`, biztonsági fejlécekkel) – a teljes leírás: **[DEPLOY.md](DEPLOY.md)**.
 
-### Osztott tárhely (FTP)
-Töltse fel a `dist/` mappa **tartalmát** (a rejtett `.htaccess` fájllal együtt) a tárhely gyökérkönyvtárába (általában `public_html/` vagy `www/`). A `public/.htaccess` Apache szerveren beállítja a 404-es oldalt, a gyorsítótárazást és a tömörítést; az SSL-tanúsítvány aktiválása után benne a HTTPS-átirányítás is bekapcsolható.
-
-### Netlify
-- „Add new site” → GitHub-repó kiválasztása, vagy a `dist/` mappa áthúzása a <https://app.netlify.com/drop> oldalra
-- Build command: `npm run build`, Publish directory: `dist`
-- A 404-es oldalt a Netlify automatikusan felismeri.
-
-### Vercel
-- „Add New Project” → repó importálása; a Vercel felismeri az Astrót
-- Build command: `npm run build`, Output directory: `dist`
-
-> A PHP-s űrlap csak PHP-t futtató tárhelyen működik; Netlify / Vercel esetén a Formspree-t használja.
+A `main` ágra feltöltött változtatásokból a GitHub Actions egy **előnézetet** is készít a GitHub Pagesen (`noindex`): <https://gergokun-create.github.io/nhcargo-website/>.
 
 ---
 
@@ -190,15 +172,12 @@ Töltse fel a `dist/` mappa **tartalmát** (a rejtett `.htaccess` fájllal együ
 
 | # | Teendő | Hol? |
 | --- | --- | --- |
-| 1 | **Űrlap-végpont** beállítása (Formspree azonosító vagy `/contact.php`) | `src/data/site.ts` → `formEndpoint` (vagy `.env`) |
-| 2 | PHP levelező esetén címzett és feladó e-mail-cím | `public/contact.php` → `MAIL_TO`, `MAIL_FROM` |
-| 4 | **Cégjegyzékszám** | `src/data/site.ts` → `registration.companyNumber` |
-| 5 | **Adószám** és **közösségi adószám** | `src/data/site.ts` → `registration.taxNumber`, `euVatNumber` |
-| 6 | Nyilvántartó **cégbíróság** | `src/data/site.ts` → `registration.registryCourt` |
-| 7 | **Képviselő** (ügyvezető) neve | `src/data/site.ts` → `registration.representative` |
-| 8 | **Tárhelyszolgáltató** neve, címe, e-mail-címe (Ekertv. 4. §) | `src/i18n/legal.ts` → Impresszum (HU + EN) |
-| 9 | Impresszum és Adatvédelmi tájékoztató **hatálybalépési dátuma** | `src/i18n/legal.ts` |
-| 10 | Adatvédelmi tájékoztató: adatvédelmi kapcsolattartó, **megőrzési idő**, **adatfeldolgozók** (tárhely, űrlap-, e-mail-szolgáltató), adatbiztonsági intézkedések | `src/i18n/legal.ts` |
-| 11 | A jogi szövegek (különösen a jogalap) **ellenőrzése jogi szakértővel** | `src/i18n/legal.ts` |
-| 12 | **Végleges domain** megerősítése (jelenleg `https://nhcargo.hu`) | `astro.config.mjs`, `src/data/site.ts`, `public/robots.txt` |
-| 14 | Saját fotók a flottáról / telephelyről (opcionális, a stockfotók helyett) | `src/assets/images/`, `src/data/images.ts` |
+| 1 | **Űrlap** háttérrendszerének kiválasztása és beállítása (Formspree vagy saját) | admin-döntés; `src/data/site.ts` → `formEndpoint` / Render környezeti változó |
+| 2 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | `src/data/site.ts` → `registration` |
+| 3 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | `src/data/site.ts` |
+| 4 | **Tárhelyszolgáltató** neve, címe, e-mail-címe (Ektv. 4. §) – Render | `src/i18n/legal.ts` → Impresszum |
+| 5 | Jogi szövegek **hatálybalépési dátuma**, **megőrzési idők**, **adatfeldolgozók**, adattovábbítás jogalapja | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
+| 6 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
+| 7 | Hivatalos **tanúsítási jelek** (ISO 9001, ISO 14001, IFS) a tanúsítótól | `src/components/CertBadges.astro` |
+| 8 | Saját fotók: csapat / iroda, flotta, M0 raktár | `src/assets/images/rolunk/` |
+| 9 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 170–190 szó / oldal) | `src/i18n/hu.ts` / `en.ts` → `services.items` |

@@ -8,8 +8,6 @@ import CookieConsent from '../components/CookieConsent.astro';
 import { languages, langs, localePath, withBase, defaultLang, useTranslations, type Lang, type RouteKey } from '../i18n';
 import { site } from '../data/site';
 import { companyNodes, breadcrumbNode } from '../data/seo';
-import manropeLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
-import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 interface Props {
   lang: Lang;
@@ -94,10 +92,6 @@ const structuredData = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
-
-    <!-- Fonts (self-hosted): preload the main Latin subsets -->
-    <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Icons -->
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
