@@ -14,7 +14,7 @@
 
 | Változó | Kötelező? | Érték | Megjegyzés |
 | --- | --- | --- | --- |
-| `NODE_VERSION` | igen | `22` | a `render.yaml` beállítja |
+| `NODE_VERSION` | igen | `24` | a `render.yaml` beállítja |
 | `PUBLIC_FORM_ENDPOINT` | igen, ha működjön az űrlap | pl. `https://formspree.io/f/xxxxxxx` | build közben kerül az oldalba; módosítás után **új deploy** kell |
 | `SITE_URL` | nem | – | élesben üresen hagyandó (alapértelmezés: `https://www.nhcargo.hu`) |
 | `PUBLIC_NOINDEX` | **nem szabad beállítani** élesben | – | csak előnézethez (`true` = keresők elől elrejtve) |

@@ -12,7 +12,7 @@ services:
     pullRequestPreviewsEnabled: false
     envVars:
       - key: NODE_VERSION
-        value: "22"
+        value: "24"
       # Contact form endpoint (Formspree URL or own backend) – set in the Render dashboard
       - key: PUBLIC_FORM_ENDPOINT
         sync: false
