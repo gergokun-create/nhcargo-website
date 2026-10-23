@@ -71,7 +71,7 @@ export const en: Dictionary = {
   alt: {
     heroTrucks: 'Orange truck on a motorway between green rolling hills',
     reeferTruck: 'Orange Volvo tractor unit with a refrigerated trailer on the motorway',
-    sunnyRoadTruck: 'White truck with a white box trailer driving through sunny green countryside',
+    sunnyRoadTruck: 'White NH Cargo truck with a refrigerated trailer driving through sunny green countryside',
     reeferTrailers: 'Row of refrigerated semi-trailers parked at a depot under a clear blue sky',
     countryRoadTruck: 'Truck on a winding country road with a village church in the background',
     dockDoors: 'Blue loading dock doors inside a logistics centre',
@@ -490,7 +490,7 @@ export const en: Dictionary = {
       fejlec: { title: 'Header background', alt: 'NH Cargo refrigerated truck on the road' },
       csapat: { title: 'Team / office', alt: 'The NH Cargo team' },
       flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
-      raktar: { title: 'Cold storage along the M0', alt: 'White semi-trailers docked at warehouse loading bays in sunshine' },
+      raktar: { title: 'Cold storage along the M0', alt: 'Semi-trailers with the NH Cargo logo docked at warehouse loading bays in sunshine' },
     },
   },
 };

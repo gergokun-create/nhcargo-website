@@ -7,7 +7,7 @@
  * Sources (free stock photos):
  *  Pexels – Pexels License, https://www.pexels.com/license/
  *   heroTrucks       – Дмитрий Рощупкин           https://www.pexels.com/photo/19187103/ (cropped)
- *   sunnyRoadTruck   – Artem Balashevsky          https://www.pexels.com/photo/18446790/
+ *   sunnyRoadTruck   – Artem Balashevsky          https://www.pexels.com/photo/18446790/ (edited: NH Cargo logo added)
  *   countryRoadTruck – Attila Darvas              https://www.pexels.com/photo/27855399/
  *   reeferTruck      – Muhammed Tarik Kahraman    https://www.pexels.com/photo/16706765/ (cropped)
  *   reeferTrailers  – Tom Jackson                https://www.pexels.com/photo/27099094/

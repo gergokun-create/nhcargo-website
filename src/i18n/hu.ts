@@ -73,7 +73,7 @@ export const hu: Dictionary = {
   alt: {
     heroTrucks: 'Narancssárga kamion halad egy zöld dombok közötti autópályán',
     reeferTruck: 'Narancssárga Volvo nyerges vontató hűtött félpótkocsival az autópályán',
-    sunnyRoadTruck: 'Fehér kamion fehér dobozos félpótkocsival napsütéses, zöld vidéken',
+    sunnyRoadTruck: 'NH Cargo logós fehér kamion fehér hűtős félpótkocsival napsütéses, zöld vidéken',
     reeferTrailers: 'Hűtőaggregátos félpótkocsik sorban egy telephelyen, tiszta kék ég alatt',
     countryRoadTruck: 'Kamion halad egy kanyargós országúton, a háttérben falu templomtoronnyal',
     dockDoors: 'Kék rakodókapuk egy logisztikai központ rakodóterében',
@@ -493,7 +493,7 @@ export const hu: Dictionary = {
       fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
       csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo csapata' },
       flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
-      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'Fehér félpótkocsik a raktár rakodókapuinál, napsütésben' },
+      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'NH Cargo logós félpótkocsik a raktár rakodókapuinál, napsütésben' },
     },
   },
 };
