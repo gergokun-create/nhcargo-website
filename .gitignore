@@ -19,3 +19,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Decap CMS bundle (downloaded by scripts/copy-decap.mjs)
+public/admin/vendor/

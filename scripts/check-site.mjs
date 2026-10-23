@@ -18,7 +18,8 @@ const pages = [];
 (function walk(dir) {
   for (const name of fs.readdirSync(dir)) {
     const p = path.join(dir, name);
-    if (fs.statSync(p).isDirectory()) walk(p);
+    // the admin (Decap CMS) is not a site page
+    if (fs.statSync(p).isDirectory()) { if (p !== path.join(dist, 'admin')) walk(p); }
     else if (name.endsWith('.html')) pages.push(p);
   }
 })(dist);

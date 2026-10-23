@@ -1,7 +1,7 @@
 # NH Cargo Kft. – weboldal
 
 Kétnyelvű (magyar / angol) céges weboldal az NH Cargo Kft. számára.
-Technológia: [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), **statikus kimenettel** – a lefordított oldal bármilyen tárhelyre (osztott tárhely, Netlify, Vercel stb.) feltölthető, szerveroldali futtatókörnyezet nélkül.
+Technológia: [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), **statikus kimenettel**, a tartalom szerkesztéséhez [Decap CMS](https://decapcms.org) admin felülettel (`/admin/`, GitHub-belépéssel). Minden ingyenes csomagon fut (Render, GitHub, Formspree) – lásd `ADMIN_TERV.md`.
 
 - Magyar (alapértelmezett): `/`
 - Angol: `/en/`
@@ -33,31 +33,40 @@ A GitHub Actions minden pushnál lefuttatja az `npm test`-et; ha hibát talál, 
 
 ```
 public/                     Változatlanul kimásolt fájlok
+  admin/                    ★ Admin felület (Decap CMS): index.html, magyar feliratok
+                            (a Decap csomagot a build tölti le a vendor/ mappába)
   favicon.svg, icon-*.png   Favicon és alkalmazásikonok
   og-default.jpg            Alapértelmezett megosztási kép (Facebook, LinkedIn stb.)
   logo.png                  Logó a strukturált adatokhoz (schema.org)
+cms-auth/                   GitHub-belépés az adminhoz (kis Node-szolgáltatás, Render Free)
+scripts/                    copy-decap.mjs (Decap letöltése), check-site.mjs (npm test)
 src/
-  assets/images/            Fotók (build közben WebP-re optimalizálva)
+  cms/
+    content/*.json          ★ Az adminban szerkesztett tartalom (szövegek, SEO, képek, cégadatok)
+    schema.ts               Mi szerkeszthető az adminban (mezők, karakterkorlátok)
+    fields.ts               Mezőtípusok: admin-űrlap + build közbeni ellenőrzés egy helyen
+    index.ts                A tartalom betöltése és ellenőrzése
+  assets/images/            Fotók = az admin médiatára (build közben WebP-re optimalizálva)
   assets/brand/             A hivatalos logó (SVG)
   components/               Újrahasznosítható elemek
     Header, Footer, Hero, ServiceCard, FeatureCard, ImageSlot, CertBadges,
     CTA, ContactForm, MapEmbed, Logo, Icon, SectionHeading, LegalContent,
     Breadcrumbs, CookieConsent
   data/
-    site.ts                 ★ Cégadatok, elérhetőségek, űrlap-végpont, LinkedIn
-    images.ts               ★ Képek listája (és forrásuk)
+    site.ts                 Cégadatok (a cms/content/site.json-ból), űrlap-végpont
+    images.ts               Fotók feloldása (a cms/content/images.json-ból) és forrásaik
     content.ts              Oldalszerkezet: elemek sorrendje, ikonjai, képei
     icons.ts                Ikonkészlet (SVG)
     seo.ts                  Strukturált adatok (Organization, LocalBusiness, Service, Breadcrumb)
   i18n/
-    hu.ts                   ★ Összes MAGYAR szöveg
-    en.ts                   ★ Összes ANGOL szöveg
+    hu.ts, en.ts            Felületi szövegek: menü, űrlap, süti-ablak (HU / EN)
     legal.ts                ★ Impresszum, Adatkezelési és Süti tájékoztató (HU + EN)
+    index.ts                Felületi szövegek + admin-tartalom összefésülése
     config.ts               Nyelvek és URL-ek (pl. /szolgaltatasok/ ↔ /en/services/)
-    types.ts                A szövegfájlok kötelező szerkezete
+    types.ts                A szövegek kötelező szerkezete
   layouts/BaseLayout.astro  Közös keret: <head>, SEO, hreflang, schema.org
   views/                    Az egyes oldalak felépítése (nyelvfüggetlen)
-  pages/                    Útvonalak – vékony fájlok, csak a nyelvet adják át (+ robots.txt.ts)
+  pages/                    Útvonalak – vékony fájlok (+ robots.txt.ts, admin/config.json.ts)
   scripts/consent.ts        Süti-hozzájárulás tárolása (localStorage)
   styles/global.css         Színpaletta, betűtípusok, alapstílusok
 ```
@@ -66,17 +75,23 @@ src/
 
 ## 3. Szövegek szerkesztése
 
-Minden szöveg **külön fájlban** van, a kódtól elválasztva:
+**Az oldalak tartalmát az admin felületen kell szerkeszteni:** <https://www.nhcargo.hu/admin/> – útmutató: **[ADMIN_UTMUTATO.md](ADMIN_UTMUTATO.md)**.
 
-| Mit szeretne módosítani? | Fájl |
+| Mit szeretne módosítani? | Hol? |
 | --- | --- |
-| Magyar szövegek (minden oldal, menü, űrlap, meta leírások) | `src/i18n/hu.ts` |
-| Angol szövegek | `src/i18n/en.ts` |
-| Impresszum, Adatvédelmi tájékoztató | `src/i18n/legal.ts` |
-| Telefonszám, e-mail, címek, cégjegyzékszám, adószám, LinkedIn | `src/data/site.ts` |
-| Menüpontok / oldalak URL-je | `src/i18n/config.ts` |
+| Oldalak szövegei (Főoldal, Szolgáltatások + aloldalak, Rólunk, Fenntarthatóság, Kapcsolat), ajánlatkérés sáv, lábléc-leírás | admin → **Oldalak** (`src/cms/content/*.json`) |
+| Title, meta description, megosztási kép | admin → **SEO és képek → SEO** |
+| Fotók és alternatív szövegeik | admin → **SEO és képek → Képek** |
+| Telefonszám, e-mail, címek, cégjegyzékszám, adószám, LinkedIn | admin → **Cégadatok** |
+| Menü, űrlap, süti-ablak feliratai | kódban: `src/i18n/hu.ts`, `src/i18n/en.ts` |
+| Impresszum, Adatkezelési és Süti tájékoztató | kódban: `src/i18n/legal.ts` |
+| Menüpontok / oldalak URL-je | kódban: `src/i18n/config.ts` |
 
-A két nyelvi fájl (`hu.ts`, `en.ts`) szerkezete azonos – ha az egyikbe új szöveget vesz fel, a másikba is fel kell venni (különben a build hibát jelez, ami szándékos védelem).
+A tartalmat a build ellenőrzi (`src/cms/schema.ts`): kötelező mezők, a title max. 60, a description max. 155 karakter, létező kép. Hibás tartalomnál a build megáll, és pontosan megmondja, melyik fájl melyik mezője hibás – az éles oldalon a korábbi verzió marad.
+
+**Új szerkeszthető mező** felvétele: `src/cms/schema.ts` (a mező), `src/i18n/types.ts` (a típus), a JSON-fájlok (érték mindkét nyelven) és a felhasználó komponens. Az admin űrlapja ebből automatikusan frissül.
+
+A két felületi nyelvi fájl (`hu.ts`, `en.ts`) szerkezete azonos – ha az egyikbe új szöveget vesz fel, a másikba is fel kell venni.
 
 A `legal.ts` fájlban:
 - `[[ ... ]]` – **sárgán kiemelt, kitöltendő** helyőrző
@@ -89,55 +104,27 @@ Ha egy jogi oldalon már nincs `[[ ]]` helyőrző, a „Sablonszöveg” figyelm
 
 ## 4. Képek cseréje
 
-### A „Rólunk” oldal képei (helyőrzők)
+Az adminban: **SEO és képek → Képek** (részletesen: `ADMIN_UTMUTATO.md`, 5. pont). A feltöltött kép a `src/assets/images/` mappába kerül, WebP formátumban, metaadatok nélkül.
 
-A `/rolunk/` (angolul `/en/about/`) oldalon szaggatott keretes **„Kép helye”** dobozok jelzik, hova kerülnek a saját fotók. Feltöltéshez nem kell kódot módosítani: elég a képet a **`src/assets/images/rolunk/`** mappába másolni az alábbi fájlnevek egyikével (jpg, jpeg, png vagy webp):
+- **Rólunk oldal saját fotói** (Fejléc, Csapat / iroda, Hűtős szerelvények, Raktár): amíg a mező üres, az **éles oldalon** egy meglévő fotó áll a helyén (Fejléc és Csapat: *Rólunk – nyitókép*, Hűtős szerelvények: *Főoldal – Rólunk rész*, Raktár: *Cross-docking*); **helyben és az előnézeteken** szaggatott keretes **„Kép helye”** doboz jelzi, hova kell saját fotó (`src/data/aboutImages.ts`). Jelenleg a Csapat helyén a logó (`rolunk-csapat.png`), a Raktár helyén stockfotó (`rolunk-raktar.jpg`) van.
+- A képeket az Astro build közben automatikusan reszponzív **WebP** formátumra alakítja, és késleltetve (lazy load) tölti be. A jelenlegi stockfotók forrása és licence a `src/data/images.ts` fájlban szerepel.
+- A Minőségirányítás résznél az ISO 9001, ISO 14001 és IFS jelvény a weboldal **saját grafikája** (`src/components/CertBadges.astro`), nem a hivatalos logó: az ISO nem engedi a saját logója használatát. A tanúsító szervezettől kapott hivatalos tanúsítási jellel lecserélhető.
 
-| Fájlnév | Hol jelenik meg | Javasolt méret |
-| --- | --- | --- |
-| `fejlec.jpg` | az oldal tetején lévő háttérkép (amíg nincs, stockfotó látszik) | 1920 × 1080 px |
-| `csapat.jpg` | Cégbemutatkozás mellett (most a logó van itt: `csapat.png` – saját fotó feltöltésekor azt törölje) | 1600 × 1200 px |
-| `flotta.jpg` | Fő tevékenységünk / Járműflotta mellett | 1600 × 1200 px |
-| `raktar.jpg` | Raktározás és átrakás / Ügyelet mellett (most stockfotó, a Pexelsről) | 1600 × 1200 px |
-
-A Minőségirányítás résznél az ISO 9001, ISO 14001 és IFS jelvény a weboldal **saját grafikája** (`src/components/CertBadges.astro`), nem a hivatalos logó: az ISO nem engedi a saját logója használatát. A tanúsító szervezettől kapott hivatalos tanúsítási jellel lecserélhető.
-
-A kép a következő buildnél (vagy `npm run dev` alatt azonnal) a doboz helyére kerül. A képek alternatív szövegei a `hu.ts` / `en.ts` fájl `about.slots` részében vannak.
-
-### A többi kép
-
-1. Tegye az új fotót a `src/assets/images/` mappába (JPG vagy PNG, legalább 1600 px széles).
-2. Vagy írja felül a meglévő fájlt **azonos néven**, vagy módosítsa az importot a `src/data/images.ts` fájlban.
-3. Frissítse a kép alternatív szövegét (`alt`) a `src/i18n/hu.ts` és `src/i18n/en.ts` fájl `alt` részében – ez az akadálymentesség és a SEO miatt fontos.
-
-A képeket az Astro build közben automatikusan reszponzív **WebP** formátumra alakítja, és késleltetve (lazy load) tölti be. A jelenlegi fotók az [Unsplash](https://unsplash.com) oldalról származnak (szabadon felhasználhatók, a forrás a `src/data/images.ts` fájlban szerepel).
-
-**Logó:** a hivatalos vektoros logó: `src/assets/brand/nh-cargo-logo.svg`. Ezt használja a fejléc és a lábléc (`src/components/Logo.astro`). Ha a fájlt azonos néven lecseréli, mindenhol frissül. A favicon és az alkalmazásikonok (`public/favicon.svg`, `icon-*.png`, `apple-touch-icon.png`), a megosztási kép (`public/og-default.jpg`), valamint a Rólunk oldal „Csapat / iroda” képe (`src/assets/images/rolunk/csapat.png`) ugyanebből a logóból készült; ezeket logócsere esetén újra kell generálni.
+**Logó:** a hivatalos vektoros logó: `src/assets/brand/nh-cargo-logo.svg`. Ezt használja a fejléc és a lábléc (`src/components/Logo.astro`). Ha a fájlt azonos néven lecseréli, mindenhol frissül. A favicon és az alkalmazásikonok (`public/favicon.svg`, `icon-*.png`, `apple-touch-icon.png`), a megosztási kép (`public/og-default.jpg`), az admin logója (`public/admin/logo.svg`), valamint a `src/assets/images/rolunk-csapat.png` ugyanebből a logóból készült; ezeket logócsere esetén újra kell generálni.
 
 ---
 
 ## 5. A kapcsolati / ajánlatkérő űrlap beállítása
 
-Az űrlap ügyféloldali ellenőrzéssel, sikeres és hibás állapottal, valamint spamvédelemmel (rejtett „honeypot” mező) rendelkezik. A beküldés helye a `src/data/site.ts` fájl `formEndpoint` értéke. **Amíg ez nincs beállítva, az űrlap hibaüzenetet ad küldéskor.**
+Az űrlap ügyféloldali ellenőrzéssel, sikeres és hibás állapottal, valamint spamvédelemmel (rejtett „honeypot” mező) rendelkezik. A beküldés a **Formspree** ingyenes csomagjával működik (havi 50 üzenet, 30 napos tárolás – `ADATFELDOLGOZOK.md`, 3. pont). **Amíg a végpont nincs beállítva, az űrlap hibaüzenetet ad küldéskor.**
 
-### A) Formspree (ajánlott – bármilyen tárhelyen működik)
-
-1. Regisztráljon a <https://formspree.io> oldalon (az ingyenes csomag havi 50 üzenetig elegendő).
+1. Regisztráljon a <https://formspree.io> oldalon (ingyenes csomag).
 2. Hozzon létre egy új űrlapot, címzettnek adja meg: `info@nhcargo.hu`.
 3. Másolja ki az űrlap végpontját, pl. `https://formspree.io/f/abcdwxyz`.
-4. Írja be a `src/data/site.ts` fájlba:
-   ```ts
-   formEndpoint: ... || 'https://formspree.io/f/abcdwxyz',
-   ```
-   vagy hozzon létre egy `.env` fájlt (minta: `.env.example`):
-   ```
-   PUBLIC_FORM_ENDPOINT=https://formspree.io/f/abcdwxyz
-   ```
-5. `npm run build`, majd töltse fel újra az oldalt.
+4. Render → `nhcargo-website` → *Environment*: `PUBLIC_FORM_ENDPOINT=https://formspree.io/f/abcdwxyz` → új deploy.
+   Helyben: `.env` fájl (minta: `.env.example`).
 
-A Formspree a `_gotcha` nevű honeypot mezőt automatikusan felismeri, a `_subject` mező pedig az e-mail tárgya lesz.
-
-> A végleges megoldás (Formspree vagy saját háttérrendszer adatbázissal és automatikus törléssel) az admin felület döntésétől függ – lásd `ADATFELDOLGOZOK.md`, 3. pont. Bármelyiket választja, frissítse az Adatkezelési tájékoztató megfelelő részét (`src/i18n/legal.ts`).
+A Formspree a `_gotcha` nevű honeypot mezőt automatikusan felismeri, a `_subject` mező pedig az e-mail tárgya lesz. A beérkezett üzenetek a Formspree felületén is megtekinthetők és törölhetők.
 
 ---
 
@@ -176,12 +163,12 @@ A `main` ágra feltöltött változtatásokból a GitHub Actions egy **előnéze
 
 | # | Teendő | Hol? |
 | --- | --- | --- |
-| 1 | **Űrlap** háttérrendszerének kiválasztása és beállítása (Formspree vagy saját) | admin-döntés; `src/data/site.ts` → `formEndpoint` / Render környezeti változó |
-| 2 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | `src/data/site.ts` → `registration` |
-| 3 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | `src/data/site.ts` |
-| 4 | **Tárhelyszolgáltató** neve, címe, e-mail-címe (Ektv. 4. §) – Render | `src/i18n/legal.ts` → Impresszum |
-| 5 | Jogi szövegek **hatálybalépési dátuma**, **megőrzési idők**, **adatfeldolgozók**, adattovábbítás jogalapja | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
+| 1 | **Formspree** regisztráció és a végpont beállítása | Render → `PUBLIC_FORM_ENDPOINT` (5. pont) |
+| 2 | **GitHub OAuth App** + a belépési szolgáltatás környezeti változói | `DEPLOY.md`, 3. pont |
+| 3 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | admin → Cégadatok |
+| 4 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | admin → Cégadatok |
+| 5 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje**, a Formspree adattovábbításának jogalapja (USA) | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
 | 6 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
 | 7 | Hivatalos **tanúsítási jelek** (ISO 9001, ISO 14001, IFS) a tanúsítótól | `src/components/CertBadges.astro` |
-| 8 | Saját fotók: csapat / iroda, flotta, M0 raktár | `src/assets/images/rolunk/` |
-| 9 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 170–190 szó / oldal) | `src/i18n/hu.ts` / `en.ts` → `services.items` |
+| 8 | Saját fotók: csapat / iroda, flotta, M0 raktár | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
+| 9 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 160–210 szó / oldal) | admin → Oldalak → Szolgáltatások |

@@ -1,0 +1,116 @@
+{
+  "hu": {
+    "home": {
+      "title": "Hűtött fuvarozás és szállítmányozás | NH Cargo Kft.",
+      "description": "Belföldi és nemzetközi közúti fuvarozás, szállítmányozás és cross-docking hűtött árukra. 40 hűtős szerelvény, Magyarország és EU.",
+      "ogImage": ""
+    },
+    "services": {
+      "title": "Fuvarozás és szállítmányozás – szolgáltatások | NH Cargo",
+      "description": "Belföldi fuvarozás, cross-docking és nemzetközi közúti fuvarozás hűtött árukra Magyarországon és az EU-ban, valós idejű nyomon követéssel.",
+      "ogImage": ""
+    },
+    "domestic": {
+      "title": "Belföldi fuvarozás – hűtött áruszállítás | NH Cargo",
+      "description": "Gyors, rugalmas belföldi közúti fuvarozás Magyarország egész területén: hűtött, fagyasztott és friss áru kamionos szállítása modern flottával.",
+      "ogImage": ""
+    },
+    "crossdock": {
+      "title": "Cross-docking és raktározás az M0 mentén | NH Cargo",
+      "description": "Belföldi cross-docking és hűtött raktározás az M0 autópálya vonalán: az árut közvetlenül átrakjuk, így rövidebb az átfutás és alacsonyabb a költség.",
+      "ogImage": ""
+    },
+    "international": {
+      "title": "Nemzetközi fuvarozás és szállítmányozás | NH Cargo",
+      "description": "Nemzetközi közúti fuvarozás és szállítmányozás az EU-ban: hűtött kamionos szállítás valós idejű nyomon követéssel, egyedi árazással.",
+      "ogImage": ""
+    },
+    "about": {
+      "title": "Rólunk – hűtött áruszállító cég Budaörsön | NH Cargo",
+      "description": "Az NH Cargo Kft. hűtött közúti fuvarozást végez: 40 hűtős szerelvény, TAPA- és pharma minősítésű kamionok, ISO 9001, ISO 14001 és IFS tanúsítvány.",
+      "ogImage": ""
+    },
+    "sustainability": {
+      "title": "Fenntartható fuvarozás – zöldebb logisztika | NH Cargo",
+      "description": "Optimalizált útvonaltervezés, alternatív üzemanyagok, modern technológia és kevesebb üresjárat: így csökkentjük a fuvarozás környezeti terhelését.",
+      "ogImage": ""
+    },
+    "contact": {
+      "title": "Kapcsolat és ajánlatkérés – fuvarozás | NH Cargo",
+      "description": "Kérjen ajánlatot hűtött közúti fuvarozásra! Telefon: +36 70 902 5961, e-mail: info@nhcargo.hu, iroda: 2040 Budaörs, Baross u. 165.",
+      "ogImage": ""
+    },
+    "imprint": {
+      "title": "Impresszum | NH Cargo Kft.",
+      "description": "Az NH Cargo Kft. cégadatai és a weboldal üzemeltetésével kapcsolatos információk.",
+      "ogImage": ""
+    },
+    "privacy": {
+      "title": "Adatkezelési tájékoztató | NH Cargo Kft.",
+      "description": "Tájékoztató arról, hogyan kezeli az NH Cargo Kft. a személyes adatokat a GDPR előírásainak megfelelően.",
+      "ogImage": ""
+    },
+    "cookies": {
+      "title": "Süti tájékoztató | NH Cargo Kft.",
+      "description": "Tájékoztató a weboldalon használt sütikről és hasonló technológiákról, valamint a hozzájárulás kezeléséről.",
+      "ogImage": ""
+    }
+  },
+  "en": {
+    "home": {
+      "title": "Refrigerated transport & freight forwarding | NH Cargo",
+      "description": "Domestic and international road transport, freight forwarding and cross-docking for temperature-controlled goods. 40 reefer units, Hungary and EU.",
+      "ogImage": ""
+    },
+    "services": {
+      "title": "Road transport & freight forwarding services | NH Cargo",
+      "description": "Domestic transport, cross-docking and international road freight for temperature-controlled goods in Hungary and the EU, with real-time tracking.",
+      "ogImage": ""
+    },
+    "domestic": {
+      "title": "Domestic road transport in Hungary | NH Cargo",
+      "description": "Fast, flexible domestic road transport across Hungary: refrigerated, frozen and fresh goods carried by truck with a modern fleet.",
+      "ogImage": ""
+    },
+    "crossdock": {
+      "title": "Cross-docking & cold storage near Budapest | NH Cargo",
+      "description": "Domestic cross-docking and refrigerated storage along the M0 motorway near Budapest: direct transfer, shorter transit times and lower costs.",
+      "ogImage": ""
+    },
+    "international": {
+      "title": "International road freight & forwarding | NH Cargo",
+      "description": "International road transport and freight forwarding across the EU: refrigerated trucking with real-time tracking and tailored pricing.",
+      "ogImage": ""
+    },
+    "about": {
+      "title": "About us – refrigerated haulier in Hungary | NH Cargo",
+      "description": "NH Cargo Kft. provides refrigerated road transport: 40 reefer units, TAPA and pharma qualified trucks, certified to ISO 9001, ISO 14001 and IFS.",
+      "ogImage": ""
+    },
+    "sustainability": {
+      "title": "Sustainable road transport – greener logistics | NH Cargo",
+      "description": "Optimised route planning, alternative fuels, modern technology and fewer empty runs: how NH Cargo reduces the environmental impact of transport.",
+      "ogImage": ""
+    },
+    "contact": {
+      "title": "Contact & quote request | NH Cargo Kft.",
+      "description": "Request a quote for refrigerated road transport. Phone: +36 70 902 5961, email: info@nhcargo.hu, office: 2040 Budaörs, Baross u. 165., Hungary.",
+      "ogImage": ""
+    },
+    "imprint": {
+      "title": "Imprint | NH Cargo Kft.",
+      "description": "Company details of NH Cargo Kft. and information about the operator of this website.",
+      "ogImage": ""
+    },
+    "privacy": {
+      "title": "Privacy Policy | NH Cargo Kft.",
+      "description": "How NH Cargo Kft. processes personal data in accordance with the GDPR.",
+      "ogImage": ""
+    },
+    "cookies": {
+      "title": "Cookie Policy | NH Cargo Kft.",
+      "description": "Information about the cookies and similar technologies used on this website and how to manage your consent.",
+      "ogImage": ""
+    }
+  }
+}

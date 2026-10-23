@@ -1,41 +1,40 @@
 /**
- * Photos of the "Rólunk / About us" page.
+ * Own photos of the "Rólunk / About us" page, chosen in the admin
+ * (Képek → Rólunk oldal saját fotói, stored in src/cms/content/images.json).
  *
- * HOW TO ADD A PHOTO: copy it into src/assets/images/rolunk/ with the slot's
- * file name below (jpg, jpeg, png or webp), e.g. src/assets/images/rolunk/flotta.jpg.
- * It replaces the placeholder automatically – no code change needed.
- * Until a file exists, the page shows a dashed placeholder box in its place.
- *
- * Current photos:
- *  csapat.png – NH Cargo logo on a dark background (placeholder until a team / office photo is added)
- *  raktar.jpg – stock photo by Tom Jackson, Pexels (Pexels License), https://www.pexels.com/photo/27099093/ (edited: NH Cargo logo added)
- *               Replace it with a photo of the own M0 cold store when available.
+ * Until a photo is chosen for a slot:
+ *  - live site: a stock photo from the site's photo set is shown (`fallback`), so
+ *    visitors never see an unfinished box;
+ *  - local dev and previews (PUBLIC_NOINDEX, e.g. GitHub Pages, Render PR previews):
+ *    a dashed "Kép helye" placeholder shows the editor where a photo is missing.
  */
 import type { ImageMetadata } from 'astro';
+import { content } from '../cms';
+import { images, resolveImage, type ImageKey } from './images';
 
 export const aboutSlots = {
   /** Background of the page header (wide, landscape) */
-  fejlec: { ratio: '16/9', size: '1920 × 1080 px' },
-  csapat: { ratio: '4/3', size: '1600 × 1200 px' },
-  flotta: { ratio: '4/3', size: '1600 × 1200 px' },
-  raktar: { ratio: '4/3', size: '1600 × 1200 px' },
-} as const;
+  fejlec: { ratio: '16/9', size: '1920 × 1080 px', fallback: 'reeferTrailers' },
+  csapat: { ratio: '4/3', size: '1600 × 1200 px', fallback: 'reeferTrailers' },
+  flotta: { ratio: '4/3', size: '1600 × 1200 px', fallback: 'reeferTruck' },
+  raktar: { ratio: '4/3', size: '1600 × 1200 px', fallback: 'dockDoors' },
+} as const satisfies Record<string, { ratio: string; size: string; fallback: ImageKey }>;
 
 export type AboutSlot = keyof typeof aboutSlots;
 
-const files = import.meta.glob<ImageMetadata>('../assets/images/rolunk/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
-  eager: true,
-  import: 'default',
-});
+const chosen = content.images.hu.about as Record<AboutSlot, { file: string }>;
 
-/** Returns the uploaded photo for a slot, or undefined if none has been added yet. */
+/** Placeholders are for editors: only in local dev and noindex preview builds. */
+export const showPlaceholders = import.meta.env.DEV || import.meta.env.PUBLIC_NOINDEX === 'true';
+
+/** Returns the chosen photo for a slot, or undefined if none has been added yet. */
 export function aboutImage(slot: AboutSlot): ImageMetadata | undefined {
-  for (const [path, image] of Object.entries(files)) {
-    const name = path.split('/').pop()!.replace(/\.[^.]+$/, '').toLowerCase();
-    if (name === slot) return image;
-  }
-  return undefined;
+  const file = chosen[slot]?.file;
+  return file ? resolveImage(file) : undefined;
 }
 
-/** Path shown on the placeholder, telling the editor where to put the file. */
-export const aboutImageFolder = 'src/assets/images/rolunk/';
+/** Stock photo shown on the live site while a slot has no own photo. */
+export function aboutFallback(slot: AboutSlot): { image: ImageMetadata; key: ImageKey } {
+  const key = aboutSlots[slot].fallback;
+  return { image: images[key], key };
+}

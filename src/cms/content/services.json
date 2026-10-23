@@ -1,0 +1,226 @@
+{
+  "hu": {
+    "hero": {
+      "eyebrow": "Szolgáltatások",
+      "title": "Belföldi és nemzetközi szállítás – a szervezéstől a kiszállításig",
+      "subtitle": "Akár Magyarországon belül, akár Európa-szerte utazik az áruja, minden szállítást az Ön igényeihez, határidejéhez és a rakomány hőmérsékleti követelményeihez igazítunk."
+    },
+    "items": {
+      "domestic": {
+        "title": "Belföldi szállítás",
+        "pageTitle": "Belföldi közúti fuvarozás",
+        "short": "Gyors, rugalmas kiszállítás Magyarország bármely pontjára, kiterjedt belföldi hálózattal.",
+        "lead": "Gyors, rugalmas és megbízható kiszállítás Magyarország egész területén.",
+        "points": [
+          {
+            "title": "Gyors és rugalmas szállítás",
+            "text": "Az Ön igényeihez igazított, sokféle szállítási lehetőség – a rendszeres járatoktól az egyedi fuvarokig."
+          },
+          {
+            "title": "Kiterjedt hálózat",
+            "text": "Átfogó belföldi hálózatunkkal gyorsan szállítunk az ország bármely pontjára."
+          },
+          {
+            "title": "Modern flotta, tapasztalt szakemberek",
+            "text": "Korszerű járműveink és tapasztalt kollégáink garantálják a biztonságos és pontos kiszállítást."
+          },
+          {
+            "title": "Optimalizált folyamatok",
+            "text": "Átgondolt logisztikai folyamataink csökkentik a szállítási költségeket és növelik a hatékonyságot."
+          },
+          {
+            "title": "Rugalmas szolgáltatási lehetőségek",
+            "text": "Szolgáltatásainkat a különböző ügyféligényekhez és árutípusokhoz igazítjuk."
+          }
+        ]
+      },
+      "crossdock": {
+        "title": "Belföldi cross-docking",
+        "pageTitle": "Belföldi cross-docking és raktározás",
+        "short": "Az áru közvetlenül a beérkező járműről a kimenő szállítmányba kerül – rövidebb átfutás, alacsonyabb költség.",
+        "lead": "Az áru közvetlenül a beérkező szállítmányból a kimenőbe kerül – felesleges raktározás nélkül.",
+        "points": [
+          {
+            "title": "Rövidebb átfutási idő",
+            "text": "Az árut közvetlenül a járművek között rakjuk át, így minimálisra csökken a szállítási idő."
+          },
+          {
+            "title": "Nagyobb hatékonyság",
+            "text": "Kevesebb mozgatási lépés, hatékonyabb logisztikai lánc."
+          },
+          {
+            "title": "Alacsonyabb költségek",
+            "text": "Hosszú távú tárolás nélkül csökkennek a raktározási és árukezelési költségek."
+          },
+          {
+            "title": "Gyorsabb kiszállítás",
+            "text": "Az áru hamarabb ér célba – ez különösen a romlandó termékeknél fontos."
+          }
+        ]
+      },
+      "international": {
+        "title": "Nemzetközi szállítás",
+        "pageTitle": "Nemzetközi közúti fuvarozás és szállítmányozás",
+        "short": "Közúti fuvarozás Európa-szerte valós idejű nyomon követéssel, versenyképes, egyedi árazással.",
+        "lead": "Széles körű tapasztalat a nemzetközi közúti fuvarozásban, Európa-szerte.",
+        "points": [
+          {
+            "title": "Közúti fuvarozás Európa-szerte",
+            "text": "Nemzetközi szállítmányait saját dedikált flottánkkal, közúton juttatjuk el a célállomásra."
+          },
+          {
+            "title": "Átláthatóság",
+            "text": "Korszerű nyomkövető rendszereink valós idejű követést tesznek lehetővé, így mindig naprakész információval rendelkezik szállítmányáról."
+          },
+          {
+            "title": "Rugalmasság",
+            "text": "Versenyképes árak és a célállomáshoz igazított, rugalmas megoldások."
+          },
+          {
+            "title": "Megbízható európai hálózat",
+            "text": "Széles körű piacismeretünknek köszönhetően áruját gyorsan és megbízhatóan juttatjuk el Európa bármely pontjára."
+          }
+        ]
+      }
+    },
+    "related": "További szolgáltatásaink",
+    "question": {
+      "title": "Kérdése van ezzel a szolgáltatással kapcsolatban?",
+      "text": "Írja meg, mit, honnan és hová szállítana – dedikált kapcsolattartója hamarosan egyedi ajánlattal jelentkezik."
+    },
+    "process": {
+      "eyebrow": "Így dolgozunk",
+      "title": "Az ajánlatkéréstől a kiszállításig",
+      "steps": {
+        "request": {
+          "title": "Ajánlatkérés",
+          "text": "Írja meg, mit, honnan, hová és mikor szállítana – a hőmérsékleti igényekkel együtt."
+        },
+        "offer": {
+          "title": "Egyedi ajánlat",
+          "text": "Dedikált kapcsolattartója kidolgozza a szállítmánya számára legjobb megoldást."
+        },
+        "organise": {
+          "title": "Szervezés és felügyelet",
+          "text": "Megtervezzük az útvonalat, kijelöljük a járművet, és valós időben követjük a szállítmányt."
+        },
+        "delivery": {
+          "title": "Biztonságos kiszállítás",
+          "text": "Áruja időben, kifogástalan állapotban és a megfelelő hőmérsékleten érkezik meg."
+        }
+      }
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Domestic and international transport – organised end to end",
+      "subtitle": "Whether your goods travel across Hungary or across Europe, we plan every shipment around your requirements, your timeline and your cargo’s temperature needs."
+    },
+    "items": {
+      "domestic": {
+        "title": "Domestic transport",
+        "pageTitle": "Domestic road transport",
+        "short": "Fast, flexible deliveries anywhere in Hungary through a comprehensive domestic network.",
+        "lead": "Fast, flexible and reliable deliveries anywhere in Hungary.",
+        "points": [
+          {
+            "title": "Fast and flexible shipping",
+            "text": "A wide range of shipping options tailored to your needs – from regular routes to one-off deliveries."
+          },
+          {
+            "title": "Extensive network",
+            "text": "Our comprehensive domestic network lets us deliver quickly to any part of Hungary."
+          },
+          {
+            "title": "Modern fleet, experienced professionals",
+            "text": "Modern vehicles and experienced people ensure safe and timely delivery."
+          },
+          {
+            "title": "Optimised processes",
+            "text": "Streamlined logistics processes reduce transport costs and increase efficiency."
+          },
+          {
+            "title": "Flexible service options",
+            "text": "Services that adapt to the needs of different customers and cargo types."
+          }
+        ]
+      },
+      "crossdock": {
+        "title": "Domestic cross-docking",
+        "pageTitle": "Domestic cross-docking and storage",
+        "short": "Goods move directly from incoming to outgoing vehicles – shorter transit times, lower costs.",
+        "lead": "Goods are transferred directly from incoming to outgoing shipments – without unnecessary storage.",
+        "points": [
+          {
+            "title": "Shorter transit times",
+            "text": "Goods are transferred directly between vehicles, keeping time in transit to a minimum."
+          },
+          {
+            "title": "Greater efficiency",
+            "text": "Fewer handling steps make the entire logistics chain more efficient."
+          },
+          {
+            "title": "Lower costs",
+            "text": "No long-term storage means lower warehousing and handling costs."
+          },
+          {
+            "title": "Faster delivery",
+            "text": "Your goods reach their destination sooner – especially important for perishable cargo."
+          }
+        ]
+      },
+      "international": {
+        "title": "International transport",
+        "pageTitle": "International road freight and forwarding",
+        "short": "Road freight across Europe with real-time tracking and competitive, tailored pricing.",
+        "lead": "Extensive experience in international road freight across Europe.",
+        "points": [
+          {
+            "title": "Road freight across Europe",
+            "text": "We deliver your international shipments by road, with our own dedicated fleet."
+          },
+          {
+            "title": "Transparency",
+            "text": "Advanced tracking systems allow real-time monitoring, so you always have up-to-date information on your shipment."
+          },
+          {
+            "title": "Flexibility",
+            "text": "Competitive pricing and flexible solutions tailored to your destination."
+          },
+          {
+            "title": "Reliable European network",
+            "text": "Thanks to our extensive market knowledge, we deliver your goods quickly and reliably anywhere in Europe."
+          }
+        ]
+      }
+    },
+    "related": "More of our services",
+    "question": {
+      "title": "Questions about this service?",
+      "text": "Tell us what you need to ship, from where and to where – your dedicated contact person will get back to you with a tailored offer."
+    },
+    "process": {
+      "eyebrow": "How it works",
+      "title": "From request to delivery",
+      "steps": {
+        "request": {
+          "title": "Send your request",
+          "text": "Tell us what, where and when – including any temperature requirements."
+        },
+        "offer": {
+          "title": "Receive a tailored offer",
+          "text": "Your dedicated contact person prepares the best solution for your cargo."
+        },
+        "organise": {
+          "title": "We organise and monitor",
+          "text": "We plan the route, assign the vehicle and track the shipment in real time."
+        },
+        "delivery": {
+          "title": "Safe delivery",
+          "text": "Your goods arrive on time, in optimal condition and at the right temperature."
+        }
+      }
+    }
+  }
+}

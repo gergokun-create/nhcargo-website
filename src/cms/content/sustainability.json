@@ -1,0 +1,78 @@
+{
+  "hu": {
+    "hero": {
+      "eyebrow": "Fenntarthatóság",
+      "title": "Úton a zöldebb logisztika felé",
+      "subtitle": "A szállítás és a logisztika területén a fenntarthatóság elengedhetetlen ahhoz, hogy a lehető legkisebbre csökkentsük környezeti hatásunkat."
+    },
+    "intro": {
+      "eyebrow": "Elkötelezettségünk",
+      "title": "Kisebb kibocsátás, nagyobb hatékonyság",
+      "paragraphs": [
+        "A szállítás minden ellátási lánc gerince – és ez felelősséggel jár. Célunk, hogy minden tevékenységünk során csökkentsük a kibocsátást és növeljük a hatékonyságot.",
+        "Partnereinkkel együttműködve igyekszünk a lehető legkevesebbre szorítani a felesleges járműmozgatást, az úgynevezett üresjáratokat, és környezetbarát megoldásokat vezetünk be. Így járulunk hozzá egy zöldebb jövőhöz a következő generációk számára."
+      ]
+    },
+    "pillarsTitle": "Így csökkentjük a környezeti terhelést",
+    "pillars": {
+      "routes": {
+        "title": "Optimalizált útvonaltervezés",
+        "text": "Okosabb útvonalak: kevesebb megtett kilométer, kevesebb üzemanyag, alacsonyabb kibocsátás."
+      },
+      "fuels": {
+        "title": "Alternatív üzemanyagok",
+        "text": "Ahol lehetséges, alternatív üzemanyag-megoldásokat keresünk és alkalmazunk."
+      },
+      "technology": {
+        "title": "Modern technológiák",
+        "text": "Korszerű járművek és digitális eszközök teszik tisztábbá és hatékonyabbá működésünket."
+      },
+      "emptyRuns": {
+        "title": "Kevesebb üresjárat",
+        "text": "Partnereinkkel együtt a minimálisra csökkentjük a járművek felesleges áthelyezését."
+      }
+    },
+    "closing": {
+      "title": "Zöldebb jövő a következő generációknak",
+      "text": "Minden optimalizált útvonal és minden elkerült üresjárat számít. Elkötelezettek vagyunk a folyamatos fejlődés mellett – ügyfeleinkért, partnereinkért és a környezetért."
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "Sustainability",
+      "title": "On the road to greener logistics",
+      "subtitle": "Sustainability in transport and logistics is essential to minimise our impact on the environment."
+    },
+    "intro": {
+      "eyebrow": "Our commitment",
+      "title": "Lower emissions, higher efficiency",
+      "paragraphs": [
+        "Transport is the backbone of every supply chain – and that comes with responsibility. Our goal is to reduce emissions and increase efficiency in everything we do.",
+        "We work together with our partners to minimise unnecessary repositioning – so-called empty runs – and to implement eco-friendly solutions. In this way, we contribute to a greener future for the next generations."
+      ]
+    },
+    "pillarsTitle": "How we reduce our footprint",
+    "pillars": {
+      "routes": {
+        "title": "Optimised route planning",
+        "text": "Smarter routes mean fewer kilometres, less fuel and lower emissions."
+      },
+      "fuels": {
+        "title": "Alternative fuels",
+        "text": "Wherever viable, we look for and adopt alternative fuel solutions."
+      },
+      "technology": {
+        "title": "Modern technologies",
+        "text": "Modern vehicles and digital tools make our operations cleaner and more efficient."
+      },
+      "emptyRuns": {
+        "title": "Fewer empty runs",
+        "text": "Together with our partners, we minimise the unnecessary repositioning of vehicles."
+      }
+    },
+    "closing": {
+      "title": "A greener future for the next generations",
+      "text": "Every optimised route and every avoided empty run counts. We are committed to continuous improvement – for our clients, our partners and the environment."
+    }
+  }
+}

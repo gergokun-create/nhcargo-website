@@ -1,0 +1,192 @@
+{
+  "hu": {
+    "hero": {
+      "eyebrow": "Rólunk",
+      "title": "Rugalmas partner a hűtött áruszállításban",
+      "subtitle": "A 2024-ben alapított NH Cargo Kft. fiatal, dinamikus csapat – a hűtött áruszállításban szerzett, összesen közel 100 évnyi szakmai tapasztalattal."
+    },
+    "intro": {
+      "title": "Cégbemutatkozás",
+      "text": "Társaságunk 2024-ben alakult. Munkatársaink együttes szakmai tapasztalata a hűtött áruszállítás területén hamarosan eléri a 100 évet.",
+      "stats": [
+        {
+          "value": "2024",
+          "label": "alapítás éve"
+        },
+        {
+          "value": "~100 év",
+          "label": "együttes szakmai tapasztalat"
+        },
+        {
+          "value": "40",
+          "label": "dedikált hűtős szerelvény"
+        }
+      ]
+    },
+    "activity": {
+      "title": "Fő tevékenységünk",
+      "text": "Elsődleges profilunk a nemzetközi és belföldi hűtött, teljes rakományos (FTL) fuvarozás. Emellett ponyvás és dobozos járművekkel is vállalunk szállítási feladatokat."
+    },
+    "fleet": {
+      "title": "Járműflotta",
+      "text": "Flottánk 40 dedikált hűtős szerelvényből áll, köztük normál, doppelstock és válaszfalas hűtős járművekkel. Kamionjaink TAPA- és gyógyszeripari (pharma) minősítéssel rendelkeznek. A teljes flotta GPS-alapú nyomon követéssel működik.",
+      "types": [
+        "Normál hűtős",
+        "Doppelstock",
+        "Válaszfalas hűtős"
+      ],
+      "badges": [
+        "TAPA-minősítésű kamionok",
+        "Gyógyszeripari (pharma) minősítésű kamionok",
+        "GPS-alapú nyomon követés"
+      ]
+    },
+    "results": {
+      "eyebrow": "Eredményeink",
+      "title": "Számokban a teljesítményünk",
+      "items": [
+        {
+          "value": "2 500+",
+          "label": "teljesített fuvarfeladat 2025-ben"
+        },
+        {
+          "value": "5 M€+",
+          "label": "árbevétel 2025-ben"
+        }
+      ]
+    },
+    "quality": {
+      "title": "Minőségirányítás",
+      "text": "Társaságunk ISO 9001, ISO 14001 és IFS tanúsítványokkal rendelkezik.",
+      "certs": [
+        {
+          "name": "ISO 9001",
+          "text": "Minőségirányítási rendszer"
+        },
+        {
+          "name": "ISO 14001",
+          "text": "Környezetirányítási rendszer"
+        },
+        {
+          "name": "IFS",
+          "text": "Élelmiszer-biztonsági szabvány"
+        }
+      ]
+    },
+    "warehouse": {
+      "title": "Raktározás és átrakás",
+      "text": "Az M0 autópálya vonalán hűtött raktározási kapacitással rendelkezünk, friss áru esetén átrakási lehetőséggel."
+    },
+    "duty": {
+      "title": "Ügyelet",
+      "text": "Hétvégi, valamint reggel 04:00–07:00 közötti ügyeletet biztosítunk, így a felmerülő problémákra gyorsan reagálunk.",
+      "hours": [
+        "Hétvégi ügyelet",
+        "Reggel 04:00–07:00"
+      ]
+    },
+    "strength": {
+      "title": "Legnagyobb erősségünk: a rugalmasság",
+      "text": "Rugalmas, partnerközpontú működésünkkel megbízható logisztikai hátteret nyújtunk partnereinknek, váratlan helyzetekben is."
+    },
+    "goals": {
+      "title": "Jövőbeli céljaink",
+      "text": "Célunk a folyamatos, fenntartható fejlődés, a flotta és a szolgáltatások bővítése, valamint új hazai és nemzetközi partnerkapcsolatok kialakítása. A hűtött szállítmányozás területén tovább kívánjuk erősíteni piaci jelenlétünket, a magas minőségi, biztonsági és szolgáltatási színvonal megtartása mellett."
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "About us",
+      "title": "A flexible partner in refrigerated transport",
+      "subtitle": "Founded in 2024, NH Cargo Kft. is a young, agile team – with nearly 100 years of combined professional experience in refrigerated transport."
+    },
+    "intro": {
+      "title": "Who we are",
+      "text": "Our company was founded in 2024. Together, our team will soon have 100 years of combined professional experience in refrigerated transport.",
+      "stats": [
+        {
+          "value": "2024",
+          "label": "year founded"
+        },
+        {
+          "value": "~100 yrs",
+          "label": "combined experience"
+        },
+        {
+          "value": "40",
+          "label": "dedicated reefer units"
+        }
+      ]
+    },
+    "activity": {
+      "title": "Our core business",
+      "text": "Our primary focus is international and domestic refrigerated full truckload (FTL) transport. We also handle transport assignments with curtain-sided and box vehicles."
+    },
+    "fleet": {
+      "title": "Our fleet",
+      "text": "Our fleet consists of 40 dedicated refrigerated units, including standard, double-deck and multi-compartment reefers. Our trucks hold TAPA and pharmaceutical (pharma) qualifications, and the entire fleet is tracked by GPS.",
+      "types": [
+        "Standard reefer",
+        "Double-deck",
+        "Multi-compartment reefer"
+      ],
+      "badges": [
+        "TAPA qualified trucks",
+        "Pharma qualified trucks",
+        "GPS tracking"
+      ]
+    },
+    "results": {
+      "eyebrow": "Our results",
+      "title": "Our performance in numbers",
+      "items": [
+        {
+          "value": "2,500+",
+          "label": "transport jobs completed in 2025"
+        },
+        {
+          "value": "€5M+",
+          "label": "revenue in 2025"
+        }
+      ]
+    },
+    "quality": {
+      "title": "Quality management",
+      "text": "Our company is certified to ISO 9001, ISO 14001 and IFS.",
+      "certs": [
+        {
+          "name": "ISO 9001",
+          "text": "Quality management system"
+        },
+        {
+          "name": "ISO 14001",
+          "text": "Environmental management system"
+        },
+        {
+          "name": "IFS",
+          "text": "Food safety standard"
+        }
+      ]
+    },
+    "warehouse": {
+      "title": "Storage and cross-docking",
+      "text": "We have refrigerated storage capacity along the M0 motorway, with cross-docking available for fresh goods."
+    },
+    "duty": {
+      "title": "On-call service",
+      "text": "We provide on-call service at weekends and between 04:00 and 07:00 in the morning, so we can respond quickly to any issue.",
+      "hours": [
+        "Weekend on-call",
+        "Mornings 04:00–07:00"
+      ]
+    },
+    "strength": {
+      "title": "Our greatest strength: flexibility",
+      "text": "With our flexible, partner-focused way of working, we provide reliable logistics support to our partners – even in unexpected situations."
+    },
+    "goals": {
+      "title": "Our goals for the future",
+      "text": "We aim for continuous, sustainable growth, expanding our fleet and services, and building new domestic and international partnerships. We intend to further strengthen our position in refrigerated transport while maintaining high standards of quality, safety and service."
+    }
+  }
+}

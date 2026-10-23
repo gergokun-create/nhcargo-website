@@ -1,0 +1,126 @@
+{
+  "hu": {
+    "photos": {
+      "heroTrucks": {
+        "file": "/admin/media/truck-green-hills.jpg",
+        "alt": "Narancssárga kamion halad egy zöld dombok közötti autópályán"
+      },
+      "sunnyRoadTruck": {
+        "file": "/admin/media/white-truck-sunny-road.jpg",
+        "alt": "NH Cargo logós fehér kamion fehér hűtős félpótkocsival napsütéses, zöld vidéken"
+      },
+      "countryRoadTruck": {
+        "file": "/admin/media/truck-country-road.jpg",
+        "alt": "Kamion halad egy kanyargós országúton, a háttérben falu templomtoronnyal"
+      },
+      "reeferTruck": {
+        "file": "/admin/media/reefer-truck-volvo.jpg",
+        "alt": "Narancssárga Volvo nyerges vontató hűtött félpótkocsival az autópályán"
+      },
+      "reeferTrailers": {
+        "file": "/admin/media/reefer-trailers-sunny.jpg",
+        "alt": "Hűtőaggregátos félpótkocsik sorban egy telephelyen, tiszta kék ég alatt"
+      },
+      "logisticsHall": {
+        "file": "/admin/media/bright-logistics-hall.jpg",
+        "alt": "Világos, modern logisztikai csarnok gyorskapukkal és egy beálló kamionnal"
+      },
+      "truckParking": {
+        "file": "/admin/media/aerial-truck-parking.jpg",
+        "alt": "Sorban parkoló kamionok egy logisztikai parkolóban, felülnézetből"
+      },
+      "countryRoad": {
+        "file": "/admin/media/country-road-green-fields.jpg",
+        "alt": "Zöld mezők között kanyargó országút napsütésben, bárányfelhős égbolttal"
+      },
+      "dockDoors": {
+        "file": "/admin/media/loading-dock-doors.jpg",
+        "alt": "Kék rakodókapuk egy logisztikai központ rakodóterében"
+      },
+      "windTurbines": {
+        "file": "/admin/media/wind-turbines-fields.jpg",
+        "alt": "Szélturbina zöld mezőgazdasági táj felett, kék égbolttal"
+      }
+    },
+    "about": {
+      "fejlec": {
+        "file": "",
+        "alt": "Az NH Cargo hűtős szerelvénye úton"
+      },
+      "csapat": {
+        "file": "/admin/media/rolunk-csapat.png",
+        "alt": "Az NH Cargo Kft. logója – Out of box"
+      },
+      "flotta": {
+        "file": "",
+        "alt": "Az NH Cargo dedikált hűtős szerelvényei"
+      },
+      "raktar": {
+        "file": "/admin/media/rolunk-raktar.jpg",
+        "alt": "NH Cargo logós félpótkocsik a raktár rakodókapuinál, napsütésben"
+      }
+    }
+  },
+  "en": {
+    "photos": {
+      "heroTrucks": {
+        "file": "/admin/media/truck-green-hills.jpg",
+        "alt": "Orange truck on a motorway between green rolling hills"
+      },
+      "sunnyRoadTruck": {
+        "file": "/admin/media/white-truck-sunny-road.jpg",
+        "alt": "White NH Cargo truck with a refrigerated trailer driving through sunny green countryside"
+      },
+      "countryRoadTruck": {
+        "file": "/admin/media/truck-country-road.jpg",
+        "alt": "Truck on a winding country road with a village church in the background"
+      },
+      "reeferTruck": {
+        "file": "/admin/media/reefer-truck-volvo.jpg",
+        "alt": "Orange Volvo tractor unit with a refrigerated trailer on the motorway"
+      },
+      "reeferTrailers": {
+        "file": "/admin/media/reefer-trailers-sunny.jpg",
+        "alt": "Row of refrigerated semi-trailers parked at a depot under a clear blue sky"
+      },
+      "logisticsHall": {
+        "file": "/admin/media/bright-logistics-hall.jpg",
+        "alt": "Bright, modern logistics hall with high-speed doors and a truck at the dock"
+      },
+      "truckParking": {
+        "file": "/admin/media/aerial-truck-parking.jpg",
+        "alt": "Aerial view of trucks parked in rows at a logistics parking area"
+      },
+      "countryRoad": {
+        "file": "/admin/media/country-road-green-fields.jpg",
+        "alt": "Country road winding between green fields on a sunny day with fluffy clouds"
+      },
+      "dockDoors": {
+        "file": "/admin/media/loading-dock-doors.jpg",
+        "alt": "Blue loading dock doors inside a logistics centre"
+      },
+      "windTurbines": {
+        "file": "/admin/media/wind-turbines-fields.jpg",
+        "alt": "Wind turbine above green farmland under a blue sky"
+      }
+    },
+    "about": {
+      "fejlec": {
+        "file": "",
+        "alt": "NH Cargo refrigerated truck on the road"
+      },
+      "csapat": {
+        "file": "/admin/media/rolunk-csapat.png",
+        "alt": "NH Cargo Kft. logo – Out of box"
+      },
+      "flotta": {
+        "file": "",
+        "alt": "NH Cargo’s dedicated refrigerated units"
+      },
+      "raktar": {
+        "file": "/admin/media/rolunk-raktar.jpg",
+        "alt": "Semi-trailers with the NH Cargo logo docked at warehouse loading bays in sunshine"
+      }
+    }
+  }
+}

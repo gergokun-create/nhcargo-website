@@ -8,6 +8,8 @@ import CookieConsent from '../components/CookieConsent.astro';
 import { languages, langs, localePath, withBase, defaultLang, useTranslations, type Lang, type RouteKey } from '../i18n';
 import { site } from '../data/site';
 import { companyNodes, breadcrumbNode } from '../data/seo';
+import { resolveImage } from '../data/images';
+import { content } from '../cms';
 
 interface Props {
   lang: Lang;
@@ -41,12 +43,15 @@ const alternates = page
   : [];
 const xDefault = page ? new URL(localePath(page, defaultLang), siteUrl).href : undefined;
 
-// Share image: the page's own photo cropped to 1200×630, or the logo card.
-const ogSrc = ogImage
-  ? (await getImage({ src: ogImage, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 })).src
+// Share image: the one chosen in the admin (SEO → OG-kép), else the page's own photo
+// cropped to 1200×630, or the logo card.
+const ogChosen: string = page ? (content.seo[lang][page]?.ogImage ?? '') : '';
+const ogPhoto = ogChosen ? resolveImage(ogChosen) : ogImage;
+const ogSrc = ogPhoto
+  ? (await getImage({ src: ogPhoto, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 })).src
   : withBase('/og-default.jpg');
 const ogImageUrl = new URL(ogSrc, siteUrl).href;
-const ogImageAlt = Astro.props.ogImageAlt ?? site.name;
+const ogImageAlt = (ogChosen ? title : Astro.props.ogImageAlt) ?? site.name;
 const logoUrl = new URL(withBase('/logo.png'), siteUrl).href;
 
 const trail = breadcrumbs ?? (page && page !== 'home' ? [page] : []);

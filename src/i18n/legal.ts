@@ -64,9 +64,9 @@ const imprintHu: LegalPage = {
         'Az Ektv. 4. § f) pontja alapján a tárhelyszolgáltató adatai:',
         {
           table: [
-            ['Név', '[[pl. Render Services, Inc. – a szerződés szerinti pontos név]]'],
-            ['Cím', '[[a tárhelyszolgáltató székhelye]]'],
-            ['E-mail', '[[a tárhelyszolgáltató elérhetősége]]'],
+            ['Név', 'Render Services, Inc.'],
+            ['Cím', '525 Brannan Street, Suite 300, San Francisco, CA 94107, USA'],
+            ['E-mail', 'legal@render.com'],
           ],
         },
       ],
@@ -116,9 +116,9 @@ const imprintEn: LegalPage = {
       blocks: [
         {
           table: [
-            ['Name', '[[e.g. Render Services, Inc. – exact name as per contract]]'],
-            ['Address', '[[hosting provider address]]'],
-            ['Email', '[[hosting provider contact]]'],
+            ['Name', 'Render Services, Inc.'],
+            ['Address', '525 Brannan Street, Suite 300, San Francisco, CA 94107, USA'],
+            ['Email', 'legal@render.com'],
           ],
         },
       ],
@@ -176,8 +176,8 @@ const privacyHu: LegalPage = {
         },
         '**Cél:** a megkeresés megválaszolása, árajánlat készítése, kapcsolattartás.',
         '**Jogalap:** a szerződés megkötését megelőzően az érintett kérésére történő lépések megtétele (GDPR 6. cikk (1) b) pont); jogi személy partner kapcsolattartója esetén az adatkezelő jogos érdeke (GDPR 6. cikk (1) f) pont). [[Jogalap és érdekmérlegelés – jogi ellenőrzés]]',
-        '**Az adatok útja:** [[az űrlap technikai megoldásától függően: pl. „az üzenetet e-mailben kapjuk meg az info@nhcargo.hu címre, és a weboldal adminisztrációs felületén tároljuk” – kitöltendő a végleges megoldás szerint]]',
-        '**Megőrzési idő:** [[pl. a beérkezéstől számított 12 hónap, ezt követően automatikus törlés; szerződés létrejötte esetén a számviteli jogszabályok szerint 8 év]]',
+        '**Az adatok útja:** az űrlapon megadott adatokat a Formspree (Formspree, Inc., USA) űrlapkezelő szolgáltatás fogadja, és e-mailben továbbítja az info@nhcargo.hu címre. A Formspree a beküldött üzenetet 30 napig tárolja, ezt követően törli.',
+        '**Megőrzési idő:** a Formspree rendszerében 30 nap. Az e-mailben érkezett megkeresést [[a beérkezéstől számított X hónapig – kitöltendő]] őrizzük meg; szerződés létrejötte esetén [[a számviteli jogszabályok szerint 8 évig – jogi ellenőrzés]].',
       ],
     },
     {
@@ -186,12 +186,12 @@ const privacyHu: LegalPage = {
         'Az adatok kezeléséhez az alábbi adatfeldolgozókat vesszük igénybe (a teljes lista: [[ADATFELDOLGOZOK.md alapján véglegesítendő]]):',
         {
           list: [
-            'Tárhelyszolgáltató: [[név, székhely – pl. Render Services, Inc.]]',
-            'E-mail-szolgáltató: [[az info@nhcargo.hu fiók szolgáltatója]]',
-            'Űrlapkezelés: [[saját rendszer vagy külső szolgáltató neve]]',
+            'Tárhelyszolgáltató: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
+            'E-mail-szolgáltató (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Írország)',
+            'Űrlapkezelés: Formspree, Inc. (USA) [[székhely – a szolgáltató adatvédelmi tájékoztatója szerint]]',
           ],
         },
-        '**Harmadik országba történő továbbítás:** [[ha az adatfeldolgozó az EGT-n kívül (pl. USA) kezel adatot: a továbbítás jogalapja, pl. az EU–USA adatvédelmi keretrendszer (DPF) vagy általános szerződési feltételek (SCC) – jogi ellenőrzés]]',
+        '**Harmadik országba történő továbbítás:** a Render Services, Inc. (USA) esetében az Európai Bizottság általános szerződési feltételei (SCC) alapján, a Render adatfeldolgozói megállapodása szerint; a Microsoft az EU–USA adatvédelmi keretrendszer (DPF) résztvevője; a Formspree, Inc. (USA) esetében [[a továbbítás jogalapja – a Formspree feltételei alapján kitöltendő]]. [[A teljes rész – jogi ellenőrzés]]',
       ],
     },
     {
@@ -273,8 +273,8 @@ const privacyEn: LegalPage = {
         },
         '**Purpose:** responding to your enquiry, preparing a quotation and keeping in contact.',
         '**Legal basis:** steps taken at your request prior to entering into a contract (Art. 6(1)(b) GDPR); for contact persons of business partners, our legitimate interest (Art. 6(1)(f) GDPR). [[Legal basis – legal review]]',
-        '**How the data is handled:** [[depending on the final form solution, e.g. “sent by email to info@nhcargo.hu and stored in the website’s admin system”]]',
-        '**Retention period:** [[e.g. 12 months from receipt, then deleted automatically; 8 years under accounting law if a contract is concluded]]',
+        '**How the data is handled:** the data you enter in the form is received by the form service Formspree (Formspree, Inc., USA) and forwarded by email to info@nhcargo.hu. Formspree stores the submission for 30 days and then deletes it.',
+        '**Retention period:** 30 days at Formspree. We keep enquiries received by email for [[X months from receipt – to be completed]]; if a contract is concluded, [[8 years under accounting law – legal review]].',
       ],
     },
     {
@@ -282,12 +282,12 @@ const privacyEn: LegalPage = {
       blocks: [
         {
           list: [
-            'Hosting provider: [[name, seat – e.g. Render Services, Inc.]]',
-            'Email provider: [[provider of the info@nhcargo.hu mailbox]]',
-            'Form handling: [[own system or external provider]]',
+            'Hosting provider: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
+            'Email provider (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland)',
+            'Form handling: Formspree, Inc. (USA) [[registered address – as per the provider’s privacy policy]]',
           ],
         },
-        '**Transfers outside the EEA:** [[e.g. EU–US Data Privacy Framework or Standard Contractual Clauses – legal review]]',
+        '**Transfers outside the EEA:** for Render Services, Inc. (USA), on the basis of the European Commission’s Standard Contractual Clauses (SCC) under Render’s data processing addendum; Microsoft participates in the EU–US Data Privacy Framework (DPF); for Formspree, Inc. (USA), [[legal basis – to be completed from Formspree’s terms]]. [[Whole section – legal review]]',
       ],
     },
     {

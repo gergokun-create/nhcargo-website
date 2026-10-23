@@ -5,8 +5,8 @@
   "description": "NH Cargo Kft. – kétnyelvű (HU/EN) céges weboldal Astro + Tailwind CSS alapon",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node scripts/copy-decap.mjs && astro dev",
+    "build": "node scripts/copy-decap.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "test": "node scripts/check-site.mjs"
