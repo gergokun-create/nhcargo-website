@@ -106,7 +106,7 @@ Ha egy jogi oldalon már nincs `[[ ]]` helyőrző, a „Sablonszöveg” figyelm
 
 Az adminban: **SEO és képek → Képek** (részletesen: `ADMIN_UTMUTATO.md`, 5. pont). A feltöltött kép a `src/assets/images/` mappába kerül, WebP formátumban, metaadatok nélkül.
 
-- **Rólunk oldal saját fotói** (Fejléc, Csapat / iroda, Hűtős szerelvények, Raktár): amíg a mező üres, az oldalon szaggatott keretes **„Kép helye”** doboz látszik. A Fejléc üresen a *Rólunk – nyitókép* fotót használja. Jelenleg a Csapat helyén a logó (`rolunk-csapat.png`), a Raktár helyén stockfotó (`rolunk-raktar.jpg`) van.
+- **Rólunk oldal saját fotói** (Fejléc, Csapat / iroda, Hűtős szerelvények, Raktár): amíg a mező üres, az **éles oldalon** egy meglévő fotó áll a helyén (Fejléc és Csapat: *Rólunk – nyitókép*, Hűtős szerelvények: *Főoldal – Rólunk rész*, Raktár: *Cross-docking*); **helyben és az előnézeteken** szaggatott keretes **„Kép helye”** doboz jelzi, hova kell saját fotó (`src/data/aboutImages.ts`). Jelenleg a Csapat helyén a logó (`rolunk-csapat.png`), a Raktár helyén stockfotó (`rolunk-raktar.jpg`) van.
 - A képeket az Astro build közben automatikusan reszponzív **WebP** formátumra alakítja, és késleltetve (lazy load) tölti be. A jelenlegi stockfotók forrása és licence a `src/data/images.ts` fájlban szerepel.
 - A Minőségirányítás résznél az ISO 9001, ISO 14001 és IFS jelvény a weboldal **saját grafikája** (`src/components/CertBadges.astro`), nem a hivatalos logó: az ISO nem engedi a saját logója használatát. A tanúsító szervezettől kapott hivatalos tanúsítási jellel lecserélhető.
 
@@ -167,9 +167,8 @@ A `main` ágra feltöltött változtatásokból a GitHub Actions egy **előnéze
 | 2 | **GitHub OAuth App** + a belépési szolgáltatás környezeti változói | `DEPLOY.md`, 3. pont |
 | 3 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | admin → Cégadatok |
 | 4 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | admin → Cégadatok |
-| 5 | **Tárhelyszolgáltató** neve, címe, e-mail-címe (Ektv. 4. §) – Render | `src/i18n/legal.ts` → Impresszum |
-| 6 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje**, adattovábbítás jogalapja (Formspree, USA) | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
-| 7 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
-| 8 | Hivatalos **tanúsítási jelek** (ISO 9001, ISO 14001, IFS) a tanúsítótól | `src/components/CertBadges.astro` |
-| 9 | Saját fotók: csapat / iroda, flotta, M0 raktár | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
-| 10 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 160–210 szó / oldal) | admin → Oldalak → Szolgáltatások |
+| 5 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje**, a Formspree adattovábbításának jogalapja (USA) | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
+| 6 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
+| 7 | Hivatalos **tanúsítási jelek** (ISO 9001, ISO 14001, IFS) a tanúsítótól | `src/components/CertBadges.astro` |
+| 8 | Saját fotók: csapat / iroda, flotta, M0 raktár | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
+| 9 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 160–210 szó / oldal) | admin → Oldalak → Szolgáltatások |

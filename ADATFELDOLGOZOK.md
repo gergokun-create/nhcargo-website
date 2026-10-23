@@ -10,12 +10,12 @@
 
 | Szolgáltatás | Mire használjuk | Milyen adat | Hol (ország) | Mikor | Teendő |
 | --- | --- | --- | --- | --- | --- |
-| **Render** (Render Services, Inc.) | Tárhely – éles weboldal (www.nhcargo.hu) | Látogatók IP-címe és kérésadatai a szervernaplókban | USA; a statikus oldalt a Render globális CDN-je szolgálja ki | minden látogatás | Adatfeldolgozói szerződés (DPA) elfogadása; naplómegőrzési idő ellenőrzése |
+| **Render** (Render Services, Inc., 525 Brannan Street, Suite 300, San Francisco, CA 94107, USA; legal@render.com) | Tárhely – éles weboldal (www.nhcargo.hu) | Látogatók IP-címe és kérésadatai a szervernaplókban | USA; a statikus oldalt a Render globális CDN-je szolgálja ki | minden látogatás | A Render DPA-ja (render.com/dpa) SCC-t tartalmaz – elfogadása; naplómegőrzési idő ellenőrzése |
 | **GitHub Pages** (GitHub, Inc.) | Tárhely – jelenlegi előnézet | Látogatók IP-címe (naplók) | USA | csak az előnézet élettartama alatt | Élesítés után az előnézet kikapcsolható |
 | **Formspree** (Formspree, Inc.) | Ajánlatkérő űrlap fogadása, továbbítás e-mailben | Név, e-mail, telefon, cégnév, szállítási adatok, üzenet, IP-cím | USA | beküldéskor; a Formspree 30 napig tárolja | DPA / adattovábbítás jogalapja (DPF/SCC) ellenőrzése; lásd 3. pont |
 | **GitHub** (GitHub, Inc.) | A weboldal kódja és tartalma (repó), az admin belépése | **Látogatói adat nincs.** A szerkesztő GitHub-fiókja, a módosítások szerzője és ideje (git-történet) | USA | szerkesztéskor | Csak a szerkesztőt érinti |
 | **Render – nhcargo-cms-auth** (Render Services, Inc.) | GitHub-belépés közvetítése az adminhoz | **Látogatói adat nincs.** A szerkesztő IP-címe (naplók) | EU (Frankfurt) | admin-belépéskor | – |
-| **E-mail-szolgáltató** (az `info@nhcargo.hu` és `p.horvath@nhcargo.hu` fiókok szolgáltatója) | Beérkező megkeresések | Az üzenet teljes tartalma | [[kitöltendő]] | beküldéskor / e-mailben | Szolgáltató neve, székhelye, DPA |
+| **Microsoft 365** (Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Írország) | Az `info@nhcargo.hu` és `p.horvath@nhcargo.hu` postafiók (MX: `nhcargo-hu.mail.protection.outlook.com`) | Az e-mailben érkező megkeresések teljes tartalma, a Formspree-értesítők | EU; a Microsoft az EU–USA DPF résztvevője | beküldéskor / e-mailben | A céges Microsoft 365-szerződés adatvédelmi feltételeinek (DPA) ellenőrzése |
 | **Google Maps** (Google Ireland Ltd. / Google LLC) | Térkép a Kapcsolat oldalon | IP-cím, böngészőadatok, Google sütik | EU/USA | **csak hozzájárulás vagy kattintás után** | Nincs teendő (hozzájáruláshoz kötve) |
 
 ## 2. Nem kezel személyes adatot (tájékoztatásul)

@@ -78,7 +78,7 @@ A **Munkafolyamat** menüben (felül) látható az összes közzé nem tett pisz
 - **Formátum:** JPG, PNG vagy WebP. **Méret:** legfeljebb 10 MB.
 - Feltöltéskor az admin a képet **WebP formátumra tömöríti**, és **eltávolítja a metaadatokat** (pl. GPS-koordináta). A különböző kijelzőkhöz szükséges kisebb méreteket a weboldal építése készíti el.
 - **Javasolt méret:** legalább 1600 px széles (nyitóképnél 1920 px); a Rólunk oldal mezőinél a javasolt méret a mező nevében szerepel.
-- A **Rólunk oldal saját fotói** (Csapat / iroda, Hűtős szerelvények, Fejléc, Raktár): ha a mező üres, az oldalon „Kép helye” jelölés látszik. A Fejléc üresen hagyva a *Rólunk – nyitókép* fotót használja.
+- A **Rólunk oldal saját fotói** (Csapat / iroda, Hűtős szerelvények, Fejléc, Raktár): ha a mező üres, az éles oldalon egy meglévő fotó áll a helyén; az **előnézeten** „Kép helye” jelölés mutatja, hogy itt még saját fotó hiányzik.
 - **Megosztási kép (OG-kép):** a SEO menüben oldalanként megadható; 1200 × 630-ra vágva jelenik meg a Facebookon, LinkedInen. Üresen az oldal saját nyitóképe lesz.
 - Csak olyan képet töltsön fel, amelynek felhasználási joga a cégé (saját fotó vagy szabad licencű kép).
 

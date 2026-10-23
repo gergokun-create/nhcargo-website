@@ -64,9 +64,9 @@ const imprintHu: LegalPage = {
         'Az Ektv. 4. § f) pontja alapján a tárhelyszolgáltató adatai:',
         {
           table: [
-            ['Név', '[[pl. Render Services, Inc. – a szerződés szerinti pontos név]]'],
-            ['Cím', '[[a tárhelyszolgáltató székhelye]]'],
-            ['E-mail', '[[a tárhelyszolgáltató elérhetősége]]'],
+            ['Név', 'Render Services, Inc.'],
+            ['Cím', '525 Brannan Street, Suite 300, San Francisco, CA 94107, USA'],
+            ['E-mail', 'legal@render.com'],
           ],
         },
       ],
@@ -116,9 +116,9 @@ const imprintEn: LegalPage = {
       blocks: [
         {
           table: [
-            ['Name', '[[e.g. Render Services, Inc. – exact name as per contract]]'],
-            ['Address', '[[hosting provider address]]'],
-            ['Email', '[[hosting provider contact]]'],
+            ['Name', 'Render Services, Inc.'],
+            ['Address', '525 Brannan Street, Suite 300, San Francisco, CA 94107, USA'],
+            ['Email', 'legal@render.com'],
           ],
         },
       ],
@@ -186,12 +186,12 @@ const privacyHu: LegalPage = {
         'Az adatok kezeléséhez az alábbi adatfeldolgozókat vesszük igénybe (a teljes lista: [[ADATFELDOLGOZOK.md alapján véglegesítendő]]):',
         {
           list: [
-            'Tárhelyszolgáltató: [[név, székhely – pl. Render Services, Inc.]]',
-            'E-mail-szolgáltató: [[az info@nhcargo.hu fiók szolgáltatója]]',
+            'Tárhelyszolgáltató: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
+            'E-mail-szolgáltató (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Írország)',
             'Űrlapkezelés: Formspree, Inc. (USA) [[székhely – a szolgáltató adatvédelmi tájékoztatója szerint]]',
           ],
         },
-        '**Harmadik országba történő továbbítás:** [[ha az adatfeldolgozó az EGT-n kívül (pl. USA) kezel adatot: a továbbítás jogalapja, pl. az EU–USA adatvédelmi keretrendszer (DPF) vagy általános szerződési feltételek (SCC) – jogi ellenőrzés]]',
+        '**Harmadik országba történő továbbítás:** a Render Services, Inc. (USA) esetében az Európai Bizottság általános szerződési feltételei (SCC) alapján, a Render adatfeldolgozói megállapodása szerint; a Microsoft az EU–USA adatvédelmi keretrendszer (DPF) résztvevője; a Formspree, Inc. (USA) esetében [[a továbbítás jogalapja – a Formspree feltételei alapján kitöltendő]]. [[A teljes rész – jogi ellenőrzés]]',
       ],
     },
     {
@@ -282,12 +282,12 @@ const privacyEn: LegalPage = {
       blocks: [
         {
           list: [
-            'Hosting provider: [[name, seat – e.g. Render Services, Inc.]]',
-            'Email provider: [[provider of the info@nhcargo.hu mailbox]]',
+            'Hosting provider: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
+            'Email provider (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland)',
             'Form handling: Formspree, Inc. (USA) [[registered address – as per the provider’s privacy policy]]',
           ],
         },
-        '**Transfers outside the EEA:** [[e.g. EU–US Data Privacy Framework or Standard Contractual Clauses – legal review]]',
+        '**Transfers outside the EEA:** for Render Services, Inc. (USA), on the basis of the European Commission’s Standard Contractual Clauses (SCC) under Render’s data processing addendum; Microsoft participates in the EU–US Data Privacy Framework (DPF); for Formspree, Inc. (USA), [[legal basis – to be completed from Formspree’s terms]]. [[Whole section – legal review]]',
       ],
     },
     {
