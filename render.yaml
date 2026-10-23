@@ -2,7 +2,8 @@
 # Docs: https://render.com/docs/blueprint-spec
 #
 #  nhcargo-website   static site (www.nhcargo.hu) incl. the Decap CMS admin at /admin/
-#  nhcargo-cms-auth  GitHub login helper for the admin (Free web service, sleeps when idle)
+#  nhcargo-cms-auth  small backend: admin GitHub login + quote request form → info@nhcargo.hu
+#                    via Microsoft 365 (Free web service, sleeps when idle; see M365_BEALLITAS.md)
 services:
   - type: web
     name: nhcargo-website
@@ -19,9 +20,6 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "24"
-      # Contact form endpoint (Formspree URL or own backend) – set in the Render dashboard
-      - key: PUBLIC_FORM_ENDPOINT
-        sync: false
     headers:
       # HTTPS only (Render redirects HTTP → HTTPS automatically). Add "; preload"
       # only after the domain has run on HTTPS without problems for a while.
@@ -75,6 +73,18 @@ services:
         sync: false
       - key: GITHUB_CLIENT_SECRET
         sync: false
-      # Where the admin runs; the login token is only handed to these origins
+      # Site origins: the admin login token is only handed to these, and the quote form
+      # is only accepted from these
       - key: ALLOWED_ORIGINS
         value: https://www.nhcargo.hu,https://nhcargo-website.onrender.com
+      # Quote request form → email through Microsoft 365 (Entra app, see M365_BEALLITAS.md)
+      - key: MS_TENANT_ID
+        sync: false
+      - key: MS_CLIENT_ID
+        sync: false
+      - key: MS_CLIENT_SECRET
+        sync: false
+      - key: MAIL_SENDER
+        value: info@nhcargo.hu
+      - key: MAIL_TO
+        value: info@nhcargo.hu

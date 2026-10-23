@@ -7,6 +7,12 @@ import { content } from '../cms';
 
 type Address = { street: string; postalCode: string; city: string; country: string };
 
+/**
+ * Our small backend (cms-auth/ on Render): admin login + quote request form.
+ * CMS_AUTH_URL overrides it if Render gave the service a different address.
+ */
+export const backendUrl = (process.env.CMS_AUTH_URL || 'https://nhcargo-cms-auth.onrender.com').replace(/\/$/, '');
+
 const c = content.site;
 /** Empty optional values are shown as highlighted placeholders on the legal pages (see legal.ts). */
 const orTodo = (value: string, todo: string) => value || `TODO: ${todo}`;
@@ -51,19 +57,16 @@ export const site = {
   },
 
   /**
-   * Contact form endpoint (Formspree): https://formspree.io/f/<your-form-id>
-   * Set at build time with the PUBLIC_FORM_ENDPOINT env variable (Render → Environment).
+   * Quote request form endpoint: our backend emails it to info@nhcargo.hu via Microsoft 365
+   * (cms-auth/contact.mjs). PUBLIC_FORM_ENDPOINT overrides it at build time.
    */
-  formEndpoint:
-    (import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined) ||
-    'https://formspree.io/f/YOUR_FORM_ID', // TODO: configure – see README
+  formEndpoint: (import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined) || `${backendUrl}/ajanlatkeres`,
 
   map: {
     query: `${c.office.postalCode} ${c.office.city}, ${c.office.street}`,
   },
 };
 
-export const formEndpointIsPlaceholder = site.formEndpoint.includes('YOUR_FORM_ID');
 export const linkedinIsPlaceholder = /linkedin\.com\/?$/.test(site.social.linkedin);
 
 export const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(site.map.query)}&z=15&output=embed`;

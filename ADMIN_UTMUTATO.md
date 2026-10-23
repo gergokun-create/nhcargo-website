@@ -112,8 +112,8 @@ Az admin a **GitHub-fiókot** használja, külön admin-jelszó nincs.
 
 ## 8. Beérkezett ajánlatkérések
 
-Az ajánlatkérő űrlap üzenetei **e-mailben** érkeznek az `info@nhcargo.hu` címre (Formspree).
+Az ajánlatkérő űrlap üzenetei **e-mailben** érkeznek az `info@nhcargo.hu` postafiókba, **„Ajánlatkérés – Név (Cégnév)”** tárggyal. A **Válasz** gomb közvetlenül a kitöltőnek válaszol.
 
-- Megtekintés, törlés: <https://formspree.io> → belépés → az űrlap → **Submissions**.
-- A Formspree az üzeneteket **30 nap** után automatikusan törli.
-- Az ingyenes csomag **havonta 50 üzenetet** fogad; a Formspree felülete mutatja, hányat használt el.
+- Az üzenetek csak a postafiókban vannak meg – a weboldal nem tárolja őket. Megőrzésük és törlésük a postafiókban történik.
+- Ha az első küldés lassú (kb. fél–egy perc), az a háttérszolgáltatás ébredése; az oldal addig „Küldés…” állapotot mutat.
+- A címzett módosítása, illetve hiba esetén a teendők: `M365_BEALLITAS.md`.

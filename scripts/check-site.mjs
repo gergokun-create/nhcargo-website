@@ -35,6 +35,11 @@ const exists = (url) => {
 };
 const len = (s) => [...s].length;
 
+if (pages.length === 0) {
+  console.error(`Nincs egyetlen oldal sem a ${dist} mappában – sikertelen volt a build?`);
+  process.exit(1);
+}
+
 let failed = 0;
 for (const file of pages.sort()) {
   const html = fs.readFileSync(file, 'utf8');
