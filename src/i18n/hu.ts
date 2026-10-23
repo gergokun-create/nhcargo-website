@@ -491,7 +491,7 @@ export const hu: Dictionary = {
     placeholder: { label: 'Kép helye', file: 'Fájl', size: 'Javasolt méret' },
     slots: {
       fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
-      csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo csapata' },
+      csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo Kft. logója – Out of box' },
       flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
       raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'NH Cargo logós félpótkocsik a raktár rakodókapuinál, napsütésben' },
     },

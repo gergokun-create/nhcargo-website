@@ -1,51 +1,31 @@
 ---
 /**
- * NH Cargo logo – vector redraw of the supplied logo
- * (original: src/assets/brand/nh-cargo-logo-original.jpg).
- * The cube mark is SVG, the wordmark is live text, so it stays crisp at any size.
+ * NH Cargo logo (official vector file: src/assets/brand/nh-cargo-logo.svg).
+ * To change the logo, replace that SVG file – header, footer and the About page use it.
  */
+import logoUrl from '../assets/brand/nh-cargo-logo.svg?url';
+
 interface Props {
   class?: string;
-  /** Show the "OUT OF BOX" tagline under the wordmark. */
-  tagline?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  alt?: string;
 }
 
-const { class: className = '', tagline = true, size = 'md' } = Astro.props;
-const gradientId = `nh-gold-${Math.random().toString(36).slice(2, 8)}`;
+const { class: className = '', size = 'md', alt = 'NH Cargo – Out of box' } = Astro.props;
 
+// The logo is 3.32 : 1 (width : height)
 const sizes = {
-  sm: { mark: 'h-8 w-8', name: 'text-lg', tag: 'text-[0.55rem]', bar: 'h-8' },
-  md: { mark: 'h-10 w-10', name: 'text-xl', tag: 'text-[0.62rem]', bar: 'h-10' },
-  lg: { mark: 'h-14 w-14', name: 'text-3xl', tag: 'text-xs', bar: 'h-14' },
+  sm: { cls: 'h-9', w: 120, h: 36 },
+  md: { cls: 'h-11', w: 146, h: 44 },
+  lg: { cls: 'h-16', w: 212, h: 64 },
 }[size];
 ---
 
-<span class:list={['inline-flex items-center gap-3', className]}>
-  <svg viewBox="0 0 129 128" class:list={[sizes.mark, 'shrink-0']} aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#A9792F"></stop>
-        <stop offset=".32" stop-color="#D3B05E"></stop>
-        <stop offset=".5" stop-color="#F3E59C"></stop>
-        <stop offset=".68" stop-color="#D3B05E"></stop>
-        <stop offset="1" stop-color="#A9792F"></stop>
-      </linearGradient>
-    </defs>
-    <path
-      fill={`url(#${gradientId})`}
-      fill-rule="evenodd"
-      d="M64.5 0 129 18v90l-64.5 20L0 108V18Zm-58.5 27v75l56-15V43.5Zm62 16.5V87l56 15V27Z"></path>
-  </svg>
-  <span class:list={['w-px shrink-0 bg-gold-500/80', sizes.bar]} aria-hidden="true"></span>
-  <span class="flex flex-col leading-none">
-    <span class:list={['font-display font-extrabold tracking-wide text-gold-400', sizes.name]}>NH CARGO</span>
-    {
-      tagline && (
-        <span class:list={['mt-1 font-display font-medium tracking-[0.2em] text-gold-400/85 uppercase', sizes.tag]}>
-          Out of box
-        </span>
-      )
-    }
-  </span>
-</span>
+<img
+  src={logoUrl}
+  alt={alt}
+  width={sizes.w}
+  height={sizes.h}
+  class:list={['block w-auto shrink-0', sizes.cls, className]}
+  decoding="async"
+/>

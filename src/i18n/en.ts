@@ -488,7 +488,7 @@ export const en: Dictionary = {
     placeholder: { label: 'Image goes here', file: 'File', size: 'Recommended size' },
     slots: {
       fejlec: { title: 'Header background', alt: 'NH Cargo refrigerated truck on the road' },
-      csapat: { title: 'Team / office', alt: 'The NH Cargo team' },
+      csapat: { title: 'Team / office', alt: 'NH Cargo Kft. logo – Out of box' },
       flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
       raktar: { title: 'Cold storage along the M0', alt: 'Semi-trailers with the NH Cargo logo docked at warehouse loading bays in sunshine' },
     },

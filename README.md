@@ -35,7 +35,7 @@ public/                     Változatlanul kimásolt fájlok
   contact.php               Opcionális PHP levelező az űrlaphoz
 src/
   assets/images/            Fotók (build közben WebP-re optimalizálva)
-  assets/brand/             Az eredeti logófájl
+  assets/brand/             A hivatalos logó (SVG)
   components/               Újrahasznosítható elemek
     Header, Footer, Hero, ServiceCard, FeatureCard, ImageSlot, CertBadges,
     CTA, ContactForm, MapEmbed, Logo, Icon, SectionHeading, LegalContent
@@ -90,7 +90,7 @@ A `/rolunk/` (angolul `/en/about/`) oldalon szaggatott keretes **„Kép helye�
 | Fájlnév | Hol jelenik meg | Javasolt méret |
 | --- | --- | --- |
 | `fejlec.jpg` | az oldal tetején lévő háttérkép (amíg nincs, stockfotó látszik) | 1920 × 1080 px |
-| `csapat.jpg` | Cégbemutatkozás mellett | 1600 × 1200 px |
+| `csapat.jpg` | Cégbemutatkozás mellett (most a logó van itt: `csapat.png` – saját fotó feltöltésekor azt törölje) | 1600 × 1200 px |
 | `flotta.jpg` | Fő tevékenységünk / Járműflotta mellett | 1600 × 1200 px |
 | `raktar.jpg` | Raktározás és átrakás / Ügyelet mellett (most stockfotó, a Pexelsről) | 1600 × 1200 px |
 
@@ -106,7 +106,7 @@ A kép a következő buildnél (vagy `npm run dev` alatt azonnal) a doboz helyé
 
 A képeket az Astro build közben automatikusan reszponzív **WebP** formátumra alakítja, és késleltetve (lazy load) tölti be. A jelenlegi fotók az [Unsplash](https://unsplash.com) oldalról származnak (szabadon felhasználhatók, a forrás a `src/data/images.ts` fájlban szerepel).
 
-**Logó:** a fejlécben és a láblécben a mellékelt logó vektoros (SVG) újrarajzolása szerepel (`src/components/Logo.astro`), hogy minden méretben éles legyen. Az eredeti fájl: `src/assets/brand/nh-cargo-logo-original.jpg`. Ha rendelkezésre áll az eredeti vektoros logó (SVG/AI/PDF), érdemes azzal lecserélni.
+**Logó:** a hivatalos vektoros logó: `src/assets/brand/nh-cargo-logo.svg`. Ezt használja a fejléc és a lábléc (`src/components/Logo.astro`). Ha a fájlt azonos néven lecseréli, mindenhol frissül. A favicon és az alkalmazásikonok (`public/favicon.svg`, `icon-*.png`, `apple-touch-icon.png`), a megosztási kép (`public/og-default.jpg`), valamint a Rólunk oldal „Csapat / iroda” képe (`src/assets/images/rolunk/csapat.png`) ugyanebből a logóból készült; ezeket logócsere esetén újra kell generálni.
 
 ---
 
@@ -202,5 +202,4 @@ Töltse fel a `dist/` mappa **tartalmát** (a rejtett `.htaccess` fájllal együ
 | 10 | Adatvédelmi tájékoztató: adatvédelmi kapcsolattartó, **megőrzési idő**, **adatfeldolgozók** (tárhely, űrlap-, e-mail-szolgáltató), adatbiztonsági intézkedések | `src/i18n/legal.ts` |
 | 11 | A jogi szövegek (különösen a jogalap) **ellenőrzése jogi szakértővel** | `src/i18n/legal.ts` |
 | 12 | **Végleges domain** megerősítése (jelenleg `https://nhcargo.hu`) | `astro.config.mjs`, `src/data/site.ts`, `public/robots.txt` |
-| 13 | Eredeti **vektoros logó** beszerzése (opcionális, a mostani SVG újrarajzolás) | `src/components/Logo.astro`, `public/favicon.svg` |
 | 14 | Saját fotók a flottáról / telephelyről (opcionális, a stockfotók helyett) | `src/assets/images/`, `src/data/images.ts` |

@@ -7,6 +7,7 @@
  * Until a file exists, the page shows a dashed placeholder box in its place.
  *
  * Current photos:
+ *  csapat.png – NH Cargo logo on a dark background (placeholder until a team / office photo is added)
  *  raktar.jpg – stock photo by Tom Jackson, Pexels (Pexels License), https://www.pexels.com/photo/27099093/ (edited: NH Cargo logo added)
  *               Replace it with a photo of the own M0 cold store when available.
  */
