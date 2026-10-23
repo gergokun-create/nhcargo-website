@@ -9,6 +9,10 @@ import tailwindcss from '@tailwindcss/vite';
 const SITE_URL = process.env.SITE_URL || 'https://www.nhcargo.hu';
 const BASE_PATH = process.env.BASE_PATH || '/';
 
+// Render pull request previews (admin drafts) are public *.onrender.com URLs:
+// keep them out of search engines like the GitHub Pages preview.
+if (process.env.IS_PULL_REQUEST === 'true') process.env.PUBLIC_NOINDEX = 'true';
+
 export default defineConfig({
   site: SITE_URL,
   base: BASE_PATH,

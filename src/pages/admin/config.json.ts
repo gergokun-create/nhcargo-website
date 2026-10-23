@@ -40,7 +40,7 @@ const config = {
   locale: 'hu',
   site_url: 'https://www.nhcargo.hu',
   display_url: 'https://www.nhcargo.hu',
-  logo_url: '/admin/logo.svg',
+  logo_url: 'logo.svg',
   media_folder: 'src/assets/images',
   public_folder: '/src/assets/images',
   // Uploads are re-encoded as WebP without metadata (GPS etc.); sizes are made at build time

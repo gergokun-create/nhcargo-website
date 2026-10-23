@@ -1,0 +1,12 @@
+{
+  "name": "nhcargo-cms-auth",
+  "private": true,
+  "description": "GitHub login helper for the Decap CMS admin (no dependencies)",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
