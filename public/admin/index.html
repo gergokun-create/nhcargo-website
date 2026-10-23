@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!--
+      Decap CMS needs: 'unsafe-eval' (config schema validation), 'wasm-unsafe-eval' (WebP encoder),
+      inline styles (its CSS-in-JS), the GitHub API, the login helper (*.onrender.com) and
+      localhost:8081 for local editing (npx decap-server).
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.githubusercontent.com https://github.com; connect-src 'self' https://api.github.com https://*.onrender.com http://localhost:8081 blob: data:; frame-src 'self' blob:; worker-src 'self' blob:; font-src 'self' data:; base-uri 'self'; form-action 'self'; object-src 'none'"
+    />
+    <title>NH Cargo – admin</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link href="config.json" type="text/yaml" rel="cms-config-url" />
+  </head>
+  <body>
+    <noscript>Az admin felülethez JavaScript szükséges.</noscript>
+    <script src="manual-init.js"></script>
+    <script src="vendor/decap-cms.js"></script>
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>

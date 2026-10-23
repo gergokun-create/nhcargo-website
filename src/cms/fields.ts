@@ -66,6 +66,8 @@ export function text(name: string, label: string, o: Common & { max?: number } =
 export function image(name: string, label: string, o: Common = {}): Field {
   const decap = decapBase(name, label, 'image', o, 'duplicate');
   decap.choose_url = false;
+  // Upload limit of the default media library (bytes); uploads are re-encoded as WebP (see config.json.ts)
+  decap.media_library = { config: { max_file_size: 10 * 1024 * 1024 } };
   const path = z
     .string()
     .trim()
