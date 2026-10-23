@@ -192,7 +192,6 @@ Töltse fel a `dist/` mappa **tartalmát** (a rejtett `.htaccess` fájllal együ
 | --- | --- | --- |
 | 1 | **Űrlap-végpont** beállítása (Formspree azonosító vagy `/contact.php`) | `src/data/site.ts` → `formEndpoint` (vagy `.env`) |
 | 2 | PHP levelező esetén címzett és feladó e-mail-cím | `public/contact.php` → `MAIL_TO`, `MAIL_FROM` |
-| 3 | **LinkedIn**-oldal valódi URL-je | `src/data/site.ts` → `social.linkedin` |
 | 4 | **Cégjegyzékszám** | `src/data/site.ts` → `registration.companyNumber` |
 | 5 | **Adószám** és **közösségi adószám** | `src/data/site.ts` → `registration.taxNumber`, `euVatNumber` |
 | 6 | Nyilvántartó **cégbíróság** | `src/data/site.ts` → `registration.registryCourt` |

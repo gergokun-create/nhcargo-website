@@ -41,8 +41,7 @@ export const site = {
   },
 
   social: {
-    // TODO: replace with the company's real LinkedIn page URL
-    linkedin: 'https://www.linkedin.com/',
+    linkedin: 'https://www.linkedin.com/company/nh-cargo-kft/',
   },
 
   /**
