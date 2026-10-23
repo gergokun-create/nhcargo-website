@@ -1,6 +1,6 @@
 # Admin felület – terv (előfizetés nélkül: Decap CMS + GitHub + Render Free)
 
-> Állapot: **javaslat, jóváhagyásra vár.** Semmi nincs még megvalósítva.
+> Állapot: **jóváhagyva (2026-10-23), megvalósítva** az `admin-decap` ágon. Használat: `ADMIN_UTMUTATO.md`, élesítés: `DEPLOY.md`.
 > Feltétel: ne legyen fizetős előfizetés. Csak ingyenes csomagok: GitHub, Render (Static Site + Free web service), Formspree Free.
 > Ellenőrizve: 2026-10-23 (Decap CMS 3.17.1, render.com/docs, formspree.io/plans).
 

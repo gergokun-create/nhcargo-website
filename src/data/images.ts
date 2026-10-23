@@ -28,9 +28,9 @@ const files = import.meta.glob<ImageMetadata>('/src/assets/images/*.{jpg,jpeg,pn
   import: 'default',
 });
 
-/** Image file chosen in the admin ("/src/assets/images/<file>") → optimisable image. */
+/** Image chosen in the admin ("/admin/media/<file>" = src/assets/images/<file>) → optimisable image. */
 export function resolveImage(path: string): ImageMetadata {
-  const image = files[path];
+  const image = files[path.replace(/^\/admin\/media\//, '/src/assets/images/')];
   if (!image) throw new Error(`A kép nem található a médiatárban: ${path} (src/cms/content/images.json vagy seo.json)`);
   return image;
 }

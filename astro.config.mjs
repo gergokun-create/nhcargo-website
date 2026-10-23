@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import adminMedia from './integrations/admin-media.mjs';
 
 // Final domain (production on Render). robots.txt and the sitemap are generated from it.
 // SITE_URL / BASE_PATH env variables override these, e.g. for the GitHub Pages
@@ -45,6 +46,7 @@ export default defineConfig({
   // No code blocks on the site → no Shiki (its inline styles would conflict with the CSP)
   markdown: { syntaxHighlight: false },
   integrations: [
+    adminMedia(),
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/admin/'),
     }),

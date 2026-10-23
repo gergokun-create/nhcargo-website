@@ -62,7 +62,7 @@ export function text(name: string, label: string, o: Common & { max?: number } =
   return { decap, zod: textZod(o) };
 }
 
-/** Image from the media library. Stored as "/src/assets/images/<file>"; resolved in src/content/images.ts. */
+/** Image from the media library (src/assets/images/). Stored as "/admin/media/<file>"; resolved in src/data/images.ts. */
 export function image(name: string, label: string, o: Common = {}): Field {
   const decap = decapBase(name, label, 'image', o, 'duplicate');
   decap.choose_url = false;
@@ -71,7 +71,7 @@ export function image(name: string, label: string, o: Common = {}): Field {
   const path = z
     .string()
     .trim()
-    .regex(/^\/src\/assets\/images\/[^/]+\.(jpe?g|png|webp)$/i, 'csak JPG, PNG vagy WebP kép a médiatárból');
+    .regex(/^\/admin\/media\/[^/]+\.(jpe?g|png|webp)$/i,'csak JPG, PNG vagy WebP kép a médiatárból');
   return { decap, zod: o.required === false ? path.or(z.literal('')).default('') : path };
 }
 

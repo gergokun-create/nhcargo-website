@@ -42,7 +42,8 @@ const config = {
   display_url: 'https://www.nhcargo.hu',
   logo_url: 'logo.svg',
   media_folder: 'src/assets/images',
-  public_folder: '/src/assets/images',
+  // Thumbnails in the admin: the files are also served at /admin/media/ (integrations/admin-media.mjs)
+  public_folder: '/admin/media',
   // Uploads are re-encoded as WebP without metadata (GPS etc.); sizes are made at build time
   media_processing: { enabled: true, format: { enabled: true, default: 'webp' }, quality: 82, strip_metadata: true },
   i18n: { structure: 'single_file', locales: [...langs], default_locale: defaultLang },
