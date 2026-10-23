@@ -17,9 +17,9 @@ export const whyUs = [
 ] as const satisfies ReadonlyArray<Item<string>>;
 
 export const services = [
-  { id: 'domestic', icon: 'truck', image: 'whiteTruck' },
+  { id: 'domestic', icon: 'truck', image: 'countryRoadTruck' },
   { id: 'crossdock', icon: 'arrowLeftRight', image: 'dockDoors' },
-  { id: 'international', icon: 'globe', image: 'twoTrucks' },
+  { id: 'international', icon: 'globe', image: 'sunnyRoadTruck' },
 ] as const satisfies ReadonlyArray<Item<string>>;
 
 export const sustainabilityPillars = [

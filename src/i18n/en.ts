@@ -69,11 +69,11 @@ export const en: Dictionary = {
   },
 
   alt: {
-    heroTrucks: 'White truck with two trailers on a sunny country highway, mountains and blue sky behind',
-    truckOnRoad: 'White articulated truck driving along a road between green hills',
-    twoTrucks: 'A white and a blue truck driving side by side on a sunny motorway',
+    heroTrucks: 'Orange truck on a motorway between green rolling hills',
+    reeferTruck: 'Orange Volvo tractor unit with a refrigerated trailer on the motorway',
+    sunnyRoadTruck: 'White truck with a white box trailer driving through sunny green countryside',
     reeferTrailers: 'Row of refrigerated semi-trailers parked at a depot under a clear blue sky',
-    whiteTruck: 'White truck with a box trailer at a sunny intersection',
+    countryRoadTruck: 'Truck on a winding country road with a village church in the background',
     dockDoors: 'Blue loading dock doors inside a logistics centre',
     logisticsHall: 'Bright, modern logistics hall with high-speed doors and a truck at the dock',
     windTurbines: 'Wind turbine above green farmland under a blue sky',

@@ -71,11 +71,11 @@ export const hu: Dictionary = {
   },
 
   alt: {
-    heroTrucks: 'Fehér nyerges vontató két pótkocsival napsütéses országúton, hegyek és kék ég előtt',
-    truckOnRoad: 'Fehér nyerges vontató félpótkocsival halad egy zöld dombok közötti úton',
-    twoTrucks: 'Fehér és kék kamion egymás mellett halad egy napos autópályán',
+    heroTrucks: 'Narancssárga kamion halad egy zöld dombok közötti autópályán',
+    reeferTruck: 'Narancssárga Volvo nyerges vontató hűtött félpótkocsival az autópályán',
+    sunnyRoadTruck: 'Fehér kamion fehér dobozos félpótkocsival napsütéses, zöld vidéken',
     reeferTrailers: 'Hűtőaggregátos félpótkocsik sorban egy telephelyen, tiszta kék ég alatt',
-    whiteTruck: 'Fehér nyerges vontató dobozos félpótkocsival egy napsütéses kereszteződésben',
+    countryRoadTruck: 'Kamion halad egy kanyargós országúton, a háttérben falu templomtoronnyal',
     dockDoors: 'Kék rakodókapuk egy logisztikai központ rakodóterében',
     logisticsHall: 'Világos, modern logisztikai csarnok gyorskapukkal és egy beálló kamionnal',
     windTurbines: 'Szélturbina zöld mezőgazdasági táj felett, kék égbolttal',
