@@ -1,11 +1,12 @@
 ---
 /**
- * Image with a visible placeholder: renders the uploaded photo for the slot,
- * or a dashed "image goes here" box (telling where to upload it in the admin) until one exists.
+ * Photo slot of the About page: the photo chosen in the admin; until there is one,
+ * a stock photo on the live site, or a dashed "image goes here" box (telling where to
+ * upload it in the admin) in local dev and previews – see src/data/aboutImages.ts.
  */
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import { aboutImage, aboutSlots, type AboutSlot } from '../data/aboutImages';
+import { aboutFallback, aboutImage, aboutSlots, showPlaceholders, type AboutSlot } from '../data/aboutImages';
 import { useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -15,8 +16,11 @@ interface Props {
 }
 
 const { lang, slot, class: className = '' } = Astro.props;
-const t = useTranslations(lang).about;
-const image = aboutImage(slot);
+const dict = useTranslations(lang);
+const t = dict.about;
+const own = aboutImage(slot);
+const fallback = own || showPlaceholders ? undefined : aboutFallback(slot);
+const image = own ?? fallback?.image;
 const { ratio, size } = aboutSlots[slot];
 const label = t.slots[slot];
 ---
@@ -26,7 +30,7 @@ const label = t.slots[slot];
     <div class:list={['overflow-hidden rounded-3xl shadow-2xl shadow-ink-900/15', className]}>
       <Image
         src={image}
-        alt={label.alt}
+        alt={fallback ? dict.alt[fallback.key] : label.alt}
         widths={[480, 720, 960, 1200]}
         sizes="(min-width: 1024px) 50vw, 100vw"
         format="webp"

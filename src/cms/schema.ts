@@ -46,7 +46,7 @@ const aboutPhoto = (name: string, label: string) =>
     name,
     label,
     [
-      image('file', 'Kép', { required: false, hint: 'Üresen: „Kép helye” jelölés jelenik meg az oldalon.' }),
+      image('file', 'Kép', { required: false, hint: 'Üresen: élesben egy meglévő fotó, az előnézeten „Kép helye” jelölés jelenik meg.' }),
       str('alt', 'Alternatív szöveg (mit ábrázol a kép)'),
     ],
     { collapsed: true },
