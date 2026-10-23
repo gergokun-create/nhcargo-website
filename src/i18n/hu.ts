@@ -7,41 +7,63 @@ import type { Dictionary } from './types';
 
 export const hu: Dictionary = {
   meta: {
-    about: {
-      title: 'Rólunk – cégbemutatkozás, flotta, tanúsítványok | NH Cargo',
-      description:
-        'Az NH Cargo Kft. nemzetközi és belföldi hűtött FTL fuvarozást végez: 40 dedikált hűtős szerelvény TAPA- és pharma minősítésű kamionokkal, ISO 9001, ISO 14001 és IFS tanúsítvány.',
-    },
     home: {
-      title: 'NH Cargo Kft. – Hűtött és fagyasztott áruszállítás Európa-szerte',
+      title: 'Hűtött fuvarozás és szállítmányozás | NH Cargo Kft.',
       description:
-        'Megbízható hőmérséklet-szabályozott szállítás fagyasztott, hűtött és friss árukhoz. Belföldi és nemzetközi közúti fuvarozás dedikált kapcsolattartóval. Kérjen ajánlatot!',
+        'Belföldi és nemzetközi közúti fuvarozás, szállítmányozás és cross-docking hűtött árukra. 40 hűtős szerelvény, Magyarország és EU.',
+    },
+    about: {
+      title: 'Rólunk – hűtött áruszállító cég Budaörsön | NH Cargo',
+      description:
+        'Az NH Cargo Kft. hűtött közúti fuvarozást végez: 40 hűtős szerelvény, TAPA- és pharma minősítésű kamionok, ISO 9001, ISO 14001 és IFS tanúsítvány.',
     },
     services: {
-      title: 'Szolgáltatások – belföldi, cross-docking és nemzetközi szállítás | NH Cargo',
+      title: 'Fuvarozás és szállítmányozás – szolgáltatások | NH Cargo',
       description:
-        'Belföldi fuvarozás Magyarország egész területén, belföldi cross-docking, valamint nemzetközi közúti szállítás Európa-szerte, valós idejű nyomon követéssel.',
+        'Belföldi fuvarozás, cross-docking és nemzetközi közúti fuvarozás hűtött árukra Magyarországon és az EU-ban, valós idejű nyomon követéssel.',
+    },
+    domestic: {
+      title: 'Belföldi fuvarozás – hűtött áruszállítás | NH Cargo',
+      description:
+        'Gyors, rugalmas belföldi közúti fuvarozás Magyarország egész területén: hűtött, fagyasztott és friss áru kamionos szállítása modern flottával.',
+    },
+    crossdock: {
+      title: 'Cross-docking és raktározás az M0 mentén | NH Cargo',
+      description:
+        'Belföldi cross-docking és hűtött raktározás az M0 autópálya vonalán: az árut közvetlenül átrakjuk, így rövidebb az átfutás és alacsonyabb a költség.',
+    },
+    international: {
+      title: 'Nemzetközi fuvarozás és szállítmányozás | NH Cargo',
+      description:
+        'Nemzetközi közúti fuvarozás és szállítmányozás az EU-ban: hűtött kamionos szállítás valós idejű nyomon követéssel, egyedi árazással.',
     },
     sustainability: {
-      title: 'Fenntarthatóság – zöldebb logisztika | NH Cargo',
+      title: 'Fenntartható fuvarozás – zöldebb logisztika | NH Cargo',
       description:
-        'Optimalizált útvonaltervezés, alternatív üzemanyagok, modern technológia és kevesebb üresjárat: így csökkentjük a szállítás környezeti terhelését.',
+        'Optimalizált útvonaltervezés, alternatív üzemanyagok, modern technológia és kevesebb üresjárat: így csökkentjük a fuvarozás környezeti terhelését.',
     },
     contact: {
-      title: 'Kapcsolat és ajánlatkérés | NH Cargo Kft.',
+      title: 'Kapcsolat és ajánlatkérés – fuvarozás | NH Cargo',
       description:
-        'Kérjen ajánlatot hőmérséklet-szabályozott szállításra! Telefon: +36 70 902 5961, e-mail: info@nhcargo.hu. Iroda: 2040 Budaörs, Baross u. 165.',
+        'Kérjen ajánlatot hűtött közúti fuvarozásra! Telefon: +36 70 902 5961, e-mail: info@nhcargo.hu, iroda: 2040 Budaörs, Baross u. 165.',
     },
     imprint: {
       title: 'Impresszum | NH Cargo Kft.',
-      description: 'Az NH Cargo Kft. cégadatai és a weboldal üzemeltetésével kapcsolatos információk.',
+      description:
+        'Az NH Cargo Kft. cégadatai és a weboldal üzemeltetésével kapcsolatos információk.',
     },
     privacy: {
-      title: 'Adatvédelmi tájékoztató | NH Cargo Kft.',
+      title: 'Adatkezelési tájékoztató | NH Cargo Kft.',
       description:
         'Tájékoztató arról, hogyan kezeli az NH Cargo Kft. a személyes adatokat a GDPR előírásainak megfelelően.',
     },
+    cookies: {
+      title: 'Süti tájékoztató | NH Cargo Kft.',
+      description:
+        'Tájékoztató a weboldalon használt sütikről és hasonló technológiákról, valamint a hozzájárulás kezeléséről.',
+    },
   },
+
 
   nav: {
     home: 'Főoldal',
@@ -50,7 +72,11 @@ export const hu: Dictionary = {
     sustainability: 'Fenntarthatóság',
     contact: 'Kapcsolat',
     imprint: 'Impresszum',
-    privacy: 'Adatvédelem',
+    privacy: 'Adatkezelési tájékoztató',
+    domestic: 'Belföldi fuvarozás',
+    crossdock: 'Cross-docking és raktározás',
+    international: 'Nemzetközi fuvarozás',
+    cookies: 'Süti tájékoztató',
     quote: 'Ajánlatkérés',
     menuOpen: 'Menü megnyitása',
     menuClose: 'Menü bezárása',
@@ -179,6 +205,7 @@ export const hu: Dictionary = {
     items: {
       domestic: {
         title: 'Belföldi szállítás',
+        pageTitle: 'Belföldi közúti fuvarozás',
         short: 'Gyors, rugalmas kiszállítás Magyarország bármely pontjára, kiterjedt belföldi hálózattal.',
         lead: 'Gyors, rugalmas és megbízható kiszállítás Magyarország egész területén.',
         points: [
@@ -206,6 +233,7 @@ export const hu: Dictionary = {
       },
       crossdock: {
         title: 'Belföldi cross-docking',
+        pageTitle: 'Belföldi cross-docking és raktározás',
         short:
           'Az áru közvetlenül a beérkező járműről a kimenő szállítmányba kerül – rövidebb átfutás, alacsonyabb költség.',
         lead: 'Az áru közvetlenül a beérkező szállítmányból a kimenőbe kerül – felesleges raktározás nélkül.',
@@ -230,6 +258,7 @@ export const hu: Dictionary = {
       },
       international: {
         title: 'Nemzetközi szállítás',
+        pageTitle: 'Nemzetközi közúti fuvarozás és szállítmányozás',
         short: 'Közúti fuvarozás Európa-szerte valós idejű nyomon követéssel, versenyképes, egyedi árazással.',
         lead: 'Széles körű tapasztalat a nemzetközi közúti fuvarozásban, Európa-szerte.',
         points: [
@@ -252,6 +281,8 @@ export const hu: Dictionary = {
         ],
       },
     },
+    related: 'További szolgáltatásaink',
+    question: { title: 'Kérdése van ezzel a szolgáltatással kapcsolatban?', text: 'Írja meg, mit, honnan és hová szállítana – dedikált kapcsolattartója hamarosan egyedi ajánlattal jelentkezik.' },
     process: {
       eyebrow: 'Így dolgozunk',
       title: 'Az ajánlatkéréstől a kiszállításig',
@@ -335,7 +366,7 @@ export const hu: Dictionary = {
     map: {
       title: 'Itt talál minket',
       consent:
-        'A térképet a Google Maps szolgáltatja. Betöltésekor a Google sütiket helyezhet el és adatokat kezelhet.',
+        'A térképet a Google Maps szolgáltatja. Betöltésekor a Google sütiket helyezhet el és adatokat kezelhet. A „Süti beállítások” között tartósan is engedélyezheti.',
       load: 'Térkép betöltése',
       open: 'Megnyitás a Google Térképen',
       iframeTitle: 'Az NH Cargo budaörsi irodájának térképe',
@@ -374,7 +405,7 @@ export const hu: Dictionary = {
     },
     consent: {
       before: 'Elolvastam az ',
-      link: 'adatvédelmi tájékoztatót',
+      link: 'adatkezelési tájékoztatót',
       after: ', és hozzájárulok, hogy az NH Cargo Kft. megkeresésem megválaszolása céljából kezelje az adataimat.',
     },
     required: 'kötelező',
@@ -393,7 +424,7 @@ export const hu: Dictionary = {
       required: 'Kérjük, töltse ki ezt a mezőt.',
       email: 'Kérjük, érvényes e-mail-címet adjon meg.',
       phone: 'Kérjük, érvényes telefonszámot adjon meg.',
-      consent: 'A folytatáshoz kérjük, fogadja el az adatvédelmi tájékoztatót.',
+      consent: 'A folytatáshoz kérjük, fogadja el az adatkezelési tájékoztatót.',
       date: 'Kérjük, ne múltbeli dátumot válasszon.',
       summary: 'Kérjük, javítsa a megjelölt mezőket.',
     },
@@ -415,11 +446,12 @@ export const hu: Dictionary = {
     seat: 'Székhely',
     rights: 'Minden jog fenntartva.',
     linkedin: 'NH Cargo a LinkedInen',
+    cookieSettings: 'Süti beállítások',
   },
 
   legalNotice: {
-    title: 'Sablonszöveg',
-    text: 'Ez az oldal sablon. A sárgával kiemelt részeket a megrendelőnek kell kitöltenie, a végleges szöveget pedig jogi szakértővel ajánlott ellenőriztetni.',
+    title: 'JOGI ELLENŐRZÉS SZÜKSÉGES',
+    text: 'Ez az oldal sablon, nem végleges jogi szöveg. A sárgával kiemelt részeket ki kell tölteni, a teljes szöveget pedig jogi szakértővel jóvá kell hagyatni.',
   },
 
   notFound: {
@@ -477,7 +509,7 @@ export const hu: Dictionary = {
     duty: {
       title: 'Ügyelet',
       text: 'Hétvégi, valamint reggel 04:00–07:00 közötti ügyeletet biztosítunk, így a felmerülő problémákra gyorsan reagálunk.',
-      hours: ['Hétvégi ügyelet', 'Hétköznap 04:00–07:00'],
+      hours: ['Hétvégi ügyelet', 'Reggel 04:00–07:00'],
     },
     strength: {
       title: 'Legnagyobb erősségünk: a rugalmasság',
@@ -494,5 +526,19 @@ export const hu: Dictionary = {
       flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
       raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'NH Cargo logós félpótkocsik a raktár rakodókapuinál, napsütésben' },
     },
+  },
+  consent: {
+    title: 'Sütik és külső tartalmak',
+    text: 'A weboldal működéséhez csak a szükséges adatokat tároljuk. A Google Térkép (külső tartalom) csak az Ön hozzájárulásával töltődik be. Döntését bármikor megváltoztathatja a lábléc „Süti beállítások” linkjén.',
+    accept: 'Elfogadom',
+    reject: 'Elutasítom',
+    settings: 'Beállítások',
+    save: 'Kiválasztottak mentése',
+    dialogTitle: 'Süti beállítások',
+    necessary: { title: 'Szükséges', text: 'A süti-beállítások megjegyzéséhez szükséges. Mindig aktív.' },
+    media: { title: 'Külső tartalmak (Google Térkép)', text: 'A Kapcsolat oldalon a térkép megjelenítése. Betöltéskor a Google sütiket helyezhet el és adatokat (pl. IP-címet) kezelhet.' },
+    alwaysOn: 'Mindig aktív',
+    policy: 'Süti tájékoztató',
+    close: 'Bezárás',
   },
 };

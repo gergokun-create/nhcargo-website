@@ -60,7 +60,9 @@ export interface Dictionary {
   why: Record<WhyId, TitleText>;
   services: {
     hero: PageHero;
-    items: Record<ServiceId, { title: string; short: string; lead: string; points: TitleText[] }>;
+    items: Record<ServiceId, { title: string; pageTitle: string; short: string; lead: string; points: TitleText[] }>;
+    related: string;
+    question: TitleText;
     process: { eyebrow: string; title: string; steps: Record<StepId, TitleText> };
   };
   sustainability: {
@@ -126,9 +128,24 @@ export interface Dictionary {
     seat: string;
     rights: string;
     linkedin: string;
+    cookieSettings: string;
   };
   legalNotice: TitleText;
   notFound: { title: string; text: string };
+  consent: {
+    title: string;
+    text: string;
+    accept: string;
+    reject: string;
+    settings: string;
+    save: string;
+    dialogTitle: string;
+    necessary: TitleText;
+    media: TitleText;
+    alwaysOn: string;
+    policy: string;
+    close: string;
+  };
   about: {
     hero: PageHero;
     intro: TitleText & { stats: Stat[] };

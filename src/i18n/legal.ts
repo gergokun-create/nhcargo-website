@@ -1,19 +1,25 @@
 /**
- * JOGI OLDALAK SZÖVEGEI (Impresszum, Adatvédelmi tájékoztató) – HU + EN.
+ * JOGI OLDALAK SZÖVEGEI – Impresszum, Adatkezelési tájékoztató, Süti tájékoztató (HU + EN).
+ *
+ * ⚠ JOGI ELLENŐRZÉS SZÜKSÉGES – ezek SABLONOK, nem végleges jogi szövegek.
+ * Az oldalakon automatikusan megjelenik a „JOGI ELLENŐRZÉS SZÜKSÉGES” figyelmeztetés.
+ * A végleges szöveget jogi szakértővel kell jóváhagyatni; utána a figyelmeztetés a
+ * LegalContent komponensben (`legalReviewed`) kikapcsolható.
  *
  * Formázás a szövegekben:
- *   [[ ... ]]        → sárgán kiemelt, KITÖLTENDŐ helyőrző
+ *   [[ ... ]]        → sárgán kiemelt, KITÖLTENDŐ / ELLENŐRIZENDŐ rész
+ *   **szöveg**       → félkövér
  *   [szöveg](url)    → hivatkozás
  *
- * FONTOS: ezek sablonszövegek, nem minősülnek jogi tanácsnak.
- * A végleges szöveget ajánlott jogi szakértővel ellenőriztetni.
+ * A kitöltéshez szükséges adatfeldolgozó-lista: ADATFELDOLGOZOK.md (a repó gyökerében).
  */
 import { site, formatAddress } from '../data/site';
-import type { Lang } from './config';
+import { localePath, type Lang } from './config';
 
 export type LegalBlock = string | { list: string[] } | { table: [string, string][] };
 export type LegalSection = { title: string; blocks: LegalBlock[] };
 export type LegalPage = { title: string; updated: string; sections: LegalSection[] };
+export type LegalKey = 'imprint' | 'privacy' | 'cookies';
 
 /** Wraps "TODO: ..." values from site.ts into a highlighted placeholder. */
 const v = (value: string) => (value.startsWith('TODO') ? `[[${value.replace(/^TODO:\s*/, '')}]]` : value);
@@ -21,6 +27,12 @@ const v = (value: string) => (value.startsWith('TODO') ? `[[${value.replace(/^TO
 const seat = formatAddress(site.seat);
 const office = formatAddress(site.office);
 const r = site.registration;
+const dpo = site.dataProtectionContact;
+const mail = (m: string) => `[${m}](mailto:${m})`;
+
+/* ------------------------------------------------------------------ */
+/* IMPRESSZUM                                                          */
+/* ------------------------------------------------------------------ */
 
 const imprintHu: LegalPage = {
   title: 'Impresszum',
@@ -29,18 +41,19 @@ const imprintHu: LegalPage = {
     {
       title: 'A szolgáltató adatai',
       blocks: [
+        'Az elektronikus kereskedelmi szolgáltatások, valamint az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. törvény (Ektv.) 4. §-a alapján:',
         {
           table: [
             ['Cégnév', site.name],
             ['Székhely', seat],
             ['Iroda / telephely', office],
             ['Cégjegyzékszám', v(r.companyNumber)],
-            ['Nyilvántartó bíróság', v(r.registryCourt)],
+            ['Nyilvántartó bíróság', v(r.registryCourt) + ' [[ellenőrizendő]]'],
             ['Adószám', v(r.taxNumber)],
             ['Közösségi adószám', v(r.euVatNumber)],
             ['Képviseli', v(r.representative)],
             ['Telefon', site.phone.display],
-            ['E-mail', `[${site.email}](mailto:${site.email})`],
+            ['E-mail', mail(site.email)],
           ],
         },
       ],
@@ -48,12 +61,12 @@ const imprintHu: LegalPage = {
     {
       title: 'Tárhelyszolgáltató',
       blocks: [
-        'Az elektronikus kereskedelmi szolgáltatásokról szóló 2001. évi CVIII. törvény 4. § f) pontja alapján:',
+        'Az Ektv. 4. § f) pontja alapján a tárhelyszolgáltató adatai:',
         {
           table: [
-            ['Név', '[[tárhelyszolgáltató neve]]'],
-            ['Cím', '[[tárhelyszolgáltató címe]]'],
-            ['E-mail', '[[tárhelyszolgáltató e-mail-címe]]'],
+            ['Név', '[[pl. Render Services, Inc. – a szerződés szerinti pontos név]]'],
+            ['Cím', '[[a tárhelyszolgáltató székhelye]]'],
+            ['E-mail', '[[a tárhelyszolgáltató elérhetősége]]'],
           ],
         },
       ],
@@ -81,18 +94,19 @@ const imprintEn: LegalPage = {
     {
       title: 'Service provider',
       blocks: [
+        'In accordance with Section 4 of Hungarian Act CVIII of 2001 on electronic commerce services:',
         {
           table: [
             ['Company name', site.name],
             ['Registered seat', `${seat}, Hungary`],
             ['Office', `${office}, Hungary`],
             ['Company registration number', v(r.companyNumber)],
-            ['Registry court', v(r.registryCourt)],
+            ['Registry court', v(r.registryCourt) + ' [[to be confirmed]]'],
             ['Tax number', v(r.taxNumber)],
-            ['EU VAT number', v(r.euVatNumber)],
-            ['Represented by', v(r.representative)],
+            ['EU VAT number', '[[EU VAT number, if any]]'],
+            ['Represented by', '[[managing director]]'],
             ['Phone', site.phone.display],
-            ['Email', `[${site.email}](mailto:${site.email})`],
+            ['Email', mail(site.email)],
           ],
         },
       ],
@@ -100,12 +114,11 @@ const imprintEn: LegalPage = {
     {
       title: 'Hosting provider',
       blocks: [
-        'In accordance with Section 4 (f) of Hungarian Act CVIII of 2001 on electronic commerce services:',
         {
           table: [
-            ['Name', '[[hosting provider name]]'],
+            ['Name', '[[e.g. Render Services, Inc. – exact name as per contract]]'],
             ['Address', '[[hosting provider address]]'],
-            ['Email', '[[hosting provider email]]'],
+            ['Email', '[[hosting provider contact]]'],
           ],
         },
       ],
@@ -114,7 +127,7 @@ const imprintEn: LegalPage = {
       title: 'Copyright',
       blocks: [
         'The content of this website – including texts, logo and graphic elements – is the intellectual property of NH Cargo Kft. and may not be used without prior written permission.',
-        'Stock photos used on this website are sourced from Unsplash and Pexels and used under the [Unsplash License](https://unsplash.com/license) and the [Pexels License](https://www.pexels.com/license/).',
+        'Stock photos are sourced from Unsplash and Pexels and used under the [Unsplash License](https://unsplash.com/license) and the [Pexels License](https://www.pexels.com/license/).',
       ],
     },
     {
@@ -126,8 +139,12 @@ const imprintEn: LegalPage = {
   ],
 };
 
+/* ------------------------------------------------------------------ */
+/* ADATKEZELÉSI TÁJÉKOZTATÓ                                            */
+/* ------------------------------------------------------------------ */
+
 const privacyHu: LegalPage = {
-  title: 'Adatvédelmi tájékoztató',
+  title: 'Adatkezelési tájékoztató',
   updated: 'Hatályos: [[ÉÉÉÉ. HH. NN.]]',
   sections: [
     {
@@ -139,55 +156,53 @@ const privacyHu: LegalPage = {
             ['Székhely', seat],
             ['Cégjegyzékszám', v(r.companyNumber)],
             ['Adószám', v(r.taxNumber)],
-            ['E-mail', `[${site.email}](mailto:${site.email})`],
+            ['E-mail', mail(site.email)],
             ['Telefon', site.phone.display],
-            ['Adatvédelmi kapcsolattartó', '[[név és elérhetőség, ha van kijelölt személy]]'],
+            ['Adatkezelési kapcsolattartó', `${dpo.name}, ${mail(dpo.email)}`],
           ],
         },
-        'Az adatkezelő a személyes adatokat az Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR) és az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) előírásainak megfelelően kezeli.',
+        'Személyes adatait az Európai Parlament és a Tanács (EU) 2016/679 rendelete (GDPR), valamint az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) szerint kezeljük. [[Adatvédelmi tisztviselő kijelölése szükséges-e – jogi ellenőrzés]]',
       ],
     },
     {
-      title: '2. Kapcsolatfelvétel és ajánlatkérés',
+      title: '2. Ajánlatkérés és kapcsolatfelvétel',
       blocks: [
         'Az ajánlatkérő űrlap kitöltésekor, illetve e-mailben vagy telefonon történő megkereséskor az alábbi adatokat kezeljük:',
         {
           list: [
-            'vezeték- és keresztnév, cégnév',
-            'e-mail-cím, telefonszám',
-            'a szállítással kapcsolatos adatok (felrakodási és lerakodási hely, áru típusa, hőmérsékleti igény, tervezett időpont)',
-            'az üzenetben megadott egyéb információk',
+            'kötelező: vezeték- és keresztnév, e-mail-cím, üzenet',
+            'nem kötelező: cégnév, telefonszám, felrakodási és lerakodási hely, áru típusa, hőmérsékleti igény, tervezett időpont',
           ],
         },
-        '**Az adatkezelés célja:** a megkeresés megválaszolása, ajánlat készítése és a kapcsolattartás.',
-        '**Jogalap:** az érintett hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont), illetve a szerződés megkötését megelőzően az érintett kérésére történő lépések megtétele (GDPR 6. cikk (1) bekezdés b) pont). [[Jogalapot jogi szakértővel ellenőriztetni.]]',
-        '**Megőrzési idő:** [[pl. a megkeresés lezárásától számított 1 év; szerződés létrejötte esetén a számviteli jogszabályok szerinti 8 év]]',
+        '**Cél:** a megkeresés megválaszolása, árajánlat készítése, kapcsolattartás.',
+        '**Jogalap:** a szerződés megkötését megelőzően az érintett kérésére történő lépések megtétele (GDPR 6. cikk (1) b) pont); jogi személy partner kapcsolattartója esetén az adatkezelő jogos érdeke (GDPR 6. cikk (1) f) pont). [[Jogalap és érdekmérlegelés – jogi ellenőrzés]]',
+        '**Az adatok útja:** [[az űrlap technikai megoldásától függően: pl. „az üzenetet e-mailben kapjuk meg az info@nhcargo.hu címre, és a weboldal adminisztrációs felületén tároljuk” – kitöltendő a végleges megoldás szerint]]',
+        '**Megőrzési idő:** [[pl. a beérkezéstől számított 12 hónap, ezt követően automatikus törlés; szerződés létrejötte esetén a számviteli jogszabályok szerint 8 év]]',
       ],
     },
     {
-      title: '3. Adatfeldolgozók',
+      title: '3. Adatfeldolgozók és címzettek',
       blocks: [
-        'Az adatok kezeléséhez az alábbi adatfeldolgozókat vesszük igénybe:',
+        'Az adatok kezeléséhez az alábbi adatfeldolgozókat vesszük igénybe (a teljes lista: [[ADATFELDOLGOZOK.md alapján véglegesítendő]]):',
         {
           list: [
-            'Tárhelyszolgáltató: [[név, cím]]',
-            'Űrlapszolgáltató: [[pl. Formspree, Inc. (USA) – adattovábbítás az Európai Bizottság általános szerződési feltételei (SCC) alapján; vagy a saját tárhelyen futó PHP levelező esetén nincs külön adatfeldolgozó]]',
-            'E-mail-szolgáltató: [[név, cím]]',
+            'Tárhelyszolgáltató: [[név, székhely – pl. Render Services, Inc.]]',
+            'E-mail-szolgáltató: [[az info@nhcargo.hu fiók szolgáltatója]]',
+            'Űrlapkezelés: [[saját rendszer vagy külső szolgáltató neve]]',
           ],
         },
+        '**Harmadik országba történő továbbítás:** [[ha az adatfeldolgozó az EGT-n kívül (pl. USA) kezel adatot: a továbbítás jogalapja, pl. az EU–USA adatvédelmi keretrendszer (DPF) vagy általános szerződési feltételek (SCC) – jogi ellenőrzés]]',
       ],
     },
     {
-      title: '4. Sütik (cookie-k) és külső szolgáltatások',
+      title: '4. Sütik és külső tartalmak',
       blocks: [
-        'Weboldalunk nem használ sütiket, és nem alkalmaz látogatottságmérő vagy marketingcélú eszközöket. A betűtípusokat saját szerverünkről töltjük be.',
-        'A Kapcsolat oldalon elhelyezett Google Térkép kizárólag akkor töltődik be, ha Ön a „Térkép betöltése” gombra kattint. Ekkor a Google Ireland Ltd. / Google LLC sütiket helyezhet el, és adatokat (például IP-címet) kezelhet. Erről bővebben a [Google adatvédelmi irányelveiben](https://policies.google.com/privacy?hl=hu) tájékozódhat.',
+        `A weboldalon használt sütikről és hasonló technológiákról a [Süti tájékoztatóban](${localePath('cookies', 'hu')}) olvashat. Nem használunk analitikai vagy marketingcélú sütiket. A Google Térkép csak az Ön hozzájárulása vagy kifejezett kattintása után töltődik be.`,
       ],
     },
     {
       title: '5. Az Ön jogai',
       blocks: [
-        'Az adatkezeléssel kapcsolatban Önt az alábbi jogok illetik meg:',
         {
           list: [
             'hozzáférés a személyes adatokhoz (GDPR 15. cikk)',
@@ -195,17 +210,17 @@ const privacyHu: LegalPage = {
             'törlés („elfeledtetéshez való jog”, 17. cikk)',
             'az adatkezelés korlátozása (18. cikk)',
             'adathordozhatóság (20. cikk)',
-            'tiltakozás (21. cikk)',
+            'tiltakozás a jogos érdeken alapuló adatkezelés ellen (21. cikk)',
             'a hozzájárulás bármikori visszavonása, amely nem érinti a visszavonás előtti adatkezelés jogszerűségét',
           ],
         },
-        `Kérelmét a [${site.email}](mailto:${site.email}) címre küldheti el; arra legkésőbb egy hónapon belül válaszolunk.`,
+        `Kérelmét a ${mail(dpo.email)} vagy a ${mail(site.email)} címre küldheti; legkésőbb egy hónapon belül válaszolunk.`,
       ],
     },
     {
       title: '6. Jogorvoslat',
       blocks: [
-        'Ha úgy ítéli meg, hogy személyes adatai kezelése sérti a jogszabályokat, panaszt tehet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH):',
+        'Panaszt tehet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH):',
         {
           table: [
             ['Cím', '1055 Budapest, Falk Miksa utca 9–11.'],
@@ -219,7 +234,7 @@ const privacyHu: LegalPage = {
     {
       title: '7. Adatbiztonság',
       blocks: [
-        'A weboldal titkosított (HTTPS) kapcsolaton keresztül érhető el. Megfelelő technikai és szervezési intézkedésekkel gondoskodunk arról, hogy a személyes adatokhoz illetéktelen személyek ne férhessenek hozzá. [[A konkrét intézkedések kiegészítendők.]]',
+        'A weboldal kizárólag titkosított (HTTPS) kapcsolaton érhető el. Megfelelő technikai és szervezési intézkedésekkel védjük az adatokat az illetéktelen hozzáférés ellen. [[Konkrét intézkedések: hozzáférés-kezelés, mentések, naplózás – kiegészítendő]]',
       ],
     },
   ],
@@ -238,93 +253,178 @@ const privacyEn: LegalPage = {
             ['Registered seat', `${seat}, Hungary`],
             ['Company registration number', v(r.companyNumber)],
             ['Tax number', v(r.taxNumber)],
-            ['Email', `[${site.email}](mailto:${site.email})`],
+            ['Email', mail(site.email)],
             ['Phone', site.phone.display],
-            ['Data protection contact', '[[name and contact details, if designated]]'],
+            ['Data protection contact', `${dpo.name}, ${mail(dpo.email)}`],
           ],
         },
-        'The controller processes personal data in accordance with Regulation (EU) 2016/679 (General Data Protection Regulation, GDPR) and Hungarian Act CXII of 2011 on the right to informational self-determination and freedom of information.',
+        'We process personal data in accordance with Regulation (EU) 2016/679 (GDPR) and Hungarian Act CXII of 2011. [[Whether a data protection officer is required – legal review]]',
       ],
     },
     {
-      title: '2. Contact and quote requests',
+      title: '2. Quote requests and enquiries',
       blocks: [
-        'When you fill in the quote request form or contact us by email or phone, we process the following data:',
+        'When you use the quote request form or contact us by email or phone, we process:',
         {
           list: [
-            'first and last name, company name',
-            'email address, phone number',
-            'shipment details (pickup and delivery location, cargo type, temperature requirement, preferred date)',
-            'any other information you provide in your message',
+            'required: first and last name, email address, message',
+            'optional: company name, phone number, pickup and delivery location, cargo type, temperature requirement, preferred date',
           ],
         },
         '**Purpose:** responding to your enquiry, preparing a quotation and keeping in contact.',
-        '**Legal basis:** your consent (Art. 6(1)(a) GDPR) and taking steps at your request prior to entering into a contract (Art. 6(1)(b) GDPR). [[Legal basis to be confirmed by a legal professional.]]',
-        '**Retention period:** [[e.g. 1 year after the enquiry is closed; 8 years under accounting law if a contract is concluded]]',
+        '**Legal basis:** steps taken at your request prior to entering into a contract (Art. 6(1)(b) GDPR); for contact persons of business partners, our legitimate interest (Art. 6(1)(f) GDPR). [[Legal basis – legal review]]',
+        '**How the data is handled:** [[depending on the final form solution, e.g. “sent by email to info@nhcargo.hu and stored in the website’s admin system”]]',
+        '**Retention period:** [[e.g. 12 months from receipt, then deleted automatically; 8 years under accounting law if a contract is concluded]]',
       ],
     },
     {
-      title: '3. Processors',
+      title: '3. Processors and recipients',
       blocks: [
-        'We use the following processors:',
         {
           list: [
-            'Hosting provider: [[name, address]]',
-            'Form service: [[e.g. Formspree, Inc. (USA) – transfer based on the European Commission’s Standard Contractual Clauses (SCC); or no separate processor if the PHP mailer on our own hosting is used]]',
-            'Email provider: [[name, address]]',
+            'Hosting provider: [[name, seat – e.g. Render Services, Inc.]]',
+            'Email provider: [[provider of the info@nhcargo.hu mailbox]]',
+            'Form handling: [[own system or external provider]]',
           ],
         },
+        '**Transfers outside the EEA:** [[e.g. EU–US Data Privacy Framework or Standard Contractual Clauses – legal review]]',
       ],
     },
     {
-      title: '4. Cookies and third-party services',
+      title: '4. Cookies and external content',
       blocks: [
-        'This website does not use cookies and does not use any analytics or marketing tools. Fonts are served from our own server.',
-        'The Google Map on the Contact page is only loaded when you click the “Load map” button. Google Ireland Ltd. / Google LLC may then set cookies and process data such as your IP address. For details, please see the [Google Privacy Policy](https://policies.google.com/privacy).',
+        `See our [Cookie Policy](${localePath('cookies', 'en')}). We do not use analytics or marketing cookies. Google Maps is only loaded after your consent or explicit click.`,
       ],
     },
     {
       title: '5. Your rights',
       blocks: [
-        'You have the following rights regarding the processing of your personal data:',
         {
           list: [
-            'access to your personal data (Art. 15 GDPR)',
-            'rectification (Art. 16)',
-            'erasure (“right to be forgotten”, Art. 17)',
-            'restriction of processing (Art. 18)',
-            'data portability (Art. 20)',
-            'objection (Art. 21)',
-            'withdrawal of consent at any time, without affecting the lawfulness of processing before the withdrawal',
+            'access (Art. 15 GDPR), rectification (Art. 16), erasure (Art. 17)',
+            'restriction of processing (Art. 18), data portability (Art. 20)',
+            'objection to processing based on legitimate interest (Art. 21)',
+            'withdrawal of consent at any time, without affecting earlier processing',
           ],
         },
-        `Please send your request to [${site.email}](mailto:${site.email}); we will respond within one month at the latest.`,
+        `Send your request to ${mail(dpo.email)} or ${mail(site.email)}; we respond within one month at the latest.`,
       ],
     },
     {
       title: '6. Remedies',
       blocks: [
-        'If you believe that the processing of your personal data infringes the law, you may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH):',
-        {
-          table: [
-            ['Address', '1055 Budapest, Falk Miksa utca 9–11., Hungary'],
-            ['Postal address', '1363 Budapest, Pf. 9.'],
-            ['Website', '[www.naih.hu](https://www.naih.hu)'],
-          ],
-        },
-        'You may also bring proceedings before the competent court, including the court of your place of residence.',
+        'You may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH), 1055 Budapest, Falk Miksa utca 9–11., [www.naih.hu](https://www.naih.hu), or bring proceedings before the competent court.',
       ],
     },
     {
       title: '7. Data security',
       blocks: [
-        'This website is served over an encrypted (HTTPS) connection. We take appropriate technical and organisational measures to protect personal data against unauthorised access. [[Specific measures to be added.]]',
+        'This website is only available over an encrypted (HTTPS) connection. We take appropriate technical and organisational measures to protect personal data. [[Specific measures to be added]]',
       ],
     },
   ],
 };
 
-export const legal: Record<'imprint' | 'privacy', Record<Lang, LegalPage>> = {
+/* ------------------------------------------------------------------ */
+/* SÜTI TÁJÉKOZTATÓ                                                    */
+/* ------------------------------------------------------------------ */
+
+const cookiesHu: LegalPage = {
+  title: 'Süti tájékoztató',
+  updated: 'Hatályos: [[ÉÉÉÉ. HH. NN.]]',
+  sections: [
+    {
+      title: '1. Mik azok a sütik?',
+      blocks: [
+        'A sütik (cookie-k) és a hasonló technológiák (pl. a böngésző helyi tárolója) kis adatcsomagok, amelyeket a weboldal az Ön eszközén tárol. A szükséges sütik a weboldal működéséhez kellenek, minden más csak az Ön hozzájárulásával kerülhet az eszközére.',
+      ],
+    },
+    {
+      title: '2. Milyen sütiket használunk?',
+      blocks: [
+        '**Szükséges (mindig aktív)**',
+        {
+          table: [
+            ['Név', 'nhc-consent (böngésző helyi tárolója, nem süti)'],
+            ['Cél', 'az Ön süti-beállításainak megjegyzése'],
+            ['Szolgáltató', site.name],
+            ['Érvényesség', '12 hónap'],
+          ],
+        },
+        '**Külső tartalmak – Google Térkép (csak hozzájárulással)**',
+        {
+          table: [
+            ['Szolgáltató', 'Google Ireland Ltd. / Google LLC'],
+            ['Cél', 'a Kapcsolat oldalon a térkép megjelenítése'],
+            ['Sütik', '[[a Google által beállított sütik, pl. NID – a Google aktuális listája szerint]]'],
+            ['További információ', '[Google adatvédelmi irányelvek](https://policies.google.com/privacy?hl=hu)'],
+          ],
+        },
+        'Analitikai (statisztikai) és marketingcélú sütiket **nem használunk**. Ha ez a jövőben változik, előtte frissítjük ezt a tájékoztatót, és az érintett sütik csak hozzájárulás után töltődnek be.',
+      ],
+    },
+    {
+      title: '3. A hozzájárulás kezelése',
+      blocks: [
+        'Az első látogatáskor megjelenő ablakban elfogadhatja vagy elutasíthatja a nem szükséges sütiket, illetve kategóriánként is dönthet. Döntését bármikor megváltoztathatja a lábléc **„Süti beállítások”** linkjén. A böngészője beállításaiban a sütiket törölheti vagy letilthatja is.',
+      ],
+    },
+    {
+      title: '4. Kapcsolat',
+      blocks: [`Kérdés esetén írjon a ${mail(dpo.email)} címre. Az adatkezelésről bővebben: [Adatkezelési tájékoztató](${localePath('privacy', 'hu')}).`],
+    },
+  ],
+};
+
+const cookiesEn: LegalPage = {
+  title: 'Cookie Policy',
+  updated: 'Effective: [[DD/MM/YYYY]]',
+  sections: [
+    {
+      title: '1. What are cookies?',
+      blocks: [
+        'Cookies and similar technologies (e.g. the browser’s local storage) are small pieces of data a website stores on your device. Necessary ones are required for the site to work; everything else is only used with your consent.',
+      ],
+    },
+    {
+      title: '2. Which cookies do we use?',
+      blocks: [
+        '**Necessary (always active)**',
+        {
+          table: [
+            ['Name', 'nhc-consent (browser local storage, not a cookie)'],
+            ['Purpose', 'remembering your cookie preferences'],
+            ['Provider', site.name],
+            ['Duration', '12 months'],
+          ],
+        },
+        '**External content – Google Maps (only with consent)**',
+        {
+          table: [
+            ['Provider', 'Google Ireland Ltd. / Google LLC'],
+            ['Purpose', 'showing the map on the Contact page'],
+            ['Cookies', '[[cookies set by Google, e.g. NID – as per Google’s current list]]'],
+            ['More information', '[Google Privacy Policy](https://policies.google.com/privacy)'],
+          ],
+        },
+        'We do **not** use analytics or marketing cookies.',
+      ],
+    },
+    {
+      title: '3. Managing your consent',
+      blocks: [
+        'You can accept or reject non-essential cookies, or choose by category, in the banner shown on your first visit. You can change your choice at any time via **“Cookie settings”** in the footer, or delete cookies in your browser settings.',
+      ],
+    },
+    {
+      title: '4. Contact',
+      blocks: [`Questions: ${mail(dpo.email)}. More details: [Privacy Policy](${localePath('privacy', 'en')}).`],
+    },
+  ],
+};
+
+export const legal: Record<LegalKey, Record<Lang, LegalPage>> = {
   imprint: { hu: imprintHu, en: imprintEn },
   privacy: { hu: privacyHu, en: privacyEn },
+  cookies: { hu: cookiesHu, en: cookiesEn },
 };

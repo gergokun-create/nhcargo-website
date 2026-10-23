@@ -22,7 +22,7 @@ const heroImage = aboutImage('fejlec') ?? images.reeferTrailers;
 const heroAlt = aboutImage('fejlec') ? a.slots.fejlec.alt : t.alt.reeferTrailers;
 ---
 
-<BaseLayout lang={lang} page="about">
+<BaseLayout lang={lang} page="about" ogImage={heroImage} ogImageAlt={heroAlt}>
   <Hero eyebrow={a.hero.eyebrow} title={a.hero.title} subtitle={a.hero.subtitle} image={heroImage} imageAlt={heroAlt} />
 
   <!-- Company introduction -->

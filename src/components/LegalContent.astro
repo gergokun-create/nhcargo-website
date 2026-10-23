@@ -31,7 +31,9 @@ function inline(text: string): string {
 
 const isList = (b: LegalBlock): b is { list: string[] } => typeof b === 'object' && 'list' in b;
 const isTable = (b: LegalBlock): b is { table: [string, string][] } => typeof b === 'object' && 'table' in b;
-const hasPlaceholders = JSON.stringify(page).includes('[[');
+// Set to true only after a legal professional has approved the final texts.
+const legalReviewed = false;
+const hasPlaceholders = !legalReviewed || JSON.stringify(page).includes('[[');
 ---
 
 <div class="container-page max-w-4xl py-16 sm:py-20">

@@ -1,8 +1,8 @@
 ---
 /**
- * Two-click Google Map: the iframe is only inserted after the visitor clicks
- * "Load map". Until then no request goes to Google and no cookies are set,
- * so the site needs no cookie banner (GDPR-friendly lazy loading).
+ * Consent-gated Google Map: the iframe is only inserted if the visitor has allowed
+ * "external content" in the cookie settings, or clicks "Load map". Until then no
+ * request goes to Google and no cookies are set.
  */
 import Icon from './Icon.astro';
 import { useTranslations, type Lang } from '../i18n';
@@ -53,17 +53,30 @@ const t = useTranslations(lang);
 </div>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-map]').forEach((wrapper) => {
-    wrapper.querySelector('[data-map-load]')?.addEventListener('click', () => {
-      const iframe = document.createElement('iframe');
-      iframe.src = wrapper.dataset.src ?? '';
-      iframe.title = wrapper.dataset.title ?? '';
-      iframe.loading = 'lazy';
-      iframe.referrerPolicy = 'no-referrer-when-downgrade';
-      iframe.allowFullscreen = true;
-      iframe.className = 'block aspect-[4/3] w-full border-0 sm:aspect-[16/9]';
-      wrapper.querySelector('[data-map-placeholder]')?.replaceWith(iframe);
-      iframe.focus();
-    });
+  import { has, onChange } from '../scripts/consent';
+
+  function load(wrapper: HTMLElement, focus = false) {
+    const placeholder = wrapper.querySelector('[data-map-placeholder]');
+    if (!placeholder) return; // already loaded
+    const iframe = document.createElement('iframe');
+    iframe.src = wrapper.dataset.src ?? '';
+    iframe.title = wrapper.dataset.title ?? '';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    iframe.className = 'block aspect-[4/3] w-full border-0 sm:aspect-[16/9]';
+    placeholder.replaceWith(iframe);
+    if (focus) iframe.focus();
+  }
+
+  const maps = document.querySelectorAll<HTMLElement>('[data-map]');
+  maps.forEach((wrapper) => {
+    // Explicit click = consent for this one load.
+    wrapper.querySelector('[data-map-load]')?.addEventListener('click', () => load(wrapper, true));
+    // Stored consent for "external content" → load automatically.
+    if (has('media')) load(wrapper);
+  });
+  onChange((c) => {
+    if (c.categories.media) maps.forEach((w) => load(w));
   });
 </script>

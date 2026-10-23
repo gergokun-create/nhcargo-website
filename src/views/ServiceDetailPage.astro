@@ -1,0 +1,138 @@
+---
+/** One service on its own keyword URL, e.g. /nemzetkozi-fuvarozas/ (HU) or /en/international-transport/ (EN). */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import { images } from '../data/images';
+import { services, type ServiceId } from '../data/content';
+import { serviceNode } from '../data/seo';
+import { site } from '../data/site';
+import { localePath, useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  id: ServiceId;
+}
+
+const { lang, id } = Astro.props;
+const t = useTranslations(lang);
+const s = t.services;
+const item = services.find((x) => x.id === id)!;
+const content = s.items[id];
+const others = services.filter((x) => x.id !== id);
+const siteUrl = Astro.site ?? new URL(site.url);
+---
+
+<BaseLayout
+  lang={lang}
+  page={id}
+  ogImage={images[item.image]}
+  ogImageAlt={t.alt[item.image]}
+  breadcrumbs={['services', id]}
+  schema={[serviceNode(id, lang, siteUrl)]}
+>
+  <Hero
+    eyebrow={s.hero.eyebrow}
+    title={content.pageTitle}
+    subtitle={content.lead}
+    image={images[item.image]}
+    imageAlt={t.alt[item.image]}
+  />
+  <Breadcrumbs lang={lang} trail={['services', id]} />
+
+  <section class="section" aria-labelledby="features-title">
+    <div class="container-page grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4" data-reveal>
+        <span class="inline-flex size-14 items-center justify-center rounded-2xl bg-cold-700 text-white shadow-lg shadow-cold-700/20">
+          <Icon name={item.icon} class="size-7" />
+        </span>
+        <h2 id="features-title" class="mt-6 text-3xl leading-tight font-extrabold">{content.title}</h2>
+        <p class="mt-4 text-lg leading-relaxed text-ink-500">{content.short}</p>
+        {
+          id === 'crossdock' && (
+            <div class="mt-8 rounded-2xl border-l-4 border-gold-500 bg-gold-50 p-6">
+              <h3 class="flex items-center gap-2 text-lg font-bold">
+                <Icon name="warehouse" class="size-5 text-gold-700" />
+                {t.about.warehouse.title}
+              </h3>
+              <p class="mt-2 leading-relaxed text-ink-600">{t.about.warehouse.text}</p>
+            </div>
+          )
+        }
+      </div>
+      <ul class="grid gap-5 sm:grid-cols-2 lg:col-span-8">
+        {
+          content.points.map((point, i) => (
+            <li
+              class="rounded-2xl border border-ink-100 bg-white p-6 shadow-[0_1px_2px_rgba(16,24,40,0.04)]"
+              data-reveal
+              style={`--reveal-delay:${(i % 2) * 90}ms`}
+            >
+              <span class="inline-flex size-8 items-center justify-center rounded-full bg-frost-100 text-cold-700">
+                <Icon name="check" class="size-4" strokeWidth={2.5} />
+              </span>
+              <h3 class="mt-4 text-base font-bold">{point.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">{point.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="container-page mt-14">
+      <div
+        class="flex flex-col gap-6 rounded-3xl bg-frost-50 p-7 ring-1 ring-frost-200 sm:p-10 lg:flex-row lg:items-center lg:justify-between"
+        data-reveal
+      >
+        <div class="max-w-2xl">
+          <h2 class="text-2xl font-extrabold">{s.question.title}</h2>
+          <p class="mt-2 leading-relaxed text-ink-600">{s.question.text}</p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a href={localePath('contact', lang) + '#quote-form'} class="btn btn-primary">
+            {t.common.requestQuote}
+            <Icon name="arrowRight" class="size-4" />
+          </a>
+          <a href={site.phone.href} class="btn btn-secondary">
+            <Icon name="phone" class="size-4" />
+            {site.phone.display}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related services -->
+  <section class="section bg-frost-50 pt-0 sm:pt-0 lg:pt-0" aria-labelledby="related-title">
+    <div class="container-page pt-16 sm:pt-20">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <h2 id="related-title" class="text-3xl font-extrabold" data-reveal>{s.related}</h2>
+        <a href={localePath('services', lang)} class="btn btn-secondary self-start" data-reveal>
+          {t.common.allServices}
+          <Icon name="arrowRight" class="size-4" />
+        </a>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          others.map((o, i) => (
+            <ServiceCard
+              icon={o.icon}
+              title={s.items[o.id].title}
+              text={s.items[o.id].short}
+              href={localePath(o.id, lang)}
+              linkLabel={t.common.learnMore}
+              image={images[o.image]}
+              imageAlt={t.alt[o.image]}
+              delay={i * 90}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTA lang={lang} />
+</BaseLayout>

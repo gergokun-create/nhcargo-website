@@ -23,7 +23,7 @@ const h = t.home;
 const fleetIcons: IconName[] = ['truck', 'shield', 'locate'];
 ---
 
-<BaseLayout lang={lang} page="home">
+<BaseLayout lang={lang} page="home" ogImage={images.heroTrucks} ogImageAlt={t.alt.heroTrucks}>
   <Hero
     variant="home"
     eyebrow={h.hero.eyebrow}
@@ -114,7 +114,7 @@ const fleetIcons: IconName[] = ['truck', 'shield', 'locate'];
               icon={s.icon}
               title={t.services.items[s.id].title}
               text={t.services.items[s.id].short}
-              href={`${localePath('services', lang)}#${s.id}`}
+              href={localePath(s.id, lang)}
               linkLabel={t.common.learnMore}
               image={images[s.image]}
               imageAlt={t.alt[s.image]}

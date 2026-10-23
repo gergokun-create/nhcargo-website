@@ -17,10 +17,14 @@ export const routes = {
   home: { hu: '/', en: '/en/' },
   about: { hu: '/rolunk/', en: '/en/about/' },
   services: { hu: '/szolgaltatasok/', en: '/en/services/' },
+  domestic: { hu: '/belfoldi-fuvarozas/', en: '/en/domestic-transport/' },
+  crossdock: { hu: '/cross-docking/', en: '/en/cross-docking/' },
+  international: { hu: '/nemzetkozi-fuvarozas/', en: '/en/international-transport/' },
   sustainability: { hu: '/fenntarthatosag/', en: '/en/sustainability/' },
   contact: { hu: '/kapcsolat/', en: '/en/contact/' },
   imprint: { hu: '/impresszum/', en: '/en/imprint/' },
   privacy: { hu: '/adatvedelem/', en: '/en/privacy/' },
+  cookies: { hu: '/suti-tajekoztato/', en: '/en/cookie-policy/' },
 } as const satisfies Record<string, Record<Lang, string>>;
 
 export type RouteKey = keyof typeof routes;

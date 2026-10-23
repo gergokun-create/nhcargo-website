@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /contact.php
-
-# TODO: update if the final domain differs
-Sitemap: https://nhcargo.hu/sitemap-index.xml

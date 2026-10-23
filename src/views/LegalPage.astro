@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LegalContent from '../components/LegalContent.astro';
-import { legal } from '../i18n/legal';
+import { legal, type LegalKey } from '../i18n/legal';
 import type { Lang } from '../i18n';
 
 interface Props {
   lang: Lang;
-  page: 'imprint' | 'privacy';
+  page: LegalKey;
 }
 
 const { lang, page } = Astro.props;

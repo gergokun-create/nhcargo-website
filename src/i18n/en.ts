@@ -6,40 +6,63 @@ import type { Dictionary } from './types';
 
 export const en: Dictionary = {
   meta: {
-    about: {
-      title: 'About us – company, fleet & certifications | NH Cargo',
-      description:
-        'NH Cargo Kft. provides international and domestic refrigerated FTL transport: 40 dedicated reefer units with TAPA and pharma qualified trucks, certified to ISO 9001, ISO 14001 and IFS.',
-    },
     home: {
-      title: 'NH Cargo Kft. – Temperature-controlled transport across Europe',
+      title: 'Refrigerated transport & freight forwarding | NH Cargo',
       description:
-        'Reliable refrigerated transport for frozen, chilled and fresh cargo. Domestic and international road freight with a dedicated contact person. Request a quote.',
+        'Domestic and international road transport, freight forwarding and cross-docking for temperature-controlled goods. 40 reefer units, Hungary and EU.',
+    },
+    about: {
+      title: 'About us – refrigerated haulier in Hungary | NH Cargo',
+      description:
+        'NH Cargo Kft. provides refrigerated road transport: 40 reefer units, TAPA and pharma qualified trucks, certified to ISO 9001, ISO 14001 and IFS.',
     },
     services: {
-      title: 'Services – Domestic, cross-docking & international transport | NH Cargo',
+      title: 'Road transport & freight forwarding services | NH Cargo',
       description:
-        'Domestic transport across Hungary, domestic cross-docking and international road freight across Europe with real-time shipment tracking.',
+        'Domestic transport, cross-docking and international road freight for temperature-controlled goods in Hungary and the EU, with real-time tracking.',
+    },
+    domestic: {
+      title: 'Domestic road transport in Hungary | NH Cargo',
+      description:
+        'Fast, flexible domestic road transport across Hungary: refrigerated, frozen and fresh goods carried by truck with a modern fleet.',
+    },
+    crossdock: {
+      title: 'Cross-docking & cold storage near Budapest | NH Cargo',
+      description:
+        'Domestic cross-docking and refrigerated storage along the M0 motorway near Budapest: direct transfer, shorter transit times and lower costs.',
+    },
+    international: {
+      title: 'International road freight & forwarding | NH Cargo',
+      description:
+        'International road transport and freight forwarding across the EU: refrigerated trucking with real-time tracking and tailored pricing.',
     },
     sustainability: {
-      title: 'Sustainability – Greener logistics | NH Cargo',
+      title: 'Sustainable road transport – greener logistics | NH Cargo',
       description:
         'Optimised route planning, alternative fuels, modern technology and fewer empty runs: how NH Cargo reduces the environmental impact of transport.',
     },
     contact: {
       title: 'Contact & quote request | NH Cargo Kft.',
       description:
-        'Request a quote for temperature-controlled transport. Phone: +36 70 902 5961, email: info@nhcargo.hu. Office: 2040 Budaörs, Baross u. 165., Hungary.',
+        'Request a quote for refrigerated road transport. Phone: +36 70 902 5961, email: info@nhcargo.hu, office: 2040 Budaörs, Baross u. 165., Hungary.',
     },
     imprint: {
       title: 'Imprint | NH Cargo Kft.',
-      description: 'Company details of NH Cargo Kft. and information about the operator of this website.',
+      description:
+        'Company details of NH Cargo Kft. and information about the operator of this website.',
     },
     privacy: {
       title: 'Privacy Policy | NH Cargo Kft.',
-      description: 'How NH Cargo Kft. processes personal data in accordance with the GDPR.',
+      description:
+        'How NH Cargo Kft. processes personal data in accordance with the GDPR.',
+    },
+    cookies: {
+      title: 'Cookie Policy | NH Cargo Kft.',
+      description:
+        'Information about the cookies and similar technologies used on this website and how to manage your consent.',
     },
   },
+
 
   nav: {
     home: 'Home',
@@ -48,7 +71,11 @@ export const en: Dictionary = {
     sustainability: 'Sustainability',
     contact: 'Contact',
     imprint: 'Imprint',
-    privacy: 'Privacy',
+    privacy: 'Privacy Policy',
+    domestic: 'Domestic transport',
+    crossdock: 'Cross-docking & storage',
+    international: 'International transport',
+    cookies: 'Cookie Policy',
     quote: 'Get a quote',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
@@ -177,6 +204,7 @@ export const en: Dictionary = {
     items: {
       domestic: {
         title: 'Domestic transport',
+        pageTitle: 'Domestic road transport',
         short: 'Fast, flexible deliveries anywhere in Hungary through a comprehensive domestic network.',
         lead: 'Fast, flexible and reliable deliveries anywhere in Hungary.',
         points: [
@@ -204,6 +232,7 @@ export const en: Dictionary = {
       },
       crossdock: {
         title: 'Domestic cross-docking',
+        pageTitle: 'Domestic cross-docking and storage',
         short: 'Goods move directly from incoming to outgoing vehicles – shorter transit times, lower costs.',
         lead: 'Goods are transferred directly from incoming to outgoing shipments – without unnecessary storage.',
         points: [
@@ -227,6 +256,7 @@ export const en: Dictionary = {
       },
       international: {
         title: 'International transport',
+        pageTitle: 'International road freight and forwarding',
         short: 'Road freight across Europe with real-time tracking and competitive, tailored pricing.',
         lead: 'Extensive experience in international road freight across Europe.',
         points: [
@@ -249,6 +279,8 @@ export const en: Dictionary = {
         ],
       },
     },
+    related: 'More of our services',
+    question: { title: 'Questions about this service?', text: 'Tell us what you need to ship, from where and to where – your dedicated contact person will get back to you with a tailored offer.' },
     process: {
       eyebrow: 'How it works',
       title: 'From request to delivery',
@@ -332,7 +364,7 @@ export const en: Dictionary = {
     map: {
       title: 'Find us',
       consent:
-        'The map is provided by Google Maps. When you load it, Google may set cookies and process your data.',
+        'The map is provided by Google Maps. When you load it, Google may set cookies and process your data. You can also allow it permanently in “Cookie settings”.',
       load: 'Load map',
       open: 'Open in Google Maps',
       iframeTitle: 'Map of the NH Cargo office in Budaörs',
@@ -412,11 +444,12 @@ export const en: Dictionary = {
     seat: 'Registered seat',
     rights: 'All rights reserved.',
     linkedin: 'NH Cargo on LinkedIn',
+    cookieSettings: 'Cookie settings',
   },
 
   legalNotice: {
-    title: 'Template text',
-    text: 'This page is a template. The parts highlighted in yellow must be completed by the client, and the final text should be reviewed by a legal professional.',
+    title: 'LEGAL REVIEW REQUIRED',
+    text: 'This page is a template, not a final legal text. The parts highlighted in yellow must be completed, and the full text must be approved by a legal professional.',
   },
 
   notFound: {
@@ -474,7 +507,7 @@ export const en: Dictionary = {
     duty: {
       title: 'On-call service',
       text: 'We provide on-call service at weekends and between 04:00 and 07:00 in the morning, so we can respond quickly to any issue.',
-      hours: ['Weekend on-call', 'Weekdays 04:00–07:00'],
+      hours: ['Weekend on-call', 'Mornings 04:00–07:00'],
     },
     strength: {
       title: 'Our greatest strength: flexibility',
@@ -491,5 +524,19 @@ export const en: Dictionary = {
       flotta: { title: 'Refrigerated units', alt: 'NH Cargo’s dedicated refrigerated units' },
       raktar: { title: 'Cold storage along the M0', alt: 'Semi-trailers with the NH Cargo logo docked at warehouse loading bays in sunshine' },
     },
+  },
+  consent: {
+    title: 'Cookies and external content',
+    text: 'We only store what is necessary for this website to work. Google Maps (external content) is only loaded with your consent. You can change your choice at any time via “Cookie settings” in the footer.',
+    accept: 'Accept',
+    reject: 'Reject',
+    settings: 'Settings',
+    save: 'Save selection',
+    dialogTitle: 'Cookie settings',
+    necessary: { title: 'Necessary', text: 'Needed to remember your cookie preferences. Always active.' },
+    media: { title: 'External content (Google Maps)', text: 'Shows the map on the Contact page. When loaded, Google may set cookies and process data such as your IP address.' },
+    alwaysOn: 'Always active',
+    policy: 'Cookie Policy',
+    close: 'Close',
   },
 };

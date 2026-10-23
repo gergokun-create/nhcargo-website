@@ -7,7 +7,7 @@ export const site = {
   name: 'NH Cargo Kft.',
   shortName: 'NH Cargo',
   tagline: 'Out of box',
-  url: 'https://nhcargo.hu', // TODO: confirm the final domain (also in astro.config.mjs + public/robots.txt)
+  url: 'https://www.nhcargo.hu',
 
   phone: {
     display: '+36 70 902 5961',
@@ -31,13 +31,20 @@ export const site = {
     country: 'HU',
   },
 
-  /** TODO: fill in from the company register (e-cegjegyzek.hu) */
+  /** Company register data. Values starting with "TODO" are shown as highlighted placeholders. */
   registration: {
-    companyNumber: 'TODO: Cg. 13-09-XXXXXX',
-    taxNumber: 'TODO: XXXXXXXX-X-XX',
-    euVatNumber: 'TODO: HUXXXXXXXX',
-    registryCourt: 'TODO: Budapest Környéki Törvényszék Cégbírósága',
+    companyNumber: 'Cg. 13-09-236978',
+    taxNumber: '32677173-2-13',
+    euVatNumber: 'TODO: közösségi adószám (ha van)',
+    // "13" in the company number = Pest county register; confirm on e-cegjegyzek.hu
+    registryCourt: 'Budapest Környéki Törvényszék Cégbírósága',
     representative: 'TODO: ügyvezető neve',
+  },
+
+  /** Contact person of the data controller (privacy policy). */
+  dataProtectionContact: {
+    name: 'Horváth Péter',
+    email: 'p.horvath@nhcargo.hu',
   },
 
   social: {

@@ -1,9 +1,15 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { languages, langs, localePath, withBase, defaultLang, useTranslations, type Lang, type RouteKey } from '../i18n';
-import { site, formatAddress, linkedinIsPlaceholder } from '../data/site';
+import { site } from '../data/site';
+import { companyNodes, breadcrumbNode } from '../data/seo';
+import manropeLatin from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 
 interface Props {
   lang: Lang;
@@ -11,12 +17,18 @@ interface Props {
   page?: RouteKey;
   title?: string;
   description?: string;
-  /** Absolute or root-relative URL of the Open Graph image. */
-  ogImage?: string;
+  /** Page photo used for the Open Graph / Twitter image (cropped to 1200×630). Defaults to the logo image. */
+  ogImage?: ImageMetadata;
+  /** Alt text of the share image. */
+  ogImageAlt?: string;
+  /** Breadcrumb trail below the home page, e.g. ['services', 'international']. */
+  breadcrumbs?: RouteKey[];
+  /** Extra JSON-LD nodes for this page (e.g. Service). */
+  schema?: Record<string, unknown>[];
   noindex?: boolean;
 }
 
-const { lang, page, ogImage = withBase('/og-default.jpg') } = Astro.props;
+const { lang, page, ogImage, breadcrumbs, schema = [] } = Astro.props;
 // PUBLIC_NOINDEX=true hides preview deployments (e.g. GitHub Pages) from search engines.
 const noindex = Astro.props.noindex || import.meta.env.PUBLIC_NOINDEX === 'true';
 const t = useTranslations(lang);
@@ -30,47 +42,22 @@ const alternates = page
   ? langs.map((l) => ({ lang: languages[l].htmlLang, href: new URL(localePath(page, l), siteUrl).href }))
   : [];
 const xDefault = page ? new URL(localePath(page, defaultLang), siteUrl).href : undefined;
-const ogImageUrl = new URL(ogImage, siteUrl).href;
 
-const postalAddress = (a: typeof site.office) => ({
-  '@type': 'PostalAddress',
-  streetAddress: a.street,
-  postalCode: a.postalCode,
-  addressLocality: a.city,
-  addressCountry: a.country,
-});
+// Share image: the page's own photo cropped to 1200×630, or the logo card.
+const ogSrc = ogImage
+  ? (await getImage({ src: ogImage, width: 1200, height: 630, fit: 'cover', format: 'jpg', quality: 80 })).src
+  : withBase('/og-default.jpg');
+const ogImageUrl = new URL(ogSrc, siteUrl).href;
+const ogImageAlt = Astro.props.ogImageAlt ?? site.name;
+const logoUrl = new URL(withBase('/logo.png'), siteUrl).href;
 
-const orgId = `${new URL(localePath('home', defaultLang), siteUrl).href}#organization`;
+const trail = breadcrumbs ?? (page && page !== 'home' ? [page] : []);
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'Organization',
-      '@id': orgId,
-      name: site.name,
-      alternateName: site.shortName,
-      url: new URL(localePath('home', defaultLang), siteUrl).href,
-      logo: new URL(withBase('/icon-512.png'), siteUrl).href,
-      image: ogImageUrl,
-      email: site.email,
-      telephone: site.phone.e164,
-      address: postalAddress(site.seat),
-      areaServed: 'Europe',
-      foundingDate: '2024',
-      ...(linkedinIsPlaceholder ? {} : { sameAs: [site.social.linkedin] }),
-    },
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${new URL(localePath('home', defaultLang), siteUrl).href}#office`,
-      name: `${site.name} – ${formatAddress(site.office)}`,
-      description: t.footer.tagline,
-      url: new URL(localePath('home', defaultLang), siteUrl).href,
-      image: ogImageUrl,
-      email: site.email,
-      telephone: site.phone.e164,
-      address: postalAddress(site.office),
-      parentOrganization: { '@id': orgId },
-    },
+    ...companyNodes(lang, siteUrl, logoUrl, ogImageUrl),
+    ...(trail.length ? [breadcrumbNode(trail, lang, siteUrl)] : []),
+    ...schema,
   ],
 };
 ---
@@ -95,7 +82,7 @@ const structuredData = {
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={site.name} />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:locale" content={languages[lang].ogLocale} />
     {
       langs
@@ -103,6 +90,14 @@ const structuredData = {
         .map((l) => <meta property="og:locale:alternate" content={languages[l].ogLocale} />)
     }
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Fonts (self-hosted): preload the main Latin subsets -->
+    <link rel="preload" href={manropeLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Icons -->
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
@@ -128,6 +123,7 @@ const structuredData = {
       <slot />
     </main>
     <Footer lang={lang} />
+    <CookieConsent lang={lang} />
 
     <script>
       // Reveal-on-scroll: elements with [data-reveal] fade in when they enter the viewport.

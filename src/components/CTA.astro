@@ -1,6 +1,6 @@
 ---
 /** Final call-to-action band, shown at the bottom of most pages. */
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
 import { images } from '../data/images';
 import { localePath, useTranslations, type Lang } from '../i18n';
@@ -12,16 +12,21 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const bg = await getImage({ src: images.sunnyRoadTruck, widths: [640, 1280, 1920], format: 'webp', quality: 60 });
 ---
 
 <section class="relative isolate overflow-hidden bg-ink-900" aria-labelledby="cta-title">
-  <Image
-    src={images.sunnyRoadTruck}
-    alt=""
-    widths={[640, 1280, 1920]}
+  <!-- Decorative background: empty alt so screen readers skip it -->
+  <img
+    src={bg.src}
+    srcset={bg.srcSet.attribute}
     sizes="100vw"
-    format="webp"
-    quality={60}
+    alt=""
+    aria-hidden="true"
+    width={bg.attributes.width}
+    height={bg.attributes.height}
+    loading="lazy"
+    decoding="async"
     class="absolute inset-0 -z-20 h-full w-full object-cover opacity-70"
   />
   <div class="absolute inset-0 -z-10 bg-gradient-to-r from-cold-800/95 via-cold-800/80 to-cold-700/40" aria-hidden="true">

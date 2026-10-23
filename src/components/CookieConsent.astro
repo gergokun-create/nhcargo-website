@@ -1,0 +1,117 @@
+---
+/**
+ * Cookie consent banner + settings dialog (GDPR).
+ * "Accept" and "Reject" are deliberately styled the same (equal prominence).
+ * Logic: src/scripts/consent.ts
+ */
+import { localePath, useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = useTranslations(lang).consent;
+const choiceBtn =
+  'btn flex-1 border border-ink-900 bg-ink-900 text-white hover:bg-ink-700 sm:flex-none focus-visible:outline-ice-400';
+---
+
+<div
+  id="cookie-banner"
+  class="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-3xl rounded-2xl border border-ink-100 bg-white p-5 shadow-2xl shadow-ink-900/20 sm:inset-x-6 sm:bottom-6 sm:p-6"
+  role="region"
+  aria-labelledby="cookie-banner-title"
+  hidden
+>
+  <h2 id="cookie-banner-title" class="text-lg font-bold">{c.title}</h2>
+  <p class="mt-2 text-sm leading-relaxed text-ink-600">
+    {c.text}{" "}
+    <a href={localePath('cookies', lang)} class="link">{c.policy}</a>
+  </p>
+  <div class="mt-5 flex flex-wrap gap-3">
+    <button type="button" class={choiceBtn} data-consent="accept">{c.accept}</button>
+    <button type="button" class={choiceBtn} data-consent="reject">{c.reject}</button>
+    <button type="button" class="btn btn-secondary w-full sm:w-auto" data-consent="settings">{c.settings}</button>
+  </div>
+</div>
+
+<dialog
+  id="cookie-dialog"
+  class="m-auto w-[min(36rem,calc(100%-1.5rem))] rounded-2xl p-0 shadow-2xl backdrop:bg-ink-950/60"
+  aria-labelledby="cookie-dialog-title"
+>
+  <form method="dialog" class="p-6 sm:p-8" data-consent-form>
+    <h2 id="cookie-dialog-title" class="text-2xl font-extrabold">{c.dialogTitle}</h2>
+
+    <fieldset class="mt-6 space-y-4">
+      <legend class="sr-only">{c.dialogTitle}</legend>
+      <div class="rounded-xl border border-ink-100 p-4">
+        <div class="flex items-center justify-between gap-4">
+          <span class="font-semibold text-ink-900">{c.necessary.title}</span>
+          <span class="rounded-full bg-frost-100 px-3 py-1 text-xs font-semibold text-cold-700">{c.alwaysOn}</span>
+        </div>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink-600">{c.necessary.text}</p>
+      </div>
+      <div class="rounded-xl border border-ink-100 p-4">
+        <label class="flex cursor-pointer items-center justify-between gap-4">
+          <span class="font-semibold text-ink-900">{c.media.title}</span>
+          <input type="checkbox" name="media" class="size-5 cursor-pointer accent-cold-700" />
+        </label>
+        <p class="mt-1.5 text-sm leading-relaxed text-ink-600">{c.media.text}</p>
+      </div>
+    </fieldset>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button type="button" class={choiceBtn} data-consent="accept">{c.accept}</button>
+      <button type="button" class={choiceBtn} data-consent="reject">{c.reject}</button>
+      <button type="button" class="btn btn-secondary w-full sm:w-auto" data-consent="save">{c.save}</button>
+    </div>
+    <p class="mt-5 text-sm">
+      <a href={localePath('cookies', lang)} class="link">{c.policy}</a>
+    </p>
+  </form>
+</dialog>
+
+<script>
+  import { read, save, type Category } from '../scripts/consent';
+
+  const banner = document.getElementById('cookie-banner');
+  const dialog = document.getElementById('cookie-dialog') as HTMLDialogElement | null;
+  const form = dialog?.querySelector<HTMLFormElement>('[data-consent-form]');
+
+  const all = (value: boolean): Record<Category, boolean> => ({ media: value });
+
+  function syncForm() {
+    const current = read();
+    const media = form?.querySelector<HTMLInputElement>('input[name="media"]');
+    if (media) media.checked = current?.categories.media === true;
+  }
+
+  function decide(categories: Record<Category, boolean>) {
+    save(categories);
+    if (banner) banner.hidden = true;
+    if (dialog?.open) dialog.close();
+  }
+
+  function openDialog() {
+    syncForm();
+    if (dialog && !dialog.open) dialog.showModal();
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-consent],[data-cookie-settings]');
+    if (!target) return;
+    if (target.hasAttribute('data-cookie-settings')) return openDialog();
+    const action = target.dataset.consent;
+    if (action === 'accept') decide(all(true));
+    else if (action === 'reject') decide(all(false));
+    else if (action === 'settings') openDialog();
+    else if (action === 'save') {
+      const media = form?.querySelector<HTMLInputElement>('input[name="media"]');
+      decide({ media: media?.checked === true });
+    }
+  });
+  window.addEventListener('nhc:consent-open', openDialog);
+
+  if (banner && !read()) banner.hidden = false;
+</script>
