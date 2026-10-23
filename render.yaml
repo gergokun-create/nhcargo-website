@@ -69,7 +69,7 @@ services:
         - cms-auth/**
     envVars:
       - key: NODE_VERSION
-        value: "22"
+        value: "24"
       # GitHub OAuth App (GitHub → Settings → Developer settings → OAuth Apps), see DEPLOY.md
       - key: GITHUB_CLIENT_ID
         sync: false
