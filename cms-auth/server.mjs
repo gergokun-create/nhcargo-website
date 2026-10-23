@@ -1,20 +1,28 @@
 /**
- * GitHub login helper for the Decap CMS admin (www.nhcargo.hu/admin/).
+ * Small backend of www.nhcargo.hu (Render Free web service, render.yaml):
+ *  - /auth, /callback  GitHub login helper for the Decap CMS admin (/admin/)
+ *  - /ajanlatkeres     quote request form → email via Microsoft 365 (contact.mjs)
+ *  - /health           health check; the contact page also calls it to wake the service
  *
+ * GitHub login:
  * Decap opens /auth in a popup → we redirect to GitHub → GitHub calls /callback
  * with a code → we exchange it for a token (this needs the client secret, which
  * is why this tiny server exists) → the popup hands the token to the admin window
  * with postMessage, only to the origins in ALLOWED_ORIGINS.
  *
- * No dependencies, Node 22+. Runs on a Render Free web service (render.yaml).
+ * No dependencies, Node 22+. Each part works on its own: missing settings only
+ * disable that part (503).
  * Environment:
  *   GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET  – GitHub OAuth App (see DEPLOY.md)
- *   ALLOWED_ORIGINS  – comma-separated admin origins, e.g. https://www.nhcargo.hu
+ *   MS_* , MAIL_*    – Microsoft 365 sending, see contact.mjs and M365_BEALLITAS.md
+ *   ALLOWED_ORIGINS  – comma-separated site origins, e.g. https://www.nhcargo.hu
+ *                      (admin login token and form submissions are accepted only from these)
  *   PUBLIC_URL       – this service's URL (default: RENDER_EXTERNAL_URL)
  *   PORT             – set by Render
  */
 import crypto from 'node:crypto';
 import http from 'node:http';
+import { contactConfigured, handleContact } from './contact.mjs';
 
 const env = (name, fallback) => {
   const value = process.env[name] ?? fallback;
@@ -22,8 +30,8 @@ const env = (name, fallback) => {
   return value;
 };
 
-const CLIENT_ID = env('GITHUB_CLIENT_ID');
-const CLIENT_SECRET = env('GITHUB_CLIENT_SECRET');
+const CLIENT_ID = process.env.GITHUB_CLIENT_ID || '';
+const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || '';
 const PUBLIC_URL = env('PUBLIC_URL', process.env.RENDER_EXTERNAL_URL).replace(/\/$/, '');
 const ALLOWED_ORIGINS = env('ALLOWED_ORIGINS')
   .split(',')
@@ -118,10 +126,14 @@ async function handle(req, res) {
   const url = new URL(req.url, PUBLIC_URL);
   const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').toString().split(',')[0].trim();
 
-  if (url.pathname === '/health') return send(res, 200, 'ok');
+  if (url.pathname === '/health') return send(res, 200, 'ok', { 'Access-Control-Allow-Origin': '*' });
+  if (url.pathname === '/ajanlatkeres') return handleContact(req, res, { send, origins: ALLOWED_ORIGINS, ip });
   if (req.method !== 'GET') return send(res, 405, 'Method not allowed', { Allow: 'GET' });
   if ((url.pathname === '/auth' || url.pathname === '/callback') && limited(ip))
     return send(res, 429, 'Túl sok próbálkozás, kérjük, várjon néhány percet.', { 'Retry-After': '600' });
+
+  if ((url.pathname === '/auth' || url.pathname === '/callback') && !(CLIENT_ID && CLIENT_SECRET))
+    return send(res, 503, 'Az admin belépés nincs beállítva (GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET).');
 
   if (url.pathname === '/auth') {
     if (url.searchParams.get('provider') && url.searchParams.get('provider') !== 'github')
@@ -169,4 +181,7 @@ http
       if (!res.headersSent) send(res, 500, 'Internal error');
     });
   })
-  .listen(port, () => console.log(`cms-auth listening on :${port}, origins: ${ALLOWED_ORIGINS.join(', ')}`));
+  .listen(port, () => console.log(
+      `cms-auth listening on :${port}, origins: ${ALLOWED_ORIGINS.join(', ')}; ` +
+        `admin login: ${CLIENT_ID && CLIENT_SECRET ? 'on' : 'off'}, contact form: ${contactConfigured ? 'on' : 'off'}`,
+    ));

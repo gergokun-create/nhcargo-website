@@ -9,6 +9,8 @@ import adminMedia from './integrations/admin-media.mjs';
 // preview (https://<user>.github.io/nhcargo-website/) – see .github/workflows/deploy.yml.
 const SITE_URL = process.env.SITE_URL || 'https://www.nhcargo.hu';
 const BASE_PATH = process.env.BASE_PATH || '/';
+// Our backend (admin login + quote request form), see src/data/site.ts → backendUrl
+const BACKEND_ORIGIN = new URL(process.env.CMS_AUTH_URL || 'https://nhcargo-cms-auth.onrender.com').origin;
 
 // Render pull request previews (admin drafts) are public *.onrender.com URLs:
 // keep them out of search engines like the GitHub Pages preview.
@@ -31,8 +33,8 @@ export default defineConfig({
         "default-src 'self'",
         "img-src 'self' data:",
         "font-src 'self' data:", // small font subsets are inlined by Vite
-        "connect-src 'self' https://formspree.io",
-        "form-action 'self' https://formspree.io",
+        `connect-src 'self' ${BACKEND_ORIGIN}`,
+        `form-action 'self' ${BACKEND_ORIGIN}`,
         'frame-src https://www.google.com https://maps.google.com',
         "base-uri 'self'",
         "object-src 'none'",

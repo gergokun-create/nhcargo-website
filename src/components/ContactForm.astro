@@ -1,14 +1,15 @@
 ---
 /**
  * Quote request / contact form.
- * Endpoint: src/data/site.ts → formEndpoint (Formspree or /contact.php) – see README.
+ * Endpoint: src/data/site.ts → formEndpoint = our backend's /ajanlatkeres (cms-auth/contact.mjs),
+ * which emails the request to info@nhcargo.hu through Microsoft 365 – see README.
  * Works without JavaScript too (plain POST); with JS it validates on the client
  * and shows inline success / error states.
  */
 import Icon from './Icon.astro';
 import { localePath, useTranslations, type Lang } from '../i18n';
 import { cargoTypes } from '../data/content';
-import { site, formEndpointIsPlaceholder } from '../data/site';
+import { site, backendUrl } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -37,7 +38,7 @@ const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
     novalidate
     class="space-y-6"
     data-contact-form
-    data-placeholder-endpoint={formEndpointIsPlaceholder ? 'true' : undefined}
+    data-wake-url={`${backendUrl}/health`}
     data-messages={JSON.stringify(t.form.validation)}
     data-sending={t.form.sending}
     aria-describedby="form-intro"
@@ -47,7 +48,6 @@ const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
     <div class="hidden rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-800" role="alert" data-form-summary>
     </div>
 
-    <input type="hidden" name="_subject" value={t.form.subject} />
     <input type="hidden" name="language" value={lang} />
     <input type="hidden" name="_ts" value="" data-form-ts />
 
@@ -366,30 +366,44 @@ const errorClass = 'mt-2 hidden text-sm font-medium text-red-700';
         return;
       }
 
-      if (form.dataset.placeholderEndpoint) {
-        errorBox?.classList.remove('hidden');
-        return;
-      }
-
       setSending(true);
+      // The backend may need up to a minute to wake up (free hosting) – wait for it
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 90_000);
       try {
+        const body = new URLSearchParams();
+        for (const [key, value] of data) if (typeof value === 'string') body.append(key, value);
         const response = await fetch(form.action, {
           method: 'POST',
-          body: data,
+          body,
           headers: { Accept: 'application/json' },
+          signal: controller.signal,
         });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) throw new Error(`HTTP ${response.status}`);
         form.reset();
         showSuccess();
       } catch {
         errorBox?.classList.remove('hidden');
         errorBox?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } finally {
+        clearTimeout(timer);
         setSending(false);
       }
     });
 
-    // Return from a non-JS submission to the PHP mailer (?sent=1 / ?error=1)
+    // The backend sleeps when idle (free hosting): wake it as soon as someone starts filling
+    // in the form, so it is up by the time they press send.
+    const wakeUrl = form.dataset.wakeUrl;
+    form.addEventListener(
+      'focusin',
+      () => {
+        if (wakeUrl) fetch(wakeUrl, { cache: 'no-store' }).catch(() => {});
+      },
+      { once: true },
+    );
+
+    // Return from a non-JS submission (?sent=1 / ?error=1)
     const params = new URLSearchParams(window.location.search);
     if (params.has('sent')) showSuccess();
     else if (params.has('error')) errorBox?.classList.remove('hidden');
