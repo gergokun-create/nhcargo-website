@@ -1,6 +1,8 @@
 # Admin felület – terv (előfizetés nélkül: Decap CMS + GitHub + Render Free)
 
 > Állapot: **jóváhagyva (2026-10-23), megvalósítva** az `admin-decap` ágon. Használat: `ADMIN_UTMUTATO.md`, élesítés: `DEPLOY.md`.
+>
+> **Módosítás (2026-10-23):** az ajánlatkérő űrlap a Formspree helyett a saját háttérszolgáltatáson (`cms-auth/contact.mjs`) és a cég Microsoft 365-én keresztül küld az `info@nhcargo.hu`-ra – lásd `M365_BEALLITAS.md`. Az alábbi Formspree-ről szóló részek ezzel elavultak.
 > Feltétel: ne legyen fizetős előfizetés. Csak ingyenes csomagok: GitHub, Render (Static Site + Free web service), Formspree Free.
 > Ellenőrizve: 2026-10-23 (Decap CMS 3.17.1, render.com/docs, formspree.io/plans).
 

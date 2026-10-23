@@ -1,20 +1,20 @@
 # Élesítés – NH Cargo weboldal (Render, www.nhcargo.hu)
 
 > Felépítés: **statikus weboldal** (Astro) + **Decap CMS admin** (`/admin/`) + egy kis
-> **belépési szolgáltatás** (`cms-auth/`). Minden ingyenes csomagon fut, adatbázis nincs:
+> **háttérszolgáltatás** (`cms-auth/`: admin-belépés + ajánlatkérő űrlap). Minden ingyenes csomagon fut, adatbázis nincs:
 > a tartalom a GitHub-repóban van. Részletek: `ADMIN_TERV.md`, használat: `ADMIN_UTMUTATO.md`.
 
 | Render szolgáltatás | Mi ez | Csomag |
 | --- | --- | --- |
 | `nhcargo-website` | a weboldal és az admin (`www.nhcargo.hu`, `/admin/`) | Static Site (ingyenes) |
-| `nhcargo-cms-auth` | GitHub-belépés az adminhoz | Free web service (15 perc tétlenség után elalszik) |
+| `nhcargo-cms-auth` | GitHub-belépés az adminhoz + az ajánlatkérő űrlap küldése az `info@nhcargo.hu`-ra (Microsoft 365) | Free web service (15 perc tétlenség után elalszik) |
 
 ## 1. Mi kell hozzá?
 
 - GitHub-repó: `gergokun-create/nhcargo-website` (a Render innen építi az oldalt)
 - Render-fiók (<https://render.com>) – bejelentkezés GitHub-fiókkal; **Hobby** (ingyenes) munkaterület
 - Hozzáférés a `nhcargo.hu` domain DNS-beállításaihoz (a domainregisztrátornál)
-- Formspree-fiók (<https://formspree.io>, ingyenes) az ajánlatkérő űrlaphoz
+- Microsoft 365-rendszergazda az ajánlatkérő űrlap beállításához (egyszeri, kb. 20 perc): **[M365_BEALLITAS.md](M365_BEALLITAS.md)**
 
 ## 2. Környezeti változók
 
@@ -23,8 +23,7 @@
 | Változó | Kötelező? | Érték | Megjegyzés |
 | --- | --- | --- | --- |
 | `NODE_VERSION` | igen | `24` | a `render.yaml` beállítja |
-| `PUBLIC_FORM_ENDPOINT` | igen, ha működjön az űrlap | pl. `https://formspree.io/f/xxxxxxx` | build közben kerül az oldalba; módosítás után **új deploy** kell |
-| `CMS_AUTH_URL` | csak ha eltér | pl. `https://nhcargo-cms-auth-abcd.onrender.com` | ha a Render nem a `nhcargo-cms-auth.onrender.com` címet adta a belépési szolgáltatásnak |
+| `CMS_AUTH_URL` | csak ha eltér | pl. `https://nhcargo-cms-auth-abcd.onrender.com` | ha a Render nem a `nhcargo-cms-auth.onrender.com` címet adta a háttérszolgáltatásnak (az admin-belépés és az űrlap is ezt használja) |
 | `SITE_URL` | nem | – | élesben üresen hagyandó (alapértelmezés: `https://www.nhcargo.hu`) |
 | `PUBLIC_NOINDEX` | **nem szabad beállítani** élesben | – | csak előnézethez; a Render PR-előnézetei automatikusan `noindex`-ek |
 
@@ -34,14 +33,18 @@
 | --- | --- |
 | `GITHUB_CLIENT_ID` | a GitHub OAuth App *Client ID*-ja (3. pont) |
 | `GITHUB_CLIENT_SECRET` | a GitHub OAuth App *Client secret*-je – **titkos**, csak a Renderen |
-| `ALLOWED_ORIGINS` | `https://www.nhcargo.hu,https://nhcargo-website.onrender.com` (a `render.yaml` beállítja) – csak ezeknek az oldalaknak adja át a belépési tokent |
+| `ALLOWED_ORIGINS` | `https://www.nhcargo.hu,https://nhcargo-website.onrender.com` (a `render.yaml` beállítja) – csak ezeknek az oldalaknak adja át a belépési tokent, és csak innen fogad űrlapot |
+| `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET` | a Microsoft 365-alkalmazás adatai (`M365_BEALLITAS.md`); a secret **titkos** |
+| `MAIL_SENDER`, `MAIL_TO` | `info@nhcargo.hu` (a `render.yaml` beállítja); `MAIL_TO`-ba több cím is írható vesszővel |
+
+Mindkét rész önállóan működik: ha a GitHub- vagy a Microsoft-adatok hiányoznak, csak az a rész nem működik (a napló első sora mutatja: `admin login: on/off, contact form: on/off`).
 
 Titkos adat nincs a repóban. Minta a helyi fejlesztéshez: `.env.example`.
 
 ## 3. Első élesítés lépései
 
 1. **Render → New → Blueprint** → válassza ki a `nhcargo-website` repót. A Render beolvassa a `render.yaml`-t, és létrehozza a két szolgáltatást.
-   Adja meg a `PUBLIC_FORM_ENDPOINT` értékét (Formspree: README 5. pont). A `GITHUB_CLIENT_*` értékeket ekkor még üresen hagyhatja – a belépési szolgáltatás addig nem indul el, a weboldalt ez nem érinti. **Apply**.
+   A `GITHUB_CLIENT_*` és `MS_*` értékeket ekkor még üresen hagyhatja – az admin-belépés és az űrlap addig nem működik, a weboldalt ez nem érinti. **Apply**.
 2. Ellenőrizze az ideiglenes címen (`https://nhcargo-website.onrender.com`), hogy az oldal betölt.
    Jegyezze fel a belépési szolgáltatás címét (Render → `nhcargo-cms-auth` → fent, pl. `https://nhcargo-cms-auth.onrender.com`).
 3. **GitHub OAuth App** létrehozása: GitHub → **Settings → Developer settings → OAuth Apps → New OAuth App**
@@ -51,13 +54,14 @@ Titkos adat nincs a repóban. Minta a helyi fejlesztéshez: `.env.example`.
    - **Register application** → másolja ki a *Client ID*-t, majd **Generate a new client secret** → másolja ki.
 4. Render → `nhcargo-cms-auth` → *Environment*: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` → **Save, rebuild and deploy**.
    Ha a szolgáltatás címe nem `nhcargo-cms-auth.onrender.com`, a `nhcargo-website`-nál állítsa be a `CMS_AUTH_URL`-t is, és indítson új deployt.
-5. **Előnézetek:** Render → `nhcargo-website` → *Previews* → ellenőrizze, hogy a *Pull Request Previews* **Automatic** (a `render.yaml` ezt kéri). Az admin piszkozatai pull requestek; mindegyikhez előnézeti cím készül.
-6. **Settings → Custom Domains** (`nhcargo-website`): adja hozzá a `www.nhcargo.hu` és a `nhcargo.hu` domaint.
+5. **Ajánlatkérő űrlap → info@nhcargo.hu:** a Microsoft 365-ben az alkalmazás regisztrálása és a küldési jog beállítása, majd az `MS_*` változók megadása a `nhcargo-cms-auth`-on – lépésenként: **[M365_BEALLITAS.md](M365_BEALLITAS.md)**.
+6. **Előnézetek:** Render → `nhcargo-website` → *Previews* → ellenőrizze, hogy a *Pull Request Previews* **Automatic** (a `render.yaml` ezt kéri). Az admin piszkozatai pull requestek; mindegyikhez előnézeti cím készül.
+7. **Settings → Custom Domains** (`nhcargo-website`): adja hozzá a `www.nhcargo.hu` és a `nhcargo.hu` domaint.
    A Render a csupasz `nhcargo.hu`-t automatikusan átirányítja a `www`-re.
-7. **DNS (a domainregisztrátornál)** – a Render pontosan kiírja a szükséges rekordokat, azokat használja:
+8. **DNS (a domainregisztrátornál, domdom.net)** – csak a `www` és a `nhcargo.hu` A/CNAME rekordját módosítsa; az **MX- és TXT-rekordokhoz (Microsoft 365 levelezés, SPF) ne nyúljon** – a Render pontosan kiírja a szükséges rekordokat, azokat használja:
    - `www` → **CNAME** → `nhcargo-website.onrender.com`
    - `nhcargo.hu` (apex) → a Render által megadott **A** rekord (vagy ALIAS/ANAME, ha a szolgáltató támogatja)
-8. Várjon, amíg a Render „Verified” és „Certificate issued” állapotot mutat (néhány perc – pár óra).
+9. Várjon, amíg a Render „Verified” és „Certificate issued” állapotot mutat (néhány perc – pár óra).
    A HTTPS-tanúsítványt a Render automatikusan kiállítja és megújítja, a HTTP-t HTTPS-re irányítja.
 
 ## 4. Ellenőrzés élesítés után
@@ -66,7 +70,7 @@ Titkos adat nincs a repóban. Minta a helyi fejlesztéshez: `.env.example`.
 - Biztonsági fejlécek: <https://securityheaders.com/?q=www.nhcargo.hu> – elvárt: HSTS, X-Content-Type-Options, X-Frame-Options, CSP, Referrer-Policy, Permissions-Policy
 - Egy nem létező oldal (pl. `/xyz`) az egyedi 404-es oldalt mutatja
 - `https://www.nhcargo.hu/robots.txt` és `https://www.nhcargo.hu/sitemap-index.xml` elérhető, a `www` domainre mutat, és az `/admin/` nem szerepel a sitemapben
-- Az ajánlatkérő űrlap egy tesztüzenettel működik (az e-mail megérkezik az `info@nhcargo.hu` címre)
+- Az ajánlatkérő űrlap egy tesztüzenettel működik: az e-mail megérkezik az `info@nhcargo.hu` címre, a *Válasz* a kitöltőnek megy (`M365_BEALLITAS.md`, E. pont)
 - Első látogatáskor megjelenik a süti-ablak; elutasítás után a Kapcsolat oldalon nem töltődik be a Google Térkép
 - **Admin:** <https://www.nhcargo.hu/admin/> → *Belépés GitHub-fiókkal* → egy próbamódosítás mentése → az előnézet elkészül → *Publikálás most* → 1–2 perc múlva kint van (utána a próbamódosítást vissza lehet írni)
 
@@ -88,7 +92,7 @@ Ajánlott havonta egy külső másolat: GitHub → repó → **Code → Download
 
 Visszaállítás teljes adatvesztés esetén: új repó a ZIP tartalmából → a Render Blueprint újra (3. pont), az OAuth App callback címének frissítésével.
 
-A beérkezett ajánlatkérések nem a repóban vannak: e-mailben érkeznek, és a Formspree 30 napig őrzi őket.
+A beérkezett ajánlatkérések nem a repóban vannak: csak e-mailben, az `info@nhcargo.hu` postafiókban vannak meg (a háttérszolgáltatás nem tárolja őket).
 
 ## 7. Helyi szerkesztés (fejlesztőknek)
 

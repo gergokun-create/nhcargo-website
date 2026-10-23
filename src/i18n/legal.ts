@@ -176,8 +176,8 @@ const privacyHu: LegalPage = {
         },
         '**Cél:** a megkeresés megválaszolása, árajánlat készítése, kapcsolattartás.',
         '**Jogalap:** a szerződés megkötését megelőzően az érintett kérésére történő lépések megtétele (GDPR 6. cikk (1) b) pont); jogi személy partner kapcsolattartója esetén az adatkezelő jogos érdeke (GDPR 6. cikk (1) f) pont). [[Jogalap és érdekmérlegelés – jogi ellenőrzés]]',
-        '**Az adatok útja:** az űrlapon megadott adatokat a Formspree (Formspree, Inc., USA) űrlapkezelő szolgáltatás fogadja, és e-mailben továbbítja az info@nhcargo.hu címre. A Formspree a beküldött üzenetet 30 napig tárolja, ezt követően törli.',
-        '**Megőrzési idő:** a Formspree rendszerében 30 nap. Az e-mailben érkezett megkeresést [[a beérkezéstől számított X hónapig – kitöltendő]] őrizzük meg; szerződés létrejötte esetén [[a számviteli jogszabályok szerint 8 évig – jogi ellenőrzés]].',
+        '**Az adatok útja:** az űrlapon megadott adatokat a weboldal saját háttérszolgáltatása fogadja (a Render Services, Inc. szerverén, Frankfurtban, az EU-ban), ellenőrzi, és tárolás nélkül, e-mailben továbbítja az info@nhcargo.hu postafiókba a Microsoft 365 szolgáltatáson keresztül. A háttérszolgáltatás az üzenetet nem tárolja és nem naplózza. A visszaélések (tömeges beküldés) megelőzése érdekében a küldő IP-címét legfeljebb 10 percig, kizárólag a szerver memóriájában kezeljük.',
+        '**Megőrzési idő:** az e-mailben érkezett megkeresést [[a beérkezéstől számított X hónapig – kitöltendő]] őrizzük meg; szerződés létrejötte esetén [[a számviteli jogszabályok szerint 8 évig – jogi ellenőrzés]].',
       ],
     },
     {
@@ -188,10 +188,10 @@ const privacyHu: LegalPage = {
           list: [
             'Tárhelyszolgáltató: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
             'E-mail-szolgáltató (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Írország)',
-            'Űrlapkezelés: Formspree, Inc. (USA) [[székhely – a szolgáltató adatvédelmi tájékoztatója szerint]]',
+            'Az űrlap háttérszolgáltatásának üzemeltetése: Render Services, Inc. (lásd tárhelyszolgáltató; szerver: Frankfurt, EU)',
           ],
         },
-        '**Harmadik országba történő továbbítás:** a Render Services, Inc. (USA) esetében az Európai Bizottság általános szerződési feltételei (SCC) alapján, a Render adatfeldolgozói megállapodása szerint; a Microsoft az EU–USA adatvédelmi keretrendszer (DPF) résztvevője; a Formspree, Inc. (USA) esetében [[a továbbítás jogalapja – a Formspree feltételei alapján kitöltendő]]. [[A teljes rész – jogi ellenőrzés]]',
+        '**Harmadik országba történő továbbítás:** a Render Services, Inc. (USA) esetében az Európai Bizottság általános szerződési feltételei (SCC) alapján, a Render adatfeldolgozói megállapodása szerint; a Microsoft az EU–USA adatvédelmi keretrendszer (DPF) résztvevője. [[A teljes rész – jogi ellenőrzés]]',
       ],
     },
     {
@@ -273,8 +273,8 @@ const privacyEn: LegalPage = {
         },
         '**Purpose:** responding to your enquiry, preparing a quotation and keeping in contact.',
         '**Legal basis:** steps taken at your request prior to entering into a contract (Art. 6(1)(b) GDPR); for contact persons of business partners, our legitimate interest (Art. 6(1)(f) GDPR). [[Legal basis – legal review]]',
-        '**How the data is handled:** the data you enter in the form is received by the form service Formspree (Formspree, Inc., USA) and forwarded by email to info@nhcargo.hu. Formspree stores the submission for 30 days and then deletes it.',
-        '**Retention period:** 30 days at Formspree. We keep enquiries received by email for [[X months from receipt – to be completed]]; if a contract is concluded, [[8 years under accounting law – legal review]].',
+        '**How the data is handled:** the data you enter in the form is received by the website’s own backend service (on a Render Services, Inc. server in Frankfurt, EU), checked, and forwarded by email, without being stored, to the info@nhcargo.hu mailbox through Microsoft 365. The backend neither stores nor logs the message. To prevent abuse (mass submissions), the sender’s IP address is kept in the server’s memory only, for at most 10 minutes.',
+        '**Retention period:** we keep enquiries received by email for [[X months from receipt – to be completed]]; if a contract is concluded, [[8 years under accounting law – legal review]].',
       ],
     },
     {
@@ -284,10 +284,10 @@ const privacyEn: LegalPage = {
           list: [
             'Hosting provider: Render Services, Inc. (525 Brannan Street, Suite 300, San Francisco, CA 94107, USA)',
             'Email provider (Microsoft 365): Microsoft Ireland Operations Limited (One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland)',
-            'Form handling: Formspree, Inc. (USA) [[registered address – as per the provider’s privacy policy]]',
+            'Operation of the form backend: Render Services, Inc. (see hosting provider; server: Frankfurt, EU)',
           ],
         },
-        '**Transfers outside the EEA:** for Render Services, Inc. (USA), on the basis of the European Commission’s Standard Contractual Clauses (SCC) under Render’s data processing addendum; Microsoft participates in the EU–US Data Privacy Framework (DPF); for Formspree, Inc. (USA), [[legal basis – to be completed from Formspree’s terms]]. [[Whole section – legal review]]',
+        '**Transfers outside the EEA:** for Render Services, Inc. (USA), on the basis of the European Commission’s Standard Contractual Clauses (SCC) under Render’s data processing addendum; Microsoft participates in the EU–US Data Privacy Framework (DPF). [[Whole section – legal review]]',
       ],
     },
     {

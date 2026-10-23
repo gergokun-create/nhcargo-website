@@ -1,7 +1,7 @@
 # NH Cargo Kft. – weboldal
 
 Kétnyelvű (magyar / angol) céges weboldal az NH Cargo Kft. számára.
-Technológia: [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), **statikus kimenettel**, a tartalom szerkesztéséhez [Decap CMS](https://decapcms.org) admin felülettel (`/admin/`, GitHub-belépéssel). Minden ingyenes csomagon fut (Render, GitHub, Formspree) – lásd `ADMIN_TERV.md`.
+Technológia: [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), **statikus kimenettel**, a tartalom szerkesztéséhez [Decap CMS](https://decapcms.org) admin felülettel (`/admin/`, GitHub-belépéssel). Minden ingyenes csomagon fut (Render, GitHub; az ajánlatkérő űrlap a cég Microsoft 365-ével küld) – lásd `ADMIN_TERV.md`.
 
 - Magyar (alapértelmezett): `/`
 - Angol: `/en/`
@@ -114,17 +114,19 @@ Az adminban: **SEO és képek → Képek** (részletesen: `ADMIN_UTMUTATO.md`, 5
 
 ---
 
-## 5. A kapcsolati / ajánlatkérő űrlap beállítása
+## 5. A kapcsolati / ajánlatkérő űrlap
 
-Az űrlap ügyféloldali ellenőrzéssel, sikeres és hibás állapottal, valamint spamvédelemmel (rejtett „honeypot” mező) rendelkezik. A beküldés a **Formspree** ingyenes csomagjával működik (havi 50 üzenet, 30 napos tárolás – `ADATFELDOLGOZOK.md`, 3. pont). **Amíg a végpont nincs beállítva, az űrlap hibaüzenetet ad küldéskor.**
+Az ajánlatkérő űrlap az **`info@nhcargo.hu`** címre küld, külső űrlapszolgáltató nélkül:
 
-1. Regisztráljon a <https://formspree.io> oldalon (ingyenes csomag).
-2. Hozzon létre egy új űrlapot, címzettnek adja meg: `info@nhcargo.hu`.
-3. Másolja ki az űrlap végpontját, pl. `https://formspree.io/f/abcdwxyz`.
-4. Render → `nhcargo-website` → *Environment*: `PUBLIC_FORM_ENDPOINT=https://formspree.io/f/abcdwxyz` → új deploy.
-   Helyben: `.env` fájl (minta: `.env.example`).
+```
+böngésző ──▶ nhcargo-cms-auth /ajanlatkeres (Render, Frankfurt) ──▶ Microsoft 365 (Graph) ──▶ info@nhcargo.hu
+```
 
-A Formspree a `_gotcha` nevű honeypot mezőt automatikusan felismeri, a `_subject` mező pedig az e-mail tárgya lesz. A beérkezett üzenetek a Formspree felületén is megtekinthetők és törölhetők.
+- **Kliensoldalon** (`src/components/ContactForm.astro`): ellenőrzés, sikeres és hibás állapot, rejtett „honeypot” mező; JavaScript nélkül is működik. Amikor valaki elkezdi kitölteni, az oldal felébreszti az alvó háttérszolgáltatást.
+- **Szerveroldalon** (`cms-auth/contact.mjs`): mezőellenőrzés és tisztítás, csak a `www.nhcargo.hu` felől fogad (CORS), IP-címenként 10 percenként 5 beküldés, spamszűrés (honeypot, kitöltési idő), max. 20 kB; e-mail sima szövegként, a válaszcím a kitöltő címe. Nem tárol és nem naplóz személyes adatot.
+- **Beállítás:** a Microsoft 365-ben egy alkalmazást kell regisztrálni, amely csak az `info@nhcargo.hu` nevében küldhet – lépésenként: **[M365_BEALLITAS.md](M365_BEALLITAS.md)**. Az azonosítókat a Render `nhcargo-cms-auth` szolgáltatásán kell megadni (`MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET`).
+- **Címzett módosítása:** Render → `nhcargo-cms-auth` → `MAIL_TO` (több cím vesszővel).
+- Amíg a Microsoft 365 nincs beállítva, a küldés hibaüzenetet ad (a telefonszám és az e-mail-cím ott van mellette).
 
 ---
 
@@ -163,11 +165,11 @@ A `main` ágra feltöltött változtatásokból a GitHub Actions egy **előnéze
 
 | # | Teendő | Hol? |
 | --- | --- | --- |
-| 1 | **Formspree** regisztráció és a végpont beállítása | Render → `PUBLIC_FORM_ENDPOINT` (5. pont) |
+| 1 | **Microsoft 365** alkalmazás az ajánlatkérő űrlaphoz + a Render környezeti változói | `M365_BEALLITAS.md` |
 | 2 | **GitHub OAuth App** + a belépési szolgáltatás környezeti változói | `DEPLOY.md`, 3. pont |
 | 3 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | admin → Cégadatok |
 | 4 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | admin → Cégadatok |
-| 5 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje**, a Formspree adattovábbításának jogalapja (USA) | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
+| 5 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje** | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
 | 6 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
 | 7 | Hivatalos **tanúsítási jelek** (ISO 9001, ISO 14001, IFS) a tanúsítótól | `src/components/CertBadges.astro` |
 | 8 | Saját fotók: csapat / iroda, flotta, M0 raktár | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
