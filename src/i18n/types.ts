@@ -163,3 +163,13 @@ export interface Dictionary {
 }
 
 type Stat = { value: string; label: string };
+
+/**
+ * The part of the Dictionary that stays in code (src/i18n/hu.ts, en.ts).
+ * Everything else comes from the admin-editable JSON in src/cms/content/ (see src/i18n/index.ts).
+ */
+export type UiDictionary = Pick<Dictionary, 'nav' | 'common' | 'form' | 'legalNotice' | 'notFound' | 'consent'> & {
+  contact: Pick<Dictionary['contact'], 'details' | 'map'>;
+  footer: Omit<Dictionary['footer'], 'tagline'>;
+  about: Pick<Dictionary['about'], 'placeholder'> & { slots: Record<AboutSlot, { title: string }> };
+};

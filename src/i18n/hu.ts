@@ -1,70 +1,12 @@
 /**
- * MAGYAR SZÖVEGEK – a weboldal összes magyar nyelvű szövege itt szerkeszthető.
- * Az angol megfelelők az en.ts fájlban vannak, azonos szerkezetben.
- * (A jogi oldalak szövegei a legal.ts fájlban találhatók.)
+ * MAGYAR FELÜLETI SZÖVEGEK – menü, űrlap, süti-ablak és egyéb rögzített feliratok.
+ * Az oldalak tartalma (szövegek, képek, SEO) az adminban szerkeszthető: /admin/
+ * (fájlok: src/cms/content/*.json). Az angol megfelelők az en.ts fájlban vannak.
+ * A jogi oldalak szövegei a legal.ts fájlban találhatók.
  */
-import type { Dictionary } from './types';
+import type { UiDictionary } from './types';
 
-export const hu: Dictionary = {
-  meta: {
-    home: {
-      title: 'Hűtött fuvarozás és szállítmányozás | NH Cargo Kft.',
-      description:
-        'Belföldi és nemzetközi közúti fuvarozás, szállítmányozás és cross-docking hűtött árukra. 40 hűtős szerelvény, Magyarország és EU.',
-    },
-    about: {
-      title: 'Rólunk – hűtött áruszállító cég Budaörsön | NH Cargo',
-      description:
-        'Az NH Cargo Kft. hűtött közúti fuvarozást végez: 40 hűtős szerelvény, TAPA- és pharma minősítésű kamionok, ISO 9001, ISO 14001 és IFS tanúsítvány.',
-    },
-    services: {
-      title: 'Fuvarozás és szállítmányozás – szolgáltatások | NH Cargo',
-      description:
-        'Belföldi fuvarozás, cross-docking és nemzetközi közúti fuvarozás hűtött árukra Magyarországon és az EU-ban, valós idejű nyomon követéssel.',
-    },
-    domestic: {
-      title: 'Belföldi fuvarozás – hűtött áruszállítás | NH Cargo',
-      description:
-        'Gyors, rugalmas belföldi közúti fuvarozás Magyarország egész területén: hűtött, fagyasztott és friss áru kamionos szállítása modern flottával.',
-    },
-    crossdock: {
-      title: 'Cross-docking és raktározás az M0 mentén | NH Cargo',
-      description:
-        'Belföldi cross-docking és hűtött raktározás az M0 autópálya vonalán: az árut közvetlenül átrakjuk, így rövidebb az átfutás és alacsonyabb a költség.',
-    },
-    international: {
-      title: 'Nemzetközi fuvarozás és szállítmányozás | NH Cargo',
-      description:
-        'Nemzetközi közúti fuvarozás és szállítmányozás az EU-ban: hűtött kamionos szállítás valós idejű nyomon követéssel, egyedi árazással.',
-    },
-    sustainability: {
-      title: 'Fenntartható fuvarozás – zöldebb logisztika | NH Cargo',
-      description:
-        'Optimalizált útvonaltervezés, alternatív üzemanyagok, modern technológia és kevesebb üresjárat: így csökkentjük a fuvarozás környezeti terhelését.',
-    },
-    contact: {
-      title: 'Kapcsolat és ajánlatkérés – fuvarozás | NH Cargo',
-      description:
-        'Kérjen ajánlatot hűtött közúti fuvarozásra! Telefon: +36 70 902 5961, e-mail: info@nhcargo.hu, iroda: 2040 Budaörs, Baross u. 165.',
-    },
-    imprint: {
-      title: 'Impresszum | NH Cargo Kft.',
-      description:
-        'Az NH Cargo Kft. cégadatai és a weboldal üzemeltetésével kapcsolatos információk.',
-    },
-    privacy: {
-      title: 'Adatkezelési tájékoztató | NH Cargo Kft.',
-      description:
-        'Tájékoztató arról, hogyan kezeli az NH Cargo Kft. a személyes adatokat a GDPR előírásainak megfelelően.',
-    },
-    cookies: {
-      title: 'Süti tájékoztató | NH Cargo Kft.',
-      description:
-        'Tájékoztató a weboldalon használt sütikről és hasonló technológiákról, valamint a hozzájárulás kezeléséről.',
-    },
-  },
-
-
+export const hu: UiDictionary = {
   nav: {
     home: 'Főoldal',
     about: 'Rólunk',
@@ -96,265 +38,13 @@ export const hu: Dictionary = {
     moreAbout: 'Bővebben rólunk',
   },
 
-  alt: {
-    heroTrucks: 'Narancssárga kamion halad egy zöld dombok közötti autópályán',
-    reeferTruck: 'Narancssárga Volvo nyerges vontató hűtött félpótkocsival az autópályán',
-    sunnyRoadTruck: 'NH Cargo logós fehér kamion fehér hűtős félpótkocsival napsütéses, zöld vidéken',
-    reeferTrailers: 'Hűtőaggregátos félpótkocsik sorban egy telephelyen, tiszta kék ég alatt',
-    countryRoadTruck: 'Kamion halad egy kanyargós országúton, a háttérben falu templomtoronnyal',
-    dockDoors: 'Kék rakodókapuk egy logisztikai központ rakodóterében',
-    logisticsHall: 'Világos, modern logisztikai csarnok gyorskapukkal és egy beálló kamionnal',
-    windTurbines: 'Szélturbina zöld mezőgazdasági táj felett, kék égbolttal',
-    countryRoad: 'Zöld mezők között kanyargó országút napsütésben, bárányfelhős égbolttal',
-    truckParking: 'Sorban parkoló kamionok egy logisztikai parkolóban, felülnézetből',
-  },
-
-  home: {
-    hero: {
-      eyebrow: 'Hőmérséklet-szabályozott közúti szállítás · élelmiszeripar',
-      title: 'Megbízható hőmérséklet-szabályozott szállítás Európa-szerte',
-      subtitle:
-        'Fagyasztott, hűtött vagy friss áru – szállítmányát biztonságosan, időben és pontosan a megfelelő hőmérsékleten juttatjuk célba, egyetlen dedikált kapcsolattartóval.',
-      chips: ['Fagyasztott', 'Hűtött', 'Friss'],
-      stats: [
-        { value: '10+', label: 'év tapasztalat a logisztikában' },
-        { value: '1:1', label: 'dedikált kapcsolattartó' },
-        { value: 'EU', label: 'európai lefedettség' },
-      ],
-    },
-    about: {
-      eyebrow: 'Rólunk',
-      title: 'Megbízható partner a hőmérséklet-szabályozott logisztikában',
-      paragraphs: [
-        'Az NH Cargo Kft. jelentős tapasztalattal rendelkező, megbízható partner a hőmérséklet-szabályozott szállítás területén. Csapatunk több mint tíz éve dolgozik a logisztikában, és a szakma számos területén szerzett gyakorlati tapasztalatot.',
-        'Szakterületünk az élelmiszeripar hőmérséklet-szabályozott közúti szállítása. Széles körű piacismeretünknek és dedikált járműflottánknak köszönhetően Európa-szerte kínálunk szállítási megoldásokat.',
-      ],
-      mission: {
-        title: 'Küldetésünk',
-        text: 'Különleges szolgáltatást szeretnénk nyújtani minden partnerünknek, akinek fagyasztott, hűtött vagy friss áru szállítására van szüksége. Tudjuk, milyen fontos az Ön ellátási lánca, és hogy ez a legmagasabb szintű szállítási szolgáltatást követeli meg.',
-      },
-      contactPerson: {
-        title: 'Egy dedikált kapcsolattartó',
-        text: 'Minden partnerünk saját kapcsolattartót kap, aki ismeri valamennyi igényét, és megszervezi a szállítmány számára legjobb megoldást – call center és ismételt egyeztetések nélkül.',
-      },
-    },
-    why: {
-      eyebrow: 'Miért mi?',
-      title: 'Miért válasszon minket?',
-      intro: 'A hőmérsékletérzékeny áru nem tűri a hibát. Ezekre számíthat, ha velünk dolgozik.',
-    },
-    services: {
-      eyebrow: 'Szolgáltatások',
-      title: 'Az Ön ellátási láncára szabott szállítási megoldások',
-      intro:
-        'A gyors belföldi kiszállítástól a cross-dockingon át a nemzetközi fuvarozásig – megszervezzük az áruja számára legmegfelelőbb megoldást.',
-    },
-    fleet: {
-      eyebrow: 'Flotta és minőség',
-      title: '40 dedikált hűtős szerelvény, tanúsított minőségben',
-      intro:
-        'Saját, dedikált hűtős flottával, TAPA- és gyógyszeripari minősítésű kamionokkal, valamint tanúsított irányítási rendszerekkel dolgozunk – hogy áruja minden körülmények között biztonságban legyen.',
-      cards: [
-        { title: '40 hűtős szerelvény', text: 'Normál, doppelstock és válaszfalas hűtős járművek, dedikáltan partnereink számára.' },
-        { title: 'TAPA- és pharma minősítésű kamionok', text: 'Kamionjaink minősítéssel rendelkeznek a nagy értékű és gyógyszeripari rakományok biztonságos szállításához.' },
-        { title: 'GPS-alapú nyomon követés', text: 'A teljes flotta valós időben követhető, így mindig tudjuk, hol jár az áru.' },
-      ],
-    },
-    sustainability: {
-      eyebrow: 'Fenntarthatóság',
-      title: 'Felelősen szállítunk',
-      text: 'Optimalizált útvonaltervezéssel, alternatív üzemanyagokkal és modern technológiákkal csökkentjük a kibocsátást és növeljük a hatékonyságot – partnereinkkel együtt pedig a lehető legkevesebbre szorítjuk az üresjáratokat.',
-      cta: 'Fenntarthatósági szemléletünk',
-    },
-  },
-
-  why: {
-    experience: {
-      title: 'Több mint 10 év tapasztalat',
-      text: 'Több mint egy évtizede dolgozunk a logisztikában, a szakma számos területén.',
-    },
-    contact: {
-      title: 'Dedikált kapcsolattartó',
-      text: 'Egyetlen kolléga, aki ismeri az Ön igényeit, és minden szállítást megszervez Önnek.',
-    },
-    temperature: {
-      title: 'Hőmérséklet-szabályozott szállítás',
-      text: 'Fagyasztott, hűtött és friss áru – az előírt hőmérséklet-tartományban, a felrakodástól a kiszállításig.',
-    },
-    fleet: {
-      title: 'Saját dedikált flotta',
-      text: 'Dedikált járműparkunk biztos kapacitást és egyenletes szolgáltatási minőséget jelent.',
-    },
-    europe: {
-      title: 'Európai lefedettség',
-      text: 'Széles körű piacismeret és megbízható partnerhálózat az európai szállításokhoz.',
-    },
-    tracking: {
-      title: 'Valós idejű nyomon követés',
-      text: 'Korszerű nyomkövető rendszereinknek köszönhetően mindig naprakész információval rendelkezik szállítmányáról.',
-    },
-  },
-
-  services: {
-    hero: {
-      eyebrow: 'Szolgáltatások',
-      title: 'Belföldi és nemzetközi szállítás – a szervezéstől a kiszállításig',
-      subtitle:
-        'Akár Magyarországon belül, akár Európa-szerte utazik az áruja, minden szállítást az Ön igényeihez, határidejéhez és a rakomány hőmérsékleti követelményeihez igazítunk.',
-    },
-    items: {
-      domestic: {
-        title: 'Belföldi szállítás',
-        pageTitle: 'Belföldi közúti fuvarozás',
-        short: 'Gyors, rugalmas kiszállítás Magyarország bármely pontjára, kiterjedt belföldi hálózattal.',
-        lead: 'Gyors, rugalmas és megbízható kiszállítás Magyarország egész területén.',
-        points: [
-          {
-            title: 'Gyors és rugalmas szállítás',
-            text: 'Az Ön igényeihez igazított, sokféle szállítási lehetőség – a rendszeres járatoktól az egyedi fuvarokig.',
-          },
-          {
-            title: 'Kiterjedt hálózat',
-            text: 'Átfogó belföldi hálózatunkkal gyorsan szállítunk az ország bármely pontjára.',
-          },
-          {
-            title: 'Modern flotta, tapasztalt szakemberek',
-            text: 'Korszerű járműveink és tapasztalt kollégáink garantálják a biztonságos és pontos kiszállítást.',
-          },
-          {
-            title: 'Optimalizált folyamatok',
-            text: 'Átgondolt logisztikai folyamataink csökkentik a szállítási költségeket és növelik a hatékonyságot.',
-          },
-          {
-            title: 'Rugalmas szolgáltatási lehetőségek',
-            text: 'Szolgáltatásainkat a különböző ügyféligényekhez és árutípusokhoz igazítjuk.',
-          },
-        ],
-      },
-      crossdock: {
-        title: 'Belföldi cross-docking',
-        pageTitle: 'Belföldi cross-docking és raktározás',
-        short:
-          'Az áru közvetlenül a beérkező járműről a kimenő szállítmányba kerül – rövidebb átfutás, alacsonyabb költség.',
-        lead: 'Az áru közvetlenül a beérkező szállítmányból a kimenőbe kerül – felesleges raktározás nélkül.',
-        points: [
-          {
-            title: 'Rövidebb átfutási idő',
-            text: 'Az árut közvetlenül a járművek között rakjuk át, így minimálisra csökken a szállítási idő.',
-          },
-          {
-            title: 'Nagyobb hatékonyság',
-            text: 'Kevesebb mozgatási lépés, hatékonyabb logisztikai lánc.',
-          },
-          {
-            title: 'Alacsonyabb költségek',
-            text: 'Hosszú távú tárolás nélkül csökkennek a raktározási és árukezelési költségek.',
-          },
-          {
-            title: 'Gyorsabb kiszállítás',
-            text: 'Az áru hamarabb ér célba – ez különösen a romlandó termékeknél fontos.',
-          },
-        ],
-      },
-      international: {
-        title: 'Nemzetközi szállítás',
-        pageTitle: 'Nemzetközi közúti fuvarozás és szállítmányozás',
-        short: 'Közúti fuvarozás Európa-szerte valós idejű nyomon követéssel, versenyképes, egyedi árazással.',
-        lead: 'Széles körű tapasztalat a nemzetközi közúti fuvarozásban, Európa-szerte.',
-        points: [
-          {
-            title: 'Közúti fuvarozás Európa-szerte',
-            text: 'Nemzetközi szállítmányait saját dedikált flottánkkal, közúton juttatjuk el a célállomásra.',
-          },
-          {
-            title: 'Átláthatóság',
-            text: 'Korszerű nyomkövető rendszereink valós idejű követést tesznek lehetővé, így mindig naprakész információval rendelkezik szállítmányáról.',
-          },
-          {
-            title: 'Rugalmasság',
-            text: 'Versenyképes árak és a célállomáshoz igazított, rugalmas megoldások.',
-          },
-          {
-            title: 'Megbízható európai hálózat',
-            text: 'Széles körű piacismeretünknek köszönhetően áruját gyorsan és megbízhatóan juttatjuk el Európa bármely pontjára.',
-          },
-        ],
-      },
-    },
-    related: 'További szolgáltatásaink',
-    question: { title: 'Kérdése van ezzel a szolgáltatással kapcsolatban?', text: 'Írja meg, mit, honnan és hová szállítana – dedikált kapcsolattartója hamarosan egyedi ajánlattal jelentkezik.' },
-    process: {
-      eyebrow: 'Így dolgozunk',
-      title: 'Az ajánlatkéréstől a kiszállításig',
-      steps: {
-        request: {
-          title: 'Ajánlatkérés',
-          text: 'Írja meg, mit, honnan, hová és mikor szállítana – a hőmérsékleti igényekkel együtt.',
-        },
-        offer: {
-          title: 'Egyedi ajánlat',
-          text: 'Dedikált kapcsolattartója kidolgozza a szállítmánya számára legjobb megoldást.',
-        },
-        organise: {
-          title: 'Szervezés és felügyelet',
-          text: 'Megtervezzük az útvonalat, kijelöljük a járművet, és valós időben követjük a szállítmányt.',
-        },
-        delivery: {
-          title: 'Biztonságos kiszállítás',
-          text: 'Áruja időben, kifogástalan állapotban és a megfelelő hőmérsékleten érkezik meg.',
-        },
-      },
-    },
-  },
 
 
-  sustainability: {
-    hero: {
-      eyebrow: 'Fenntarthatóság',
-      title: 'Úton a zöldebb logisztika felé',
-      subtitle:
-        'A szállítás és a logisztika területén a fenntarthatóság elengedhetetlen ahhoz, hogy a lehető legkisebbre csökkentsük környezeti hatásunkat.',
-    },
-    intro: {
-      eyebrow: 'Elkötelezettségünk',
-      title: 'Kisebb kibocsátás, nagyobb hatékonyság',
-      paragraphs: [
-        'A szállítás minden ellátási lánc gerince – és ez felelősséggel jár. Célunk, hogy minden tevékenységünk során csökkentsük a kibocsátást és növeljük a hatékonyságot.',
-        'Partnereinkkel együttműködve igyekszünk a lehető legkevesebbre szorítani a felesleges járműmozgatást, az úgynevezett üresjáratokat, és környezetbarát megoldásokat vezetünk be. Így járulunk hozzá egy zöldebb jövőhöz a következő generációk számára.',
-      ],
-    },
-    pillarsTitle: 'Így csökkentjük a környezeti terhelést',
-    pillars: {
-      routes: {
-        title: 'Optimalizált útvonaltervezés',
-        text: 'Okosabb útvonalak: kevesebb megtett kilométer, kevesebb üzemanyag, alacsonyabb kibocsátás.',
-      },
-      fuels: {
-        title: 'Alternatív üzemanyagok',
-        text: 'Ahol lehetséges, alternatív üzemanyag-megoldásokat keresünk és alkalmazunk.',
-      },
-      technology: {
-        title: 'Modern technológiák',
-        text: 'Korszerű járművek és digitális eszközök teszik tisztábbá és hatékonyabbá működésünket.',
-      },
-      emptyRuns: {
-        title: 'Kevesebb üresjárat',
-        text: 'Partnereinkkel együtt a minimálisra csökkentjük a járművek felesleges áthelyezését.',
-      },
-    },
-    closing: {
-      title: 'Zöldebb jövő a következő generációknak',
-      text: 'Minden optimalizált útvonal és minden elkerült üresjárat számít. Elkötelezettek vagyunk a folyamatos fejlődés mellett – ügyfeleinkért, partnereinkért és a környezetért.',
-    },
-  },
+
+
+
 
   contact: {
-    hero: {
-      eyebrow: 'Kapcsolat',
-      title: 'Beszéljünk a szállítmányáról!',
-      subtitle:
-        'Kérjen ajánlatot vagy tegye fel kérdését – töltse ki az űrlapot, és hamarosan jelentkezünk. Telefonon és e-mailben is elérhet minket.',
-    },
     details: {
       title: 'Elérhetőségeink',
       company: 'Cégnév',
@@ -431,14 +121,8 @@ export const hu: Dictionary = {
     subject: 'Új ajánlatkérés – nhcargo.hu',
   },
 
-  cta: {
-    title: 'Segítünk egyszerűbbé tenni az ellátási láncát!',
-    text: 'Mondja el, milyen árut, honnan és hová szállítana – dedikált kapcsolattartója hamarosan egyedi ajánlattal jelentkezik.',
-    primary: 'Kapcsolatfelvétel',
-  },
 
   footer: {
-    tagline: 'Hőmérséklet-szabályozott közúti szállítás az élelmiszeripar számára – Európa-szerte.',
     navTitle: 'Navigáció',
     contactTitle: 'Elérhetőség',
     legalTitle: 'Jogi információk',
@@ -460,71 +144,12 @@ export const hu: Dictionary = {
   },
 
   about: {
-    hero: {
-      eyebrow: 'Rólunk',
-      title: 'Rugalmas partner a hűtött áruszállításban',
-      subtitle:
-        'A 2024-ben alapított NH Cargo Kft. fiatal, dinamikus csapat – a hűtött áruszállításban szerzett, összesen közel 100 évnyi szakmai tapasztalattal.',
-    },
-    intro: {
-      title: 'Cégbemutatkozás',
-      text: 'Társaságunk 2024-ben alakult. Munkatársaink együttes szakmai tapasztalata a hűtött áruszállítás területén hamarosan eléri a 100 évet.',
-      stats: [
-        { value: '2024', label: 'alapítás éve' },
-        { value: '~100 év', label: 'együttes szakmai tapasztalat' },
-        { value: '40', label: 'dedikált hűtős szerelvény' },
-      ],
-    },
-    activity: {
-      title: 'Fő tevékenységünk',
-      text: 'Elsődleges profilunk a nemzetközi és belföldi hűtött, teljes rakományos (FTL) fuvarozás. Emellett ponyvás és dobozos járművekkel is vállalunk szállítási feladatokat.',
-    },
-    fleet: {
-      title: 'Járműflotta',
-      text: 'Flottánk 40 dedikált hűtős szerelvényből áll, köztük normál, doppelstock és válaszfalas hűtős járművekkel. Kamionjaink TAPA- és gyógyszeripari (pharma) minősítéssel rendelkeznek. A teljes flotta GPS-alapú nyomon követéssel működik.',
-      types: ['Normál hűtős', 'Doppelstock', 'Válaszfalas hűtős'],
-      badges: ['TAPA-minősítésű kamionok', 'Gyógyszeripari (pharma) minősítésű kamionok', 'GPS-alapú nyomon követés'],
-    },
-    results: {
-      eyebrow: 'Eredményeink',
-      title: 'Számokban a teljesítményünk',
-      items: [
-        { value: '2 500+', label: 'teljesített fuvarfeladat 2025-ben' },
-        { value: '5 M€+', label: 'árbevétel 2025-ben' },
-      ],
-    },
-    quality: {
-      title: 'Minőségirányítás',
-      text: 'Társaságunk ISO 9001, ISO 14001 és IFS tanúsítványokkal rendelkezik.',
-      certs: [
-        { name: 'ISO 9001', text: 'Minőségirányítási rendszer' },
-        { name: 'ISO 14001', text: 'Környezetirányítási rendszer' },
-        { name: 'IFS', text: 'Élelmiszer-biztonsági szabvány' },
-      ],
-    },
-    warehouse: {
-      title: 'Raktározás és átrakás',
-      text: 'Az M0 autópálya vonalán hűtött raktározási kapacitással rendelkezünk, friss áru esetén átrakási lehetőséggel.',
-    },
-    duty: {
-      title: 'Ügyelet',
-      text: 'Hétvégi, valamint reggel 04:00–07:00 közötti ügyeletet biztosítunk, így a felmerülő problémákra gyorsan reagálunk.',
-      hours: ['Hétvégi ügyelet', 'Reggel 04:00–07:00'],
-    },
-    strength: {
-      title: 'Legnagyobb erősségünk: a rugalmasság',
-      text: 'Rugalmas, partnerközpontú működésünkkel megbízható logisztikai hátteret nyújtunk partnereinknek, váratlan helyzetekben is.',
-    },
-    goals: {
-      title: 'Jövőbeli céljaink',
-      text: 'Célunk a folyamatos, fenntartható fejlődés, a flotta és a szolgáltatások bővítése, valamint új hazai és nemzetközi partnerkapcsolatok kialakítása. A hűtött szállítmányozás területén tovább kívánjuk erősíteni piaci jelenlétünket, a magas minőségi, biztonsági és szolgáltatási színvonal megtartása mellett.',
-    },
-    placeholder: { label: 'Kép helye', file: 'Fájl', size: 'Javasolt méret' },
+    placeholder: { label: 'Kép helye', file: 'Feltöltés: admin › Képek ›', size: 'Javasolt méret' },
     slots: {
-      fejlec: { title: 'Fejléc háttérkép', alt: 'Az NH Cargo hűtős szerelvénye úton' },
-      csapat: { title: 'Csapat / iroda', alt: 'Az NH Cargo Kft. logója – Out of box' },
-      flotta: { title: 'Hűtős szerelvények', alt: 'Az NH Cargo dedikált hűtős szerelvényei' },
-      raktar: { title: 'Hűtött raktár az M0 mentén', alt: 'NH Cargo logós félpótkocsik a raktár rakodókapuinál, napsütésben' },
+      fejlec: { title: 'Fejléc háttérkép' },
+      csapat: { title: 'Csapat / iroda' },
+      flotta: { title: 'Hűtős szerelvények' },
+      raktar: { title: 'Hűtött raktár az M0 mentén' },
     },
   },
   consent: {

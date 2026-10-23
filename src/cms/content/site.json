@@ -1,0 +1,28 @@
+{
+  "name": "NH Cargo Kft.",
+  "shortName": "NH Cargo",
+  "phone": "+36 70 902 5961",
+  "email": "info@nhcargo.hu",
+  "office": {
+    "postalCode": "2040",
+    "city": "Budaörs",
+    "street": "Baross u. 165."
+  },
+  "seat": {
+    "postalCode": "2724",
+    "city": "Újlengyel",
+    "street": "Petőfi Sándor utca 48."
+  },
+  "registration": {
+    "companyNumber": "Cg. 13-09-236978",
+    "taxNumber": "32677173-2-13",
+    "euVatNumber": "",
+    "registryCourt": "Budapest Környéki Törvényszék Cégbírósága",
+    "representative": ""
+  },
+  "dataProtectionContact": {
+    "name": "Horváth Péter",
+    "email": "p.horvath@nhcargo.hu"
+  },
+  "linkedin": "https://www.linkedin.com/company/nh-cargo-kft/"
+}

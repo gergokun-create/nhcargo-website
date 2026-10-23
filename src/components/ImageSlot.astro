@@ -1,11 +1,11 @@
 ---
 /**
  * Image with a visible placeholder: renders the uploaded photo for the slot,
- * or a dashed "image goes here" box (with the file name to use) until one exists.
+ * or a dashed "image goes here" box (telling where to upload it in the admin) until one exists.
  */
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import { aboutImage, aboutImageFolder, aboutSlots, type AboutSlot } from '../data/aboutImages';
+import { aboutImage, aboutSlots, type AboutSlot } from '../data/aboutImages';
 import { useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -52,7 +52,7 @@ const label = t.slots[slot];
         {t.placeholder.label}: {label.title}
       </p>
       <p class="text-xs leading-relaxed text-ink-500">
-        {t.placeholder.file}: <code class="rounded bg-white px-1.5 py-0.5 font-mono text-[0.7rem] text-cold-700 ring-1 ring-frost-200">{aboutImageFolder}{slot}.jpg</code>
+        {t.placeholder.file} {label.title}
         <br />
         {t.placeholder.size}: {size}
       </p>

@@ -1,0 +1,18 @@
+{
+  "hu": {
+    "cta": {
+      "title": "Segítünk egyszerűbbé tenni az ellátási láncát!",
+      "text": "Mondja el, milyen árut, honnan és hová szállítana – dedikált kapcsolattartója hamarosan egyedi ajánlattal jelentkezik.",
+      "primary": "Kapcsolatfelvétel"
+    },
+    "footerTagline": "Hőmérséklet-szabályozott közúti szállítás az élelmiszeripar számára – Európa-szerte."
+  },
+  "en": {
+    "cta": {
+      "title": "We are here to help you streamline your supply chain!",
+      "text": "Tell us what you need to ship, from where and to where – your dedicated contact person will get back to you with a tailored offer.",
+      "primary": "Contact us"
+    },
+    "footerTagline": "Temperature-controlled road transport for the food industry – across Europe."
+  }
+}

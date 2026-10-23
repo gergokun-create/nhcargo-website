@@ -1,0 +1,208 @@
+{
+  "hu": {
+    "hero": {
+      "eyebrow": "Hőmérséklet-szabályozott közúti szállítás · élelmiszeripar",
+      "title": "Megbízható hőmérséklet-szabályozott szállítás Európa-szerte",
+      "subtitle": "Fagyasztott, hűtött vagy friss áru – szállítmányát biztonságosan, időben és pontosan a megfelelő hőmérsékleten juttatjuk célba, egyetlen dedikált kapcsolattartóval.",
+      "chips": [
+        "Fagyasztott",
+        "Hűtött",
+        "Friss"
+      ],
+      "stats": [
+        {
+          "value": "10+",
+          "label": "év tapasztalat a logisztikában"
+        },
+        {
+          "value": "1:1",
+          "label": "dedikált kapcsolattartó"
+        },
+        {
+          "value": "EU",
+          "label": "európai lefedettség"
+        }
+      ]
+    },
+    "about": {
+      "eyebrow": "Rólunk",
+      "title": "Megbízható partner a hőmérséklet-szabályozott logisztikában",
+      "paragraphs": [
+        "Az NH Cargo Kft. jelentős tapasztalattal rendelkező, megbízható partner a hőmérséklet-szabályozott szállítás területén. Csapatunk több mint tíz éve dolgozik a logisztikában, és a szakma számos területén szerzett gyakorlati tapasztalatot.",
+        "Szakterületünk az élelmiszeripar hőmérséklet-szabályozott közúti szállítása. Széles körű piacismeretünknek és dedikált járműflottánknak köszönhetően Európa-szerte kínálunk szállítási megoldásokat."
+      ],
+      "mission": {
+        "title": "Küldetésünk",
+        "text": "Különleges szolgáltatást szeretnénk nyújtani minden partnerünknek, akinek fagyasztott, hűtött vagy friss áru szállítására van szüksége. Tudjuk, milyen fontos az Ön ellátási lánca, és hogy ez a legmagasabb szintű szállítási szolgáltatást követeli meg."
+      },
+      "contactPerson": {
+        "title": "Egy dedikált kapcsolattartó",
+        "text": "Minden partnerünk saját kapcsolattartót kap, aki ismeri valamennyi igényét, és megszervezi a szállítmány számára legjobb megoldást – call center és ismételt egyeztetések nélkül."
+      }
+    },
+    "why": {
+      "eyebrow": "Miért mi?",
+      "title": "Miért válasszon minket?",
+      "intro": "A hőmérsékletérzékeny áru nem tűri a hibát. Ezekre számíthat, ha velünk dolgozik."
+    },
+    "whyItems": {
+      "experience": {
+        "title": "Több mint 10 év tapasztalat",
+        "text": "Több mint egy évtizede dolgozunk a logisztikában, a szakma számos területén."
+      },
+      "contact": {
+        "title": "Dedikált kapcsolattartó",
+        "text": "Egyetlen kolléga, aki ismeri az Ön igényeit, és minden szállítást megszervez Önnek."
+      },
+      "temperature": {
+        "title": "Hőmérséklet-szabályozott szállítás",
+        "text": "Fagyasztott, hűtött és friss áru – az előírt hőmérséklet-tartományban, a felrakodástól a kiszállításig."
+      },
+      "fleet": {
+        "title": "Saját dedikált flotta",
+        "text": "Dedikált járműparkunk biztos kapacitást és egyenletes szolgáltatási minőséget jelent."
+      },
+      "europe": {
+        "title": "Európai lefedettség",
+        "text": "Széles körű piacismeret és megbízható partnerhálózat az európai szállításokhoz."
+      },
+      "tracking": {
+        "title": "Valós idejű nyomon követés",
+        "text": "Korszerű nyomkövető rendszereinknek köszönhetően mindig naprakész információval rendelkezik szállítmányáról."
+      }
+    },
+    "services": {
+      "eyebrow": "Szolgáltatások",
+      "title": "Az Ön ellátási láncára szabott szállítási megoldások",
+      "intro": "A gyors belföldi kiszállítástól a cross-dockingon át a nemzetközi fuvarozásig – megszervezzük az áruja számára legmegfelelőbb megoldást."
+    },
+    "fleet": {
+      "eyebrow": "Flotta és minőség",
+      "title": "40 dedikált hűtős szerelvény, tanúsított minőségben",
+      "intro": "Saját, dedikált hűtős flottával, TAPA- és gyógyszeripari minősítésű kamionokkal, valamint tanúsított irányítási rendszerekkel dolgozunk – hogy áruja minden körülmények között biztonságban legyen.",
+      "cards": [
+        {
+          "title": "40 hűtős szerelvény",
+          "text": "Normál, doppelstock és válaszfalas hűtős járművek, dedikáltan partnereink számára."
+        },
+        {
+          "title": "TAPA- és pharma minősítésű kamionok",
+          "text": "Kamionjaink minősítéssel rendelkeznek a nagy értékű és gyógyszeripari rakományok biztonságos szállításához."
+        },
+        {
+          "title": "GPS-alapú nyomon követés",
+          "text": "A teljes flotta valós időben követhető, így mindig tudjuk, hol jár az áru."
+        }
+      ]
+    },
+    "sustainability": {
+      "eyebrow": "Fenntarthatóság",
+      "title": "Felelősen szállítunk",
+      "text": "Optimalizált útvonaltervezéssel, alternatív üzemanyagokkal és modern technológiákkal csökkentjük a kibocsátást és növeljük a hatékonyságot – partnereinkkel együtt pedig a lehető legkevesebbre szorítjuk az üresjáratokat.",
+      "cta": "Fenntarthatósági szemléletünk"
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "Temperature-controlled road transport · Food industry",
+      "title": "Reliable temperature-controlled transport across Europe",
+      "subtitle": "Frozen, chilled or fresh – we deliver your cargo safely, on time and at exactly the right temperature, with one dedicated contact person managing every shipment.",
+      "chips": [
+        "Frozen",
+        "Chilled",
+        "Fresh"
+      ],
+      "stats": [
+        {
+          "value": "10+",
+          "label": "years of logistics experience"
+        },
+        {
+          "value": "1:1",
+          "label": "dedicated contact person"
+        },
+        {
+          "value": "EU",
+          "label": "Europe-wide coverage"
+        }
+      ]
+    },
+    "about": {
+      "eyebrow": "About us",
+      "title": "A reliable partner for temperature-controlled logistics",
+      "paragraphs": [
+        "NH Cargo Kft. is a reliable partner with significant experience in temperature-controlled transportation. Our team has been working in logistics for more than ten years and brings hands-on experience from several areas of the field.",
+        "Our speciality is temperature-controlled road transport for the food sector. Thanks to our extensive market knowledge and our dedicated truck fleet, we provide transport solutions across Europe."
+      ],
+      "mission": {
+        "title": "Our mission",
+        "text": "We aim to offer something special to every customer who needs frozen, chilled or fresh transport. We understand how important your supply chain is – and that it requires the highest level of transport service."
+      },
+      "contactPerson": {
+        "title": "One dedicated contact person",
+        "text": "Every client is assigned a dedicated contact person who knows all of your requirements and organises the best possible solution for your cargo – no call centres, no repeating yourself."
+      }
+    },
+    "why": {
+      "eyebrow": "Why NH Cargo",
+      "title": "Why choose us?",
+      "intro": "Temperature-sensitive cargo leaves no room for error. This is what you can rely on when you work with us."
+    },
+    "whyItems": {
+      "experience": {
+        "title": "10+ years of experience",
+        "text": "More than a decade in logistics, with experience across many areas of the industry."
+      },
+      "contact": {
+        "title": "Dedicated contact person",
+        "text": "One person who knows your requirements and organises every shipment for you."
+      },
+      "temperature": {
+        "title": "Temperature-controlled specialists",
+        "text": "Frozen, chilled and fresh cargo – kept within the required range from loading to delivery."
+      },
+      "fleet": {
+        "title": "Own dedicated fleet",
+        "text": "A dedicated truck fleet means reliable capacity and consistent service quality."
+      },
+      "europe": {
+        "title": "Europe-wide coverage",
+        "text": "Extensive market knowledge and a reliable partner network for transport across Europe."
+      },
+      "tracking": {
+        "title": "Real-time shipment tracking",
+        "text": "Advanced tracking systems keep you informed about the status of your shipment at all times."
+      }
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Transport solutions tailored to your supply chain",
+      "intro": "From fast domestic deliveries to cross-docking and international freight – we organise the solution that fits your cargo."
+    },
+    "fleet": {
+      "eyebrow": "Fleet & quality",
+      "title": "40 dedicated reefer units, certified quality",
+      "intro": "We work with our own dedicated refrigerated fleet, TAPA and pharma qualified trucks, and certified management systems – so your goods are safe under all conditions.",
+      "cards": [
+        {
+          "title": "40 reefer units",
+          "text": "Standard, double-deck and multi-compartment refrigerated vehicles, dedicated to our partners."
+        },
+        {
+          "title": "TAPA & pharma qualified trucks",
+          "text": "Our trucks are qualified for the secure transport of high-value and pharmaceutical cargo."
+        },
+        {
+          "title": "GPS tracking",
+          "text": "The entire fleet is tracked in real time, so we always know where your goods are."
+        }
+      ]
+    },
+    "sustainability": {
+      "eyebrow": "Sustainability",
+      "title": "Moving goods responsibly",
+      "text": "We reduce emissions and increase efficiency through optimised route planning, alternative fuels and modern technologies – and we work with our partners to keep empty runs to a minimum.",
+      "cta": "Our approach to sustainability"
+    }
+  }
+}

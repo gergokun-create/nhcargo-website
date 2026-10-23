@@ -1,0 +1,16 @@
+{
+  "hu": {
+    "hero": {
+      "eyebrow": "Kapcsolat",
+      "title": "Beszéljünk a szállítmányáról!",
+      "subtitle": "Kérjen ajánlatot vagy tegye fel kérdését – töltse ki az űrlapot, és hamarosan jelentkezünk. Telefonon és e-mailben is elérhet minket."
+    }
+  },
+  "en": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let’s talk about your cargo",
+      "subtitle": "Request a quote or ask us a question – fill in the form and we will get back to you shortly. You can also reach us by phone or email."
+    }
+  }
+}
