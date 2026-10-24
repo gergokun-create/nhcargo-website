@@ -12,7 +12,7 @@
       "stats": [
         {
           "value": "10+",
-          "label": "év tapasztalat a logisztikában"
+          "label": "év logisztikai tapasztalat a csapatunkban"
         },
         {
           "value": "1:1",
@@ -47,8 +47,8 @@
     },
     "whyItems": {
       "experience": {
-        "title": "Több mint 10 év tapasztalat",
-        "text": "Több mint egy évtizede dolgozunk a logisztikában, a szakma számos területén."
+        "title": "Tapasztalt csapat, 10+ év a logisztikában",
+        "text": "Munkatársaink több mint egy évtizede dolgoznak a logisztikában, a szakma számos területén."
       },
       "contact": {
         "title": "Dedikált kapcsolattartó",
@@ -115,7 +115,7 @@
       "stats": [
         {
           "value": "10+",
-          "label": "years of logistics experience"
+          "label": "years of logistics experience in our team"
         },
         {
           "value": "1:1",
@@ -150,8 +150,8 @@
     },
     "whyItems": {
       "experience": {
-        "title": "10+ years of experience",
-        "text": "More than a decade in logistics, with experience across many areas of the industry."
+        "title": "Experienced team, 10+ years in logistics",
+        "text": "Our team members have worked in logistics for more than a decade, across many areas of the industry."
       },
       "contact": {
         "title": "Dedicated contact person",
