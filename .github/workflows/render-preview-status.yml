@@ -1,0 +1,40 @@
+# Makes the admin's "Előnézet ellenőrzése" (check preview) button work.
+#
+# Decap CMS finds a draft's preview through a *commit status* whose context contains
+# "deploy". Render reports its pull request previews as *deployments* instead
+# ("<branch> - nhcargo-website PR #<n>"), so this workflow mirrors each Render
+# preview deployment status onto the commit as the status "deploy/render-preview",
+# with the preview URL as its link.
+name: Render preview link for the admin
+
+on: deployment_status
+
+permissions:
+  statuses: write
+
+jobs:
+  mirror:
+    if: contains(github.event.deployment.environment, 'nhcargo-website PR #')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set commit status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.deployment.sha }}
+          RENDER_STATE: ${{ github.event.deployment_status.state }}
+          PREVIEW_URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
+        run: |
+          case "$RENDER_STATE" in
+            success)               state=success; text="Az előnézet kész" ;;
+            failure|error)         state=failure; text="Az előnézet buildje hibás" ;;
+            inactive)              exit 0 ;;
+            *)                     state=pending; text="Az előnézet épül" ;;
+          esac
+          args=(-f state="$state" -f context="deploy/render-preview" -f description="$text")
+          # Only link to Render's own preview hosts
+          if [[ "$PREVIEW_URL" =~ ^https://nhcargo-website-pr-[0-9]+\.onrender\.com/?$ ]]; then
+            args+=(-f target_url="$PREVIEW_URL")
+          fi
+          gh api "repos/$REPO/statuses/$SHA" "${args[@]}" --silent
+          echo "deploy/render-preview: $state ${PREVIEW_URL:-}"
