@@ -152,7 +152,7 @@ export interface Dictionary {
     activity: TitleText;
     fleet: TitleText & { types: string[]; badges: string[] };
     results: { eyebrow: string; title: string; items: Stat[] };
-    quality: TitleText & { certs: { name: string; text: string }[] };
+    quality: TitleText & { certs: { name: string; text: string; logo?: string }[] };
     warehouse: TitleText;
     duty: TitleText & { hours: string[] };
     strength: TitleText;

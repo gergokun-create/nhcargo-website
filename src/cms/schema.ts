@@ -178,7 +178,19 @@ export const contentFiles: ContentFile[] = [
         [
           str('title', 'Cím'),
           text('text', 'Szöveg'),
-          list('certs', 'Tanúsítványok', [str('name', 'Név'), text('text', 'Leírás')], { summary: '{{fields.name}}' }),
+          list(
+            'certs',
+            'Tanúsítványok',
+            [
+              str('name', 'Név'),
+              text('text', 'Leírás'),
+              image('logo', 'Hivatalos tanúsítási jel / logó', {
+                required: false,
+                hint: 'A tanúsítótól kapott jel, változtatás nélkül (mindkét nyelvnél ugyanazt válassza). Lejárt vagy felfüggesztett tanúsítványnál törölje! Üresen: a weboldal saját jelvénye.',
+              }),
+            ],
+            { summary: '{{fields.name}}' },
+          ),
         ],
         { collapsed: true },
       ),
