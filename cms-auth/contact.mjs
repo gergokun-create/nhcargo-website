@@ -20,10 +20,10 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 
 const config = {
-  tenant: process.env.MS_TENANT_ID,
-  clientId: process.env.MS_CLIENT_ID,
-  clientSecret: process.env.MS_CLIENT_SECRET,
-  sender: process.env.MAIL_SENDER,
+  tenant: process.env.MS_TENANT_ID?.trim(),
+  clientId: process.env.MS_CLIENT_ID?.trim(),
+  clientSecret: process.env.MS_CLIENT_SECRET?.trim(),
+  sender: process.env.MAIL_SENDER?.trim(),
   to: (process.env.MAIL_TO || process.env.MAIL_SENDER || '')
     .split(',')
     .map((a) => a.trim())
