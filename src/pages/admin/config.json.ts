@@ -5,14 +5,28 @@
 import type { APIRoute } from 'astro';
 import { decapFile } from '../../cms/fields';
 import { contentFiles } from '../../cms/schema';
-import { defaultLang, langs } from '../../i18n/config';
+import { defaultLang, langs, routes, type RouteKey } from '../../i18n/config';
 
 const FOLDER = 'src/cms/content';
 /** GitHub login helper (cms-auth/, Render Free web service). Override with CMS_AUTH_URL. */
 const AUTH_URL = process.env.CMS_AUTH_URL || 'https://nhcargo-cms-auth.onrender.com';
 
+/** Page shown by the admin's "Előnézet" (preview) link for each file; the rest open the home page. */
+const previewPage: Record<string, RouteKey> = {
+  services: 'services',
+  about: 'about',
+  sustainability: 'sustainability',
+  contact: 'contact',
+  images: 'about',
+  site: 'imprint',
+};
+
 const files = (names: string[]) =>
-  names.map((n) => decapFile(contentFiles.find((f) => f.name === n)!, FOLDER));
+  names.map((n) => {
+    const file = decapFile(contentFiles.find((f) => f.name === n)!, FOLDER);
+    const page = previewPage[n];
+    return page ? { ...file, preview_path: routes[page][defaultLang].replace(/^\//, '') } : file;
+  });
 
 const config = {
   backend: {
@@ -24,6 +38,8 @@ const config = {
     // The repo is public: no access to the owner's private repositories
     auth_scope: 'public_repo',
     squash_merges: true,
+    // Drafts' preview link: the commit status set by .github/workflows/render-preview-status.yml
+    preview_context: 'deploy/render-preview',
     commit_messages: {
       create: 'Admin: {{collection}} – „{{slug}}” létrehozása',
       update: 'Admin: {{collection}} – „{{slug}}” módosítása',
