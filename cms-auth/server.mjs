@@ -25,13 +25,14 @@ import http from 'node:http';
 import { contactConfigured, handleContact } from './contact.mjs';
 
 const env = (name, fallback) => {
-  const value = process.env[name] ?? fallback;
+  const value = (process.env[name] ?? fallback)?.trim();
   if (value === undefined || value === '') throw new Error(`Missing environment variable ${name}`);
   return value;
 };
 
-const CLIENT_ID = process.env.GITHUB_CLIENT_ID || '';
-const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || '';
+// Values pasted into the Render dashboard easily pick up a trailing space or line break
+const CLIENT_ID = (process.env.GITHUB_CLIENT_ID || '').trim();
+const CLIENT_SECRET = (process.env.GITHUB_CLIENT_SECRET || '').trim();
 const PUBLIC_URL = env('PUBLIC_URL', process.env.RENDER_EXTERNAL_URL).replace(/\/$/, '');
 const ALLOWED_ORIGINS = env('ALLOWED_ORIGINS')
   .split(',')
@@ -183,5 +184,7 @@ http
   })
   .listen(port, () => console.log(
       `cms-auth listening on :${port}, origins: ${ALLOWED_ORIGINS.join(', ')}; ` +
-        `admin login: ${CLIENT_ID && CLIENT_SECRET ? 'on' : 'off'}, contact form: ${contactConfigured ? 'on' : 'off'}`,
+        `admin login: ${CLIENT_ID && CLIENT_SECRET ? 'on' : 'off'}, contact form: ${contactConfigured ? 'on' : 'off'}` +
+        // Shape check only – the secret itself is never logged (GitHub OAuth App secrets are 40 hex characters)
+        (CLIENT_SECRET ? `; GitHub secret: ${CLIENT_SECRET.length} chars${/^[0-9a-f]{40}$/.test(CLIENT_SECRET) ? '' : ' (unexpected format – check GITHUB_CLIENT_SECRET)'}` : ''),
     ));
