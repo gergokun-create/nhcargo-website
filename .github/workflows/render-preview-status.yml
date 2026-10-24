@@ -14,7 +14,8 @@ permissions:
 
 jobs:
   mirror:
-    if: contains(github.event.deployment.environment, 'nhcargo-website PR #')
+    # quoted: an unquoted '#' would start a YAML comment
+    if: "contains(github.event.deployment.environment, 'nhcargo-website PR #')"
     runs-on: ubuntu-latest
     steps:
       - name: Set commit status
