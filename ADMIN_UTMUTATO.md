@@ -42,6 +42,8 @@ Az admin felületen a weboldal szövegei, képei, SEO-adatai és a cégadatok sz
 3. A szürke sávokra kattintva nyílnak ki a csoportok (pl. *Nyitórész*, *Rólunk rész*).
 4. Listáknál (pl. *Számok*, *Pontok*) az **Új …** gombbal új elem vehető fel, a ⋮⋮ fogóval átrendezhetők, az ✕-szel törölhetők.
 
+**Oldalfrissítés:** ha szerkesztés közben frissíti a böngészőt (vagy egy bejegyzés címét nyitja meg közvetlenül), az admin a gyűjtemény listájára ugrik – onnan nyissa meg újra a bejegyzést. (A Decap egy hibája miatt a közvetlenül megnyitott kétnyelvű bejegyzés üres lenne.)
+
 **Karakterkorlát:** ha a title 60, a description 155 karakternél hosszabb, a mező piros lesz, és a mentés nem engedi. Mentés előtt rövidítse le.
 
 ---
