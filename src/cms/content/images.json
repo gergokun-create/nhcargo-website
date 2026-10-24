@@ -52,8 +52,8 @@
         "alt": "Az NH Cargo Kft. logója – Out of box"
       },
       "flotta": {
-        "file": "",
-        "alt": "Az NH Cargo dedikált hűtős szerelvényei"
+        "file": "/admin/media/rolunk-flotta.jpg",
+        "alt": "Félpótkocsis kamion halad az autópályán, a háttérben hegycsúcs és rózsaszín égbolt"
       },
       "raktar": {
         "file": "/admin/media/rolunk-raktar.jpg",
@@ -114,8 +114,8 @@
         "alt": "NH Cargo Kft. logo – Out of box"
       },
       "flotta": {
-        "file": "",
-        "alt": "NH Cargo’s dedicated refrigerated units"
+        "file": "/admin/media/rolunk-flotta.jpg",
+        "alt": "Semi-trailer truck on the motorway, with a mountain peak and a pink sky in the background"
       },
       "raktar": {
         "file": "/admin/media/rolunk-raktar.jpg",
