@@ -57,19 +57,22 @@
     },
     "quality": {
       "title": "Minőségirányítás",
-      "text": "Társaságunk ISO 9001, ISO 14001 és IFS tanúsítványokkal rendelkezik.",
+      "text": "Társaságunk ISO 9001, ISO 14001 és IFS Logistics tanúsítvánnyal rendelkezik.",
       "certs": [
         {
           "name": "ISO 9001",
-          "text": "Minőségirányítási rendszer"
+          "text": "Minőségirányítási rendszer",
+          "logo": "/admin/media/cert-kingcert-iso-9001.png"
         },
         {
           "name": "ISO 14001",
-          "text": "Környezetirányítási rendszer"
+          "text": "Környezetirányítási rendszer",
+          "logo": "/admin/media/cert-kingcert-iso-14001.png"
         },
         {
-          "name": "IFS",
-          "text": "Élelmiszer-biztonsági szabvány"
+          "name": "IFS Logistics",
+          "text": "Élelmiszer-biztonság a logisztikában",
+          "logo": "/admin/media/cert-ifs-logistics.png"
         }
       ]
     },
@@ -152,19 +155,22 @@
     },
     "quality": {
       "title": "Quality management",
-      "text": "Our company is certified to ISO 9001, ISO 14001 and IFS.",
+      "text": "Our company is certified to ISO 9001, ISO 14001 and IFS Logistics.",
       "certs": [
         {
           "name": "ISO 9001",
-          "text": "Quality management system"
+          "text": "Quality management system",
+          "logo": "/admin/media/cert-kingcert-iso-9001.png"
         },
         {
           "name": "ISO 14001",
-          "text": "Environmental management system"
+          "text": "Environmental management system",
+          "logo": "/admin/media/cert-kingcert-iso-14001.png"
         },
         {
-          "name": "IFS",
-          "text": "Food safety standard"
+          "name": "IFS Logistics",
+          "text": "Food safety in logistics",
+          "logo": "/admin/media/cert-ifs-logistics.png"
         }
       ]
     },

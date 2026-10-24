@@ -82,6 +82,14 @@ A **Munkafolyamat** menüben (felül) látható az összes közzé nem tett pisz
 - **Megosztási kép (OG-kép):** a SEO menüben oldalanként megadható; 1200 × 630-ra vágva jelenik meg a Facebookon, LinkedInen. Üresen az oldal saját nyitóképe lesz.
 - Csak olyan képet töltsön fel, amelynek felhasználási joga a cégé (saját fotó vagy szabad licencű kép).
 
+### Tanúsítási jelek (ISO, IFS)
+
+**Oldalak → Rólunk → Minőségirányítás → Tanúsítványok** – tanúsítványonként a név, a leírás és a **hivatalos tanúsítási jel**.
+
+- Csak a tanúsítótól kapott jelet töltse fel, **változtatás nélkül** (nem szabad átszínezni, levágni, más logóval összeolvasztani). Mindkét nyelvnél ugyanazt a képet válassza.
+- **Ha a tanúsítvány lejár vagy felfüggesztik, a jelet azonnal törölje** (a KingCert IN.01 utasítás 4.1.12–4.1.13. pontja szerint). Üres mezőnél a weboldal saját, semleges jelvénye jelenik meg.
+- Megújításkor, ha új jelet kap, cserélje le.
+
 ### Kép törlése a médiatárból
 
 Felül **Média** → jelölje ki a képet → *Kijelöltek törlése*. Csak olyan képet töröljön, amelyet már egyik mező sem használ – különben a weboldal következő építése hibát jelez (és a régi verzió marad kint).
