@@ -36,7 +36,7 @@ const mail = (m: string) => `[${m}](mailto:${m})`;
 
 const imprintHu: LegalPage = {
   title: 'Impresszum',
-  updated: 'Hatályos: [[ÉÉÉÉ. HH. NN.]]',
+  updated: 'Hatályos: 2026. október 26-tól',
   sections: [
     {
       title: 'A szolgáltató adatai',
@@ -89,7 +89,7 @@ const imprintHu: LegalPage = {
 
 const imprintEn: LegalPage = {
   title: 'Imprint',
-  updated: 'Effective: [[DD/MM/YYYY]]',
+  updated: 'Effective from 26 October 2026',
   sections: [
     {
       title: 'Service provider',
@@ -145,7 +145,7 @@ const imprintEn: LegalPage = {
 
 const privacyHu: LegalPage = {
   title: 'Adatkezelési tájékoztató',
-  updated: 'Hatályos: [[ÉÉÉÉ. HH. NN.]]',
+  updated: 'Hatályos: 2026. október 26-tól',
   sections: [
     {
       title: '1. Az adatkezelő',
@@ -242,7 +242,7 @@ const privacyHu: LegalPage = {
 
 const privacyEn: LegalPage = {
   title: 'Privacy Policy',
-  updated: 'Effective: [[DD/MM/YYYY]]',
+  updated: 'Effective from 26 October 2026',
   sections: [
     {
       title: '1. Data controller',
@@ -331,7 +331,7 @@ const privacyEn: LegalPage = {
 
 const cookiesHu: LegalPage = {
   title: 'Süti tájékoztató',
-  updated: 'Hatályos: [[ÉÉÉÉ. HH. NN.]]',
+  updated: 'Hatályos: 2026. október 26-tól',
   sections: [
     {
       title: '1. Mik azok a sütik?',
@@ -378,7 +378,7 @@ const cookiesHu: LegalPage = {
 
 const cookiesEn: LegalPage = {
   title: 'Cookie Policy',
-  updated: 'Effective: [[DD/MM/YYYY]]',
+  updated: 'Effective from 26 October 2026',
   sections: [
     {
       title: '1. What are cookies?',
