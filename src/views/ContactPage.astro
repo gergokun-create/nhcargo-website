@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ContactForm from '../components/ContactForm.astro';
+import QuoteBox from '../components/QuoteBox.astro';
 import MapEmbed from '../components/MapEmbed.astro';
 import Icon from '../components/Icon.astro';
 import { images } from '../data/images';
-import { site, formatAddress } from '../data/site';
+import { site, formatAddress, quoteFormEnabled } from '../data/site';
 import { useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -72,9 +73,9 @@ const details = [
 
       <div id="quote-form" class="scroll-mt-24 lg:col-span-7" aria-labelledby="quote-form-title">
         <div class="rounded-3xl border border-ink-100 bg-white p-6 shadow-xl shadow-cold-800/5 sm:p-10" data-reveal>
-          <h2 id="quote-form-title" class="text-3xl font-extrabold">{t.form.title}</h2>
+          <h2 id="quote-form-title" class="text-3xl font-extrabold">{quoteFormEnabled ? t.form.title : t.contact.quoteBox.title}</h2>
           <div class="mt-6">
-            <ContactForm lang={lang} />
+            {quoteFormEnabled ? <ContactForm lang={lang} /> : <QuoteBox lang={lang} />}
           </div>
         </div>
       </div>

@@ -77,11 +77,9 @@ services:
       # is only accepted from these
       - key: ALLOWED_ORIGINS
         value: https://www.nhcargo.hu,https://nhcargo-website.onrender.com
-      # Quote request form → email through Microsoft 365 (Entra app, see M365_BEALLITAS.md)
-      - key: MS_TENANT_ID
-        sync: false
-      - key: MS_CLIENT_ID
-        sync: false
+      # Quote request form → email through Microsoft 365 (see M365_BEALLITAS.md). On/off,
+      # recipients, sender and the tenant / client IDs are set in the admin (form.json);
+      # only the secret lives here. MAIL_* are fallbacks for empty admin fields.
       - key: MS_CLIENT_SECRET
         sync: false
       - key: MAIL_SENDER

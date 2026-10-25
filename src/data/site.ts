@@ -67,6 +67,17 @@ export const site = {
   },
 };
 
+/**
+ * Quote request form on the contact page: switched on in the admin (Cégadatok és űrlap →
+ * Ajánlatkérő űrlap) AND the Microsoft 365 details filled in – otherwise the contact page
+ * shows a phone / e-mail box instead, so a half-configured form never goes live.
+ * (The client secret lives on Render; see M365_BEALLITAS.md.)
+ */
+const form = content.form;
+export const quoteFormEnabled = Boolean(
+  form.enabled && form.recipients && form.sender && form.msTenantId && form.msClientId,
+);
+
 export const linkedinIsPlaceholder = /linkedin\.com\/?$/.test(site.social.linkedin);
 
 export const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(site.map.query)}&z=15&output=embed`;

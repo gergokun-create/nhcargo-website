@@ -52,6 +52,31 @@ export function str(name: string, label: string, o: Common & { max?: number } = 
   return { decap, zod: textZod(o) };
 }
 
+/**
+ * Single-line text that must match a format (e.g. an e-mail address or an ID).
+ * `pattern` is checked in the admin and at build time; an empty optional field is allowed.
+ */
+export function formatted(
+  name: string,
+  label: string,
+  pattern: RegExp,
+  message: string,
+  o: Common & { i18n?: I18n } = {},
+): Field {
+  const decap = decapBase(name, label, 'string', o, o.i18n ?? true);
+  decap.pattern = [o.required === false ? `^$|${pattern.source}` : pattern.source, message];
+  const s = z.string().trim();
+  const checked = s.regex(pattern, message);
+  return { decap, zod: o.required === false ? checked.or(z.literal('')).default('') : checked };
+}
+
+/** On/off switch. */
+export function bool(name: string, label: string, o: Common & { i18n?: I18n; default?: boolean } = {}): Field {
+  const decap = decapBase(name, label, 'boolean', { ...o, required: false }, o.i18n ?? true);
+  decap.default = o.default ?? false;
+  return { decap, zod: z.boolean().default(o.default ?? false) };
+}
+
 /** Multi-line plain text (paragraph). */
 export function text(name: string, label: string, o: Common & { max?: number } = {}): Field {
   const decap = decapBase(name, label, 'text', o, true);

@@ -4,6 +4,13 @@
       "eyebrow": "Kapcsolat",
       "title": "Beszéljünk a szállítmányáról!",
       "subtitle": "Kérjen ajánlatot vagy tegye fel kérdését – töltse ki az űrlapot, és hamarosan jelentkezünk. Telefonon és e-mailben is elérhet minket."
+    },
+    "quoteBox": {
+      "title": "Kérjen ajánlatot!",
+      "text": "Írja meg e-mailben, mit, honnan és hová szállítana, milyen hőmérsékleten és mikorra – vagy hívjon minket. Dedikált kapcsolattartója hamarosan jelentkezik.",
+      "call": "Hívjon minket",
+      "email": "Írjon e-mailt",
+      "emailSubject": "Ajánlatkérés – nhcargo.hu"
     }
   },
   "en": {
@@ -11,6 +18,13 @@
       "eyebrow": "Contact",
       "title": "Let’s talk about your cargo",
       "subtitle": "Request a quote or ask us a question – fill in the form and we will get back to you shortly. You can also reach us by phone or email."
+    },
+    "quoteBox": {
+      "title": "Request a quote",
+      "text": "Email us what you would like to ship, from where to where, at what temperature and when – or give us a call. Your dedicated contact person will get back to you shortly.",
+      "call": "Call us",
+      "email": "Send an email",
+      "emailSubject": "Quote request – nhcargo.hu"
     }
   }
 }

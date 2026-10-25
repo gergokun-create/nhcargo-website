@@ -125,7 +125,7 @@ böngésző ──▶ nhcargo-cms-auth /ajanlatkeres (Render, Frankfurt) ──�
 - **Kliensoldalon** (`src/components/ContactForm.astro`): ellenőrzés, sikeres és hibás állapot, rejtett „honeypot” mező; JavaScript nélkül is működik. Amikor valaki elkezdi kitölteni, az oldal felébreszti az alvó háttérszolgáltatást.
 - **Szerveroldalon** (`cms-auth/contact.mjs`): mezőellenőrzés és tisztítás, csak a `www.nhcargo.hu` felől fogad (CORS), IP-címenként 10 percenként 5 beküldés, spamszűrés (honeypot, kitöltési idő), max. 20 kB; e-mail sima szövegként, a válaszcím a kitöltő címe. Nem tárol és nem naplóz személyes adatot.
 - **Beállítás:** a Microsoft 365-ben egy alkalmazást kell regisztrálni, amely csak az `info@nhcargo.hu` nevében küldhet – lépésenként: **[M365_BEALLITAS.md](M365_BEALLITAS.md)**. Az azonosítókat a Render `nhcargo-cms-auth` szolgáltatásán kell megadni (`MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET`).
-- **Címzett módosítása:** Render → `nhcargo-cms-auth` → `MAIL_TO` (több cím vesszővel).
+- **Be- és kikapcsolás, címzettek, Microsoft-azonosítók:** admin → **Cégadatok és űrlap → Ajánlatkérő űrlap**. Kikapcsolva (vagy amíg az azonosítók hiányoznak) a Kapcsolat oldalon ajánlatkérő doboz jelenik meg telefon- és e-mail-gombbal (`src/components/QuoteBox.astro`, szövegei: admin → Oldalak → Kapcsolat). A titkos kód csak a Renderen van (`MS_CLIENT_SECRET`).
 - Amíg a Microsoft 365 nincs beállítva, a küldés hibaüzenetet ad (a telefonszám és az e-mail-cím ott van mellette).
 
 ---
