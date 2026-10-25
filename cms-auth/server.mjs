@@ -14,7 +14,7 @@
  * disable that part (503).
  * Environment:
  *   GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET  – GitHub OAuth App (see DEPLOY.md)
- *   MS_* , MAIL_*    – Microsoft 365 sending, see contact.mjs and M365_BEALLITAS.md
+ *   MS_CLIENT_SECRET – Microsoft 365 sending; the other form settings come from the admin (contact.mjs)
  *   ALLOWED_ORIGINS  – comma-separated site origins, e.g. https://www.nhcargo.hu
  *                      (admin login token and form submissions are accepted only from these)
  *   PUBLIC_URL       – this service's URL (default: RENDER_EXTERNAL_URL)
@@ -22,7 +22,7 @@
  */
 import crypto from 'node:crypto';
 import http from 'node:http';
-import { contactConfigured, handleContact } from './contact.mjs';
+import { contactStatus, clientSecret as msSecret, handleContact } from './contact.mjs';
 
 const env = (name, fallback) => {
   const value = (process.env[name] ?? fallback)?.trim();
@@ -182,9 +182,14 @@ http
       if (!res.headersSent) send(res, 500, 'Internal error');
     });
   })
-  .listen(port, () => console.log(
+  .listen(port, async () => {
+    const contact = await contactStatus();
+    console.log(
       `cms-auth listening on :${port}, origins: ${ALLOWED_ORIGINS.join(', ')}; ` +
-        `admin login: ${CLIENT_ID && CLIENT_SECRET ? 'on' : 'off'}, contact form: ${contactConfigured ? 'on' : 'off'}` +
-        // Shape check only – the secret itself is never logged (GitHub OAuth App secrets are 40 hex characters)
-        (CLIENT_SECRET ? `; GitHub secret: ${CLIENT_SECRET.length} chars${/^[0-9a-f]{40}$/.test(CLIENT_SECRET) ? '' : ' (unexpected format – check GITHUB_CLIENT_SECRET)'}` : ''),
-    ));
+        `admin login: ${CLIENT_ID && CLIENT_SECRET ? 'on' : 'off'}, ` +
+        `contact form: ${contact.ok ? 'on' : `off (${contact.reason})`}` +
+        // Shape checks only – secrets are never logged (GitHub OAuth App secrets are 40 hex characters)
+        (CLIENT_SECRET ? `; GitHub secret: ${CLIENT_SECRET.length} chars${/^[0-9a-f]{40}$/.test(CLIENT_SECRET) ? '' : ' (unexpected format – check GITHUB_CLIENT_SECRET)'}` : '') +
+        (msSecret ? `; Microsoft secret: ${msSecret.length} chars` : ''),
+    );
+  });

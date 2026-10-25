@@ -28,7 +28,7 @@ function load(name: string): any {
 
 /** Validated content, keyed by file name. Translated files are { hu, en }. */
 export const content = Object.fromEntries(contentFiles.map((f) => [f.name, load(f.name)])) as Record<
-  'home' | 'services' | 'about' | 'sustainability' | 'contact' | 'common' | 'seo' | 'images' | 'site',
+  'home' | 'services' | 'about' | 'sustainability' | 'contact' | 'common' | 'seo' | 'images' | 'site' | 'form',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any
 >;

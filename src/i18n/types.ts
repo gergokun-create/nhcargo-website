@@ -76,6 +76,7 @@ export interface Dictionary {
     hero: PageHero;
     details: { title: string; company: string; phone: string; email: string; office: string; seat: string };
     map: { title: string; consent: string; load: string; open: string; iframeTitle: string };
+    quoteBox: { title: string; text: string; call: string; email: string; emailSubject: string };
   };
   form: {
     title: string;

@@ -78,21 +78,33 @@ Disconnect-ExchangeOnline
 
 A jogosultság a Microsoft gyorsítótára miatt **30 perc – 2 óra** múlva lép életbe (a teszt-parancs ezt nem várja meg, azonnal mutatja az eredményt).
 
-## D) Beállítás a Renderen
+## D) Beállítás az adminban és a Renderen
 
-Render → **nhcargo-cms-auth** szolgáltatás → **Environment**:
+**1. Admin** – <https://www.nhcargo.hu/admin/> → **Cégadatok és űrlap → Ajánlatkérő űrlap**:
+
+| Mező | Érték |
+| --- | --- |
+| Címzett(ek) | `info@nhcargo.hu` (több cím vesszővel) |
+| Feladó postafiók | `info@nhcargo.hu` – az a postafiók, amelyre a C. lépés jogot adott |
+| Microsoft – bérlőazonosító | Címtár (bérlő-) azonosító |
+| Microsoft – alkalmazásazonosító | Alkalmazás (ügyfél-) azonosító |
+| Űrlap bekapcsolva | **még ne** – előbb a 2. lépés |
+
+→ **Mentés → Publikálás most**. (Ezek nem titkos adatok; a nyilvános repóba kerülnek.)
+
+**2. Render** – **nhcargo-cms-auth** szolgáltatás → **Environment** → **Edit** → **Add variable**:
 
 | Változó | Érték |
 | --- | --- |
-| `MS_TENANT_ID` | Címtár (bérlő-) azonosító |
-| `MS_CLIENT_ID` | Alkalmazás (ügyfél-) azonosító |
-| `MS_CLIENT_SECRET` | a titkos ügyfélkód **értéke** |
-| `MAIL_SENDER` | `info@nhcargo.hu` (a `render.yaml` beállítja) |
-| `MAIL_TO` | `info@nhcargo.hu` (a `render.yaml` beállítja; több cím vesszővel elválasztva) |
+| `MS_CLIENT_SECRET` | a titkos ügyfélkód **értéke** – **csak itt**, soha nem az adminba (az admin tartalma nyilvános) |
 
-→ **Save, rebuild and deploy**. A szolgáltatás naplójában (*Logs*) ekkor ez a sor jelenik meg: `… contact form: on`.
+→ **Save, rebuild, and deploy**. A naplóban (*Logs*): `… contact form: off (switched off in the admin); … Microsoft secret: NN chars`.
 
-A kimásolt értékeket tartalmazó jegyzetet ezután törölje – a titkos kód csak a Renderen legyen.
+**3. Bekapcsolás** – adminban az **Űrlap bekapcsolva** pipa → **Mentés → Publikálás most**. 1–2 perc múlva a Kapcsolat oldalon az ajánlatkérő doboz helyén az űrlap jelenik meg; a háttérszolgáltatás a beállítást percenként olvassa újra, újraindítás nem kell.
+
+> Az űrlap csak akkor jelenik meg, ha be van kapcsolva **és** a címzett, a feladó és mindkét azonosító ki van töltve – félig beállított űrlap nem kerül ki. Kikapcsolni ugyanitt lehet, egy pipával.
+
+A kimásolt értékeket tartalmazó jegyzetet ezután törölje.
 
 ## E) Próba
 
@@ -104,7 +116,7 @@ A kimásolt értékeket tartalmazó jegyzetet ezután törölje – a titkos kó
 
 | Napló | Ok | Teendő |
 | --- | --- | --- |
-| `contact form: off` | hiányzó környezeti változó | D. pont |
+| `contact form: off (…)` | a zárójel mondja meg, mi hiányzik: kikapcsolva az adminban, hiányzó titkos kód, hibás azonosító | D. pont |
 | `token request failed: 400/401 invalid_client` | hibás vagy lejárt titkos kód, rossz azonosító | A/3–4, D |
 | `sendMail failed: 403 ErrorAccessDenied` | a C. lépés jogosultsága még nem él (max. 2 óra), vagy rossz a hatókör | várjon, ill. C/4 |
 | `sendMail failed: 404 …` | a `MAIL_SENDER` postafiók nem létezik | D. pont |
@@ -112,7 +124,7 @@ A kimásolt értékeket tartalmazó jegyzetet ezután törölje – a titkos kó
 ## F) Karbantartás
 
 - **A titkos kód lejár** (24 hónap). Előtte: Entra → az alkalmazás → *Tanúsítványok és titkos kódok* → új titkos kód → az értéket írja be a Renderen az `MS_CLIENT_SECRET`-be → mentés → a régi kód törlése.
-- **Másik címzett** (pl. több kolléga): Render → `MAIL_TO` → vesszővel elválasztott címek. A **feladó** (`MAIL_SENDER`) csak az `info@nhcargo.hu` lehet, mert a jogosultság csak arra szól.
+- **Másik címzett** (pl. több kolléga): admin → Ajánlatkérő űrlap → **Címzett(ek)**, vesszővel elválasztva. A **feladó** csak az `info@nhcargo.hu` lehet, mert a jogosultság csak arra szól.
 - **Visszavonás:** Entra → Vállalati alkalmazások → az alkalmazás → *Tulajdonságok* → *Törlés* (vagy PowerShell: `Remove-ManagementRoleAssignment`). Ezután az űrlap nem tud levelet küldeni.
 
 ## Biztonság röviden

@@ -27,7 +27,7 @@ function build(lang: Lang): Dictionary {
     why: whyItems,
     services: content.services[lang],
     sustainability: content.sustainability[lang],
-    contact: { ...t.contact, hero: content.contact[lang].hero },
+    contact: { ...t.contact, hero: content.contact[lang].hero, quoteBox: content.contact[lang].quoteBox },
     cta: content.common[lang].cta,
     footer: { ...t.footer, tagline: content.common[lang].footerTagline },
     about: {

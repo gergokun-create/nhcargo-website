@@ -7,6 +7,8 @@
  * the legal pages stay in code: src/i18n/{hu,en}.ts and src/i18n/legal.ts.
  */
 import {
+  bool,
+  formatted,
   hero,
   image,
   list,
@@ -232,7 +234,21 @@ export const contentFiles: ContentFile[] = [
     label: 'Kapcsolat',
     description: 'A Kapcsolat oldal szövegei. A telefonszám, e-mail és címek a „Cégadatok” alatt vannak.',
     i18n: true,
-    fields: [hero()],
+    fields: [
+      hero(),
+      obj(
+        'quoteBox',
+        'Ajánlatkérés doboz (amikor az űrlap ki van kapcsolva)',
+        [
+          str('title', 'Cím'),
+          text('text', 'Szöveg'),
+          str('call', 'Hívás gomb felirata'),
+          str('email', 'E-mail gomb felirata'),
+          str('emailSubject', 'Az e-mail tárgya (előre kitöltve)'),
+        ],
+        { collapsed: true },
+      ),
+    ],
   },
   {
     name: 'common',
@@ -286,6 +302,34 @@ export const contentFiles: ContentFile[] = [
         aboutPhoto('flotta', 'Hűtős szerelvények (1600 × 1200 px)'),
         aboutPhoto('raktar', 'Hűtött raktár az M0 mentén (1600 × 1200 px)'),
       ]),
+    ],
+  },
+  {
+    name: 'form',
+    label: 'Ajánlatkérő űrlap',
+    description:
+      'Az ajánlatkérő űrlap be- és kikapcsolása és a Microsoft 365-küldés adatai. A titkos kódot (client secret) biztonsági okból nem itt, hanem a Renderen kell megadni (MS_CLIENT_SECRET) – lásd M365_BEALLITAS.md.',
+    i18n: false,
+    fields: [
+      bool('enabled', 'Űrlap bekapcsolva', {
+        hint: 'Kikapcsolva (vagy amíg a lenti Microsoft-adatok nincsenek kitöltve) a Kapcsolat oldalon az űrlap helyett egy telefon/e-mail doboz jelenik meg. Bekapcsolás előtt a titkos kódnak a Renderen lennie kell.',
+      }),
+      formatted(
+        'recipients',
+        'Címzett(ek)',
+        /^[^\s@,]+@[^\s@,]+\.[^\s@,]+(\s*,\s*[^\s@,]+@[^\s@,]+\.[^\s@,]+)*$/,
+        'Egy vagy több e-mail-cím, vesszővel elválasztva.',
+        { hint: 'Ide érkeznek az ajánlatkérések, pl. info@nhcargo.hu (több cím vesszővel).' },
+      ),
+      formatted('sender', 'Feladó postafiók', /^[^\s@,]+@[^\s@,]+\.[^\s@,]+$/, 'Egy e-mail-cím.', {
+        hint: 'A Microsoft 365-postafiók, amelynek nevében a levél megy (az alkalmazás csak ennek a nevében küldhet): info@nhcargo.hu.',
+      }),
+      formatted('msTenantId', 'Microsoft – bérlőazonosító (Directory / tenant ID)', /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/, 'Azonosító formátum: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', {
+        required: false,
+      }),
+      formatted('msClientId', 'Microsoft – alkalmazásazonosító (Application / client ID)', /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/, 'Azonosító formátum: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', {
+        required: false,
+      }),
     ],
   },
   {

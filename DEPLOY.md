@@ -34,8 +34,8 @@
 | `GITHUB_CLIENT_ID` | a GitHub OAuth App *Client ID*-ja (3. pont) |
 | `GITHUB_CLIENT_SECRET` | a GitHub OAuth App *Client secret*-je – **titkos**, csak a Renderen |
 | `ALLOWED_ORIGINS` | `https://www.nhcargo.hu,https://nhcargo-website.onrender.com` (a `render.yaml` beállítja) – csak ezeknek az oldalaknak adja át a belépési tokent, és csak innen fogad űrlapot |
-| `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET` | a Microsoft 365-alkalmazás adatai (`M365_BEALLITAS.md`); a secret **titkos** |
-| `MAIL_SENDER`, `MAIL_TO` | `info@nhcargo.hu` (a `render.yaml` beállítja); `MAIL_TO`-ba több cím is írható vesszővel |
+| `MS_CLIENT_SECRET` | a Microsoft 365-alkalmazás titkos kódja – **titkos**, csak itt (`M365_BEALLITAS.md`). Az űrlap ki-be kapcsolása, a címzettek és az azonosítók az **adminban** vannak (Cégadatok és űrlap → Ajánlatkérő űrlap) |
+| `MAIL_SENDER`, `MAIL_TO` | tartalék, ha az admin mezői üresek (a `render.yaml` beállítja) |
 
 Mindkét rész önállóan működik: ha a GitHub- vagy a Microsoft-adatok hiányoznak, csak az a rész nem működik (a napló első sora mutatja: `admin login: on/off, contact form: on/off`).
 

@@ -81,9 +81,9 @@ const config = {
     },
     {
       name: 'cegadatok',
-      label: 'Cégadatok',
+      label: 'Cégadatok és űrlap',
       editor: { preview: false },
-      files: files(['site']),
+      files: files(['site', 'form']),
     },
   ],
 };

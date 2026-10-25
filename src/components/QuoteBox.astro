@@ -1,0 +1,30 @@
+---
+/**
+ * Quote request without the form: shown on the contact page while the form is
+ * switched off in the admin (Cégadatok és űrlap → Ajánlatkérő űrlap).
+ * Texts: admin → Oldalak → Kapcsolat → Ajánlatkérés doboz.
+ */
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const q = useTranslations(lang).contact.quoteBox;
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(q.emailSubject)}`;
+---
+
+<p class="text-lg leading-relaxed text-ink-500">{q.text}</p>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+  <a href={site.phone.href} class="btn btn-primary btn-lg">
+    <Icon name="phone" class="size-5" />
+    <span>{q.call}<span class="sr-only">:</span> <span class="font-bold whitespace-nowrap">{site.phone.display}</span></span>
+  </a>
+  <a href={mailto} class="btn btn-secondary btn-lg">
+    <Icon name="mail" class="size-5" />
+    <span>{q.email}<span class="sr-only">:</span> <span class="font-bold whitespace-nowrap">{site.email}</span></span>
+  </a>
+</div>

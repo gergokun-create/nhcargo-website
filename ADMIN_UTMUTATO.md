@@ -120,10 +120,16 @@ Az admin a **GitHub-fiókot** használja, külön admin-jelszó nincs.
 
 ---
 
-## 8. Beérkezett ajánlatkérések
+## 8. Ajánlatkérő űrlap és beérkezett ajánlatkérések
 
-Az ajánlatkérő űrlap üzenetei **e-mailben** érkeznek az `info@nhcargo.hu` postafiókba, **„Ajánlatkérés – Név (Cégnév)”** tárggyal. A **Válasz** gomb közvetlenül a kitöltőnek válaszol.
+**Be- és kikapcsolás:** **Cégadatok és űrlap → Ajánlatkérő űrlap → Űrlap bekapcsolva** → Mentés → Publikálás most.
 
-- Az üzenetek csak a postafiókban vannak meg – a weboldal nem tárolja őket. Megőrzésük és törlésük a postafiókban történik.
+- **Kikapcsolva** a Kapcsolat oldalon egy ajánlatkérő doboz látszik **Hívjon minket** és **Írjon e-mailt** gombbal (a szövegek: Oldalak → Kapcsolat → Ajánlatkérés doboz).
+- **Bekapcsolva** az ajánlatkérő űrlap jelenik meg – de csak ha a címzett, a feladó és a két Microsoft-azonosító is ki van töltve, és a titkos kód a Renderen van. Az első beállítás lépései: `M365_BEALLITAS.md`.
+- **Címzettek:** ugyanitt, vesszővel elválasztva.
+
+Az ajánlatkérések **e-mailben** érkeznek a címzett(ek)hez, **„Ajánlatkérés – Név (Cégnév)”** tárggyal. A **Válasz** gomb közvetlenül a kitöltőnek válaszol.
+
+- Az üzenetek csak a postafiókban vannak meg – a weboldal nem tárolja őket.
 - Ha az első küldés lassú (kb. fél–egy perc), az a háttérszolgáltatás ébredése; az oldal addig „Küldés…” állapotot mutat.
-- A címzett módosítása, illetve hiba esetén a teendők: `M365_BEALLITAS.md`.
+- Hiba esetén a teendők: `M365_BEALLITAS.md`, E. pont.
