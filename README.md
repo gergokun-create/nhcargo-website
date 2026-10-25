@@ -165,11 +165,9 @@ A `main` ágra feltöltött változtatásokból a GitHub Actions egy **előnéze
 
 | # | Teendő | Hol? |
 | --- | --- | --- |
-| 1 | **Microsoft 365** alkalmazás az ajánlatkérő űrlaphoz + a Render környezeti változói | `M365_BEALLITAS.md` |
-| 2 | **GitHub OAuth App** + a belépési szolgáltatás környezeti változói | `DEPLOY.md`, 3. pont |
-| 3 | **Közösségi adószám** (ha van) és a **képviselő (ügyvezető)** neve | admin → Cégadatok |
-| 4 | A nyilvántartó **cégbíróság** ellenőrzése (Cg. 13 → Budapest Környéki Törvényszék Cégbírósága) | admin → Cégadatok |
-| 5 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje** | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
-| 6 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
-| 7 | Saját fotók: csapat / iroda, flotta, M0 raktár | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
-| 8 | A szolgáltatás-aloldalak szövegének **bővítése** (jelenleg kb. 160–210 szó / oldal) | admin → Oldalak → Szolgáltatások |
+| 1 | **Microsoft 365** alkalmazás az ajánlatkérő űrlaphoz (adatok az adminban, titkos kód a Renderen), majd az űrlap bekapcsolása | `M365_BEALLITAS.md` |
+| 2 | **Saját domain** (Render + DNS a domdom.net-nél) | `DEPLOY.md`, 3. pont |
+| 3 | Jogi szövegek **hatálybalépési dátuma**, az e-mailben érkező megkeresések **megőrzési ideje** | `src/i18n/legal.ts`, `ADATFELDOLGOZOK.md` |
+| 4 | **Jogi ellenőrzés** – utána a figyelmeztetés kikapcsolása | `src/i18n/legal.ts`, `src/components/LegalContent.astro` |
+| 5 | Saját fotók: csapat / iroda, M0 raktár (a flottafotó kész) | admin → SEO és képek → Képek → Rólunk oldal saját fotói |
+| 6 | A szolgáltatás-aloldalak szövegének **bővítése** | admin → Oldalak → Szolgáltatások |
