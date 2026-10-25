@@ -41,7 +41,7 @@ export const site = {
     companyNumber: c.registration.companyNumber as string,
     taxNumber: c.registration.taxNumber as string,
     euVatNumber: orTodo(c.registration.euVatNumber, 'közösségi adószám (ha van)'),
-    // "13" in the company number = Pest county register; confirm on e-cegjegyzek.hu
+    // "13" in the company number = Pest county register → Budapest Környéki Törvényszék Cégbírósága
     registryCourt: c.registration.registryCourt as string,
     representative: orTodo(c.registration.representative, 'ügyvezető neve'),
   },
