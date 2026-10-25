@@ -3,6 +3,10 @@
  * Quote request without the form: shown on the contact page while the form is
  * switched off in the admin (Cégadatok és űrlap → Ajánlatkérő űrlap).
  * Texts: admin → Oldalak → Kapcsolat → Ajánlatkérés doboz.
+ *
+ * Two contact cards (call / e-mail) instead of pill buttons: the label and the
+ * number / address sit on separate lines and may wrap, so nothing overflows the
+ * box at any width or with longer texts set in the admin.
  */
 import Icon from './Icon.astro';
 import { site } from '../data/site';
@@ -15,16 +19,41 @@ interface Props {
 const { lang } = Astro.props;
 const q = useTranslations(lang).contact.quoteBox;
 const mailto = `mailto:${site.email}?subject=${encodeURIComponent(q.emailSubject)}`;
+
+const cards = [
+  { href: site.phone.href, icon: 'phone', label: q.call, value: site.phone.display, primary: true },
+  { href: mailto, icon: 'mail', label: q.email, value: site.email, primary: false },
+] as const;
 ---
 
 <p class="text-lg leading-relaxed text-ink-500">{q.text}</p>
-<div class="mt-8 flex flex-col gap-3 sm:flex-row">
-  <a href={site.phone.href} class="btn btn-primary btn-lg">
-    <Icon name="phone" class="size-5" />
-    <span>{q.call}<span class="sr-only">:</span> <span class="font-bold whitespace-nowrap">{site.phone.display}</span></span>
-  </a>
-  <a href={mailto} class="btn btn-secondary btn-lg">
-    <Icon name="mail" class="size-5" />
-    <span>{q.email}<span class="sr-only">:</span> <span class="font-bold whitespace-nowrap">{site.email}</span></span>
-  </a>
-</div>
+<ul class="mt-8 grid gap-3 sm:grid-cols-2">
+  {
+    cards.map((c) => (
+      <li class="min-w-0">
+        <a
+          href={c.href}
+          class:list={[
+            'flex h-full min-w-0 items-center gap-4 rounded-2xl p-4 transition duration-200 ease-out-soft focus-visible:outline-offset-4 sm:p-5',
+            c.primary
+              ? 'bg-gold-500 text-ink-950 shadow-sm hover:bg-gold-400 hover:shadow-md'
+              : 'border border-ink-200 bg-white text-ink-900 hover:border-ink-300 hover:bg-ink-50',
+          ]}
+        >
+          <span
+            class:list={[
+              'inline-flex size-11 shrink-0 items-center justify-center rounded-xl',
+              c.primary ? 'bg-ink-950/10' : 'bg-frost-100 text-cold-700',
+            ]}
+          >
+            <Icon name={c.icon} class="size-5" />
+          </span>
+          <span class="min-w-0">
+            <span class="block text-sm font-semibold">{c.label}</span>
+            <span class="block font-display text-lg font-extrabold break-words">{c.value}</span>
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
